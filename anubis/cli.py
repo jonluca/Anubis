@@ -1,6 +1,6 @@
 """Example of program with many options using docopt.
 Usage:
-  anubis (-t <target>) [-ov]
+  anubis -t <target> [-ov]
   anubis -h
   anubis --version
   
