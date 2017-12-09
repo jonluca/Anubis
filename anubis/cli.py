@@ -1,23 +1,20 @@
-"""
+"""Example of program with many options using docopt.
 Usage:
-  anubis -h | --help
+  anubis (-t <target>) [-ov]
+  anubis -h
   anubis --version
-
+  
 Options:
-  -h --help                         Show this screen.
-  --version                         Show version.
-  -t --target <ip or url>           Run Anubis on the target
-
-Examples:
-	anubis -h                         Prints this menu
-	anubis -t 192.168.0.1             Attempts to find subdomains and information on 192.168.0.1
-	anubis -t google.com              Attempts to find subdomains and information on google.com
-
+  -h --help            show this help message and exit
+  --version            show version and exit
+  -v --verbose         print status messages
+  -o --o               report only file names
+  -t --target          set target
+  
 Help:
   For help using this tool, please open an issue on the Github repository:
   https://github.com/jonluca/anubis
 """
-
 from inspect import getmembers, isclass
 
 from docopt import docopt
@@ -41,11 +38,9 @@ def main():
 
 	# Here we'll try to dynamically match the command the user is trying to run
 	# with a pre-defined command class we've already created.
-	for (k, v) in options.items():
-		if hasattr(anubis.commands, k) and v:
-			module = getattr(anubis.commands, k)
-			anubis.commands = getmembers(module, isclass)
-			command = \
-				[command[1] for command in anubis.commands if command[0] != 'Base'][0]
-			command = command(options)
-			command.run()
+	if not options["--target"]:
+		print("Target required! Run with -h for usage instructions.")
+		return
+	command = anubis.commands.Target
+	command = command(options)
+	command.run()
