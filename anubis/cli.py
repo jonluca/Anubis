@@ -1,17 +1,18 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [--with-nmap] [-iv]
+  anubis -t TARGET [-o FILENAME] [--with-nmap] [-iv] [--overwrite-nmap-scan SCAN]
   anubis -h
   anubis --version
   
 Options:
-  -h --help               show this help message and exit
-  -t --target             set target
-  --with-nmap             perform an nmap service/script scan
-  -o --output             save to filename
-  -i --additional-info    show additional information about the host from Shodan (requires API key)
-  --version               show version and exit
-  -v --verbose            print debug info and full request output
+  -h --help                   show this help message and exit
+  -t --target                 set target
+  --with-nmap                 perform an nmap service/script scan
+  -o --output                 save to filename
+  -i --additional-info        show additional information about the host from Shodan (requires API key)
+  --version                   show version and exit
+  -v --verbose                print debug info and full request output
+  --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
 
 Help:
   For help using this tool, please open an issue on the Github repository:
@@ -19,7 +20,7 @@ Help:
 """
 
 import sys
-
+import time
 from docopt import docopt
 
 VERSION = 1.0
@@ -54,6 +55,8 @@ class StdOutHook():
 
 
 def main():
+	start_time = time.time()
+
 	import anubis.commands
 	options = docopt(__doc__, version=VERSION)
 
@@ -80,5 +83,6 @@ def main():
 	command = anubis.commands.Target
 	command = command(options)
 	command.run()
+	print("--- %s seconds ---" % (time.time() - start_time))
 	if options["--output"]:
 		sys.stdout.writeout()
