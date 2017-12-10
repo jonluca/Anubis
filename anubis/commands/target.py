@@ -1,5 +1,6 @@
 """The target command."""
 
+import re
 import socket
 
 import nmap
@@ -26,11 +27,16 @@ class Target(Base):
 				"Error connecting to target! Make sure you spelled it correctly and it is a reachable address")
 
 	def run(self):
+		# retrieve IP of target
 		self.init()
 		print("Searching for subdomains for", self.ip)
+
+		# perform scans
 		self.subdomain_hackertarget()
 		self.search_virustotal()
 		self.search_pkey()
+		self.search_netcraft()
+		
 		if self.options["--with-nmap"]:
 			self.scan_host()
 
@@ -41,9 +47,6 @@ class Target(Base):
 		print("----------------")
 		for domain in dedupe:
 			ColorPrint.green(domain.strip())
-
-		# should_scan_host = input("Scan host " + self.ip + "? (y or n)\n")
-		# if should_scan_host == "y" or should_scan_host == "yes":
 
 	# Performs an nmap scan of a target, and outputs interesting services/ssl information
 	def scan_host(self):
@@ -122,6 +125,37 @@ class Target(Base):
 						self.domains.append(entry.strip())
 		except:
 			ColorPrint.red("Error parsing virustotal")
+			pass
+
+	def search_netcraft(self):
+
+		headers = {'Pragma': 'no-cache', 'DNT': '1',
+		           'Accept-Encoding': 'gzip, deflate, br',
+		           'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
+		           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+		           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+		           'Cache-Control': 'no-cache',
+		           'Referer': 'https://searchdns.netcraft.com/?restriction=site+ends+with&host=',
+		           'Connection': 'keep-alive', }
+
+		params = (
+			('restriction', 'site contains'), ('host', self.options["TARGET"]))
+
+		res = requests.get('https://searchdns.netcraft.com/', headers=headers,
+		                   params=params)
+
+		try:
+			scraped = res.text
+			trimmed = scraped[scraped.find('<div class="blogtitle">'):scraped.rfind(
+				'<div id="copyright">')]
+			subdomain_finder = re.compile(
+				'<a href="http://toolbar.netcraft.com/site_report\?url=(.*)">')
+			links = trimmed.findall(subdomain_finder)
+			for link in links:
+				if link.strip() not in self.domains:
+					self.domains.append(link.strip())
+		except:
+			print("Error parsing netcraft output")
 			pass
 
 	def search_pkey(self):
