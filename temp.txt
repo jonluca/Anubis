@@ -8,7 +8,7 @@
   d8888888888 888  888 Y88b 888 888 d88P 888      X88
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
-Searching for subdomains for 151.101.1.140
+Searching for subdomains for 151.101.65.140
 VirusTotal is currently ratelimiting this IP - go to virustotal.com and complete the captcha to continue.
 Running SSL Scan
 Available TLSv1.0 Ciphers:
@@ -18,15 +18,15 @@ Available TLSv1.0 Ciphers:
     TLS_RSA_WITH_AES_128_CBC_SHA
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
 Available TLSv1.2 Ciphers:
-    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
     TLS_RSA_WITH_AES_256_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-    TLS_RSA_WITH_AES_128_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-    TLS_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+    TLS_RSA_WITH_AES_128_GCM_SHA256
+    TLS_RSA_WITH_AES_128_CBC_SHA
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
  * Certificate Information:
      Content
@@ -66,45 +66,42 @@ Available TLSv1.2 Ciphers:
 Server Location: San Francisco US - 94107
 ISP: Fastly
 Starting Nmap Scan
-Host : 151.101.1.140 ()
+Host : 151.101.65.140 ()
 ----------
 Protocol: tcp
 port: 53	state: open
 port: 80	state: open
 port: 443	state: open
-Found 28 domains
+Found 27 domains
 ----------------
-http://zz.reddit.com: 151.101.129.140
-http://www.np.reddit.com: 151.101.129.140
-http://rr.reddit.com: 151.101.129.140
-http://nj.reddit.com: 151.101.129.140
-mx02.reddit.com: 151.101.129.140
-mailp236.reddit.com: 151.101.129.140
-mx03.reddit.com: 151.101.129.140
-origin.reddit.com: 54.172.97.226
-http://en.reddit.com: 151.101.129.140
-http://blog.reddit.com: 151.101.129.140
-http://ww.reddit.com: 151.101.129.140
+mailp236.reddit.com: 151.101.193.140
+http://www.reddit.com: 151.101.193.140
+http://rr.reddit.com: 151.101.193.140
+http://iy.reddit.com: 151.101.193.140
+http://zz.reddit.com: 151.101.193.140
+http://en.reddit.com: 151.101.193.140
+alb.reddit.com: 54.175.72.23
+http://re.reddit.com: 151.101.193.140
+http://np.reddit.com: 151.101.193.140
 rhs.reddit.com: 54.172.97.229
-out.reddit.com: 107.23.11.190
-http://iy.reddit.com: 151.101.129.140
-http://dg.reddit.com: 151.101.129.140
-http://fr.reddit.com: 151.101.129.140
-http://nm.reddit.com: 151.101.129.140
-http://ads.reddit.com: 151.101.129.140
-http://np.reddit.com: 151.101.129.140
-alb.reddit.com: 52.201.172.48
-http://re.reddit.com: 151.101.129.140
-reddit.com: 151.101.1.140
-http://sss.www.reddit.com.ru2.gsr.awhoer.net: 195.88.208.155
-http://m.reddit.com: 151.101.129.140
-http://www.reddit.com: 151.101.129.140
-Found 7 unique IPs
-107.23.11.190
-151.101.1.140
+http://dg.reddit.com: 151.101.193.140
+http://ads.reddit.com: 151.101.193.140
+origin.reddit.com: 54.172.97.226
+http://nj.reddit.com: 151.101.193.140
+http://fr.reddit.com: 151.101.193.140
+out.reddit.com: 54.174.14.76
+http://www.np.reddit.com: 151.101.193.140
+http://nm.reddit.com: 151.101.193.140
+http://ww.reddit.com: 151.101.193.140
+mx02.reddit.com: 151.101.193.140
+http://blog.reddit.com: 151.101.193.140
+mx03.reddit.com: 151.101.193.140
+http://m.reddit.com: 151.101.193.140
+reddit.com: 151.101.193.140
+Found 5 unique IPs
+54.174.14.76
+151.101.193.140
+54.175.72.23
 54.172.97.226
-52.201.172.48
 54.172.97.229
-195.88.208.155
-151.101.129.140
-Execution took 0:00:06.783
+Execution took 0:00:27.716
