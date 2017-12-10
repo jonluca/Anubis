@@ -8,447 +8,142 @@
   d8888888888 888  888 Y88b 888 888 d88P 888      X88
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
-Searching for subdomains for 151.101.193.140
-HackerTarget Found Domain: reddit.com
-HackerTarget Found Domain: mx02.reddit.com
-HackerTarget Found Domain: mx03.reddit.com
-HackerTarget Found Domain: mailp236.reddit.com
-HackerTarget Found Domain: alb.reddit.com
-HackerTarget Found Domain: origin.reddit.com
-HackerTarget Found Domain: rhs.reddit.com
-HackerTarget Found Domain: out.reddit.com
-VirustTotal Found Domain: blowjobs.reddit.com
-VirustTotal Found Domain: sendbird.reddit.com
-VirustTotal Found Domain: cu.reddit.com
-VirustTotal Found Domain: code.reddit.com
-VirustTotal Found Domain: nm.reddit.com
-VirustTotal Found Domain: i.reddit.com
-VirustTotal Found Domain: buttcoin.reddit.com
-VirustTotal Found Domain: nt.reddit.com
-VirustTotal Found Domain: ma.reddit.com
-VirustTotal Found Domain: as.reddit.com
-VirustTotal Found Domain: chickflixxx.reddit.com
-VirustTotal Found Domain: space.reddit.com
-VirustTotal Found Domain: m.reddit.com
-VirustTotal Found Domain: m3.reddit.com
-VirustTotal Found Domain: rr.reddit.com
-VirustTotal Found Domain: di.reddit.com
-VirustTotal Found Domain: st.reddit.com
-VirustTotal Found Domain: ns.reddit.com
-VirustTotal Found Domain: en.reddit.com
-VirustTotal Found Domain: pl.reddit.com
-VirustTotal Found Domain: pixel.reddit.com
-VirustTotal Found Domain: es.reddit.com
-VirustTotal Found Domain: pornvids.reddit.com
-VirustTotal Found Domain: nsfw.reddit.com
-VirustTotal Found Domain: amp.reddit.com
-VirustTotal Found Domain: 4chan.reddit.com
-VirustTotal Found Domain: celebs.reddit.com
-VirustTotal Found Domain: hookers.reddit.com
-VirustTotal Found Domain: nl.reddit.com
-VirustTotal Found Domain: hp.reddit.com
-VirustTotal Found Domain: pc.reddit.com
-VirustTotal Found Domain: ca.reddit.com
-VirustTotal Found Domain: api.reddit.com
-VirustTotal Found Domain: mod.reddit.com
-VirustTotal Found Domain: bdsmgw.reddit.com
-VirustTotal Found Domain: pay.reddit.com
-VirustTotal Found Domain: whowouldwin.reddit.com
-VirustTotal Found Domain: www.i.reddit.com
-VirustTotal Found Domain: np.reddit.com
-VirustTotal Found Domain: askreddit.reddit.com
-VirustTotal Found Domain: fr.reddit.com
-VirustTotal Found Domain: qu.reddit.com
-VirustTotal Found Domain: aq.reddit.com
-VirustTotal Found Domain: hm.reddit.com
-VirustTotal Found Domain: pp.reddit.com
-VirustTotal Found Domain: gu.reddit.com
-VirustTotal Found Domain: cr.reddit.com
-VirustTotal Found Domain: us.reddit.com
-VirustTotal Found Domain: zo.reddit.com
-VirustTotal Found Domain: kronoswow.reddit.com
-VirustTotal Found Domain: globaloffensive.reddit.com
-VirustTotal Found Domain: ss.reddit.com
-VirustTotal Found Domain: dr.reddit.com
-VirustTotal Found Domain: aa.reddit.com
-VirustTotal Found Domain: mo.reddit.com
-VirustTotal Found Domain: sn.reddit.com
-VirustTotal Found Domain: www.amp.reddit.com
-VirustTotal Found Domain: www.reddit.com
-VirustTotal Found Domain: about.reddit.com
-VirustTotal Found Domain: augustames.reddit.com
-VirustTotal Found Domain: trees.reddit.com
-VirustTotal Found Domain: arielwinter.reddit.com
-VirustTotal Found Domain: conservative.reddit.com
-VirustTotal Found Domain: re.reddit.com
-VirustTotal Found Domain: roosterteeth.reddit.com
-VirustTotal Found Domain: topsandbottoms.reddit.com
-VirustTotal Found Domain: ds.reddit.com
-VirustTotal Found Domain: feet.reddit.com
-VirustTotal Found Domain: beta.reddit.com
-VirustTotal Found Domain: handjob.reddit.com
-VirustTotal Found Domain: eg.reddit.com
-VirustTotal Found Domain: 4x.reddit.com
-VirustTotal Found Domain: bj.reddit.com
-VirustTotal Found Domain: cp.reddit.com
-VirustTotal Found Domain: so.reddit.com
-VirustTotal Found Domain: au.reddit.com
-VirustTotal Found Domain: e.reddit.com
-VirustTotal Found Domain: bu.reddit.com
-VirustTotal Found Domain: buttons.reddit.com
-VirustTotal Found Domain: mfa.reddit.com
-VirustTotal Found Domain: sf.reddit.com
-VirustTotal Found Domain: se.reddit.com
-VirustTotal Found Domain: gateway.reddit.com
-VirustTotal Found Domain: kissanime.reddit.com
-VirustTotal Found Domain: bo.reddit.com
-VirustTotal Found Domain: medicine.reddit.com
-VirustTotal Found Domain: yi.reddit.com
-VirustTotal Found Domain: genderotica.reddit.com
-VirustTotal Found Domain: oauth.reddit.com
-VirustTotal Found Domain: blog.reddit.com
-VirustTotal Found Domain: ads.reddit.com
-VirustTotal Found Domain: pihole.reddit.com
-VirustTotal Found Domain: www.np.reddit.com
-VirustTotal Found Domain: hl.reddit.com
-VirustTotal Found Domain: nj.reddit.com
-VirustTotal Found Domain: fj.reddit.com
-VirustTotal Found Domain: zz.reddit.com
-VirustTotal Found Domain: sp.reddit.com
-Netcraft Found Domain: http://www.reddit.com
-Netcraft Found Domain: http://reddit.com
-Netcraft Found Domain: http://fr.reddit.com
-Netcraft Found Domain: http://np.reddit.com
-Netcraft Found Domain: http://en.reddit.com
-Netcraft Found Domain: http://m.reddit.com
-Netcraft Found Domain: http://rr.reddit.com
-Netcraft Found Domain: http://iy.reddit.com
-Netcraft Found Domain: http://metareddit.com
-Netcraft Found Domain: http://dg.reddit.com
-Netcraft Found Domain: http://ureddit.com
-Netcraft Found Domain: http://blog.reddit.com
-Netcraft Found Domain: http://nm.reddit.com
-Netcraft Found Domain: http://nj.reddit.com
-Netcraft Found Domain: http://re.reddit.com
-Netcraft Found Domain: http://www.np.reddit.com
-Netcraft Found Domain: http://ads.reddit.com
-Netcraft Found Domain: http://zz.reddit.com
-Netcraft Found Domain: http://sss.www.reddit.com.ru2.gsr.awhoer.net
-Netcraft Found Domain: http://ww.reddit.com
-{
-  "area_code": 415,
-  "asn": "AS54113",
-  "city": "San Francisco",
-  "country_code": "US",
-  "country_code3": "USA",
-  "country_name": "United States",
-  "data": [
-    {
-      "_shodan": {
-        "crawler": "8640fe85fd23da9f6614a23f63747693b63fc492",
-        "id": "4ad4c5bd-40c9-45e2-98d7-019631e21634",
-        "module": "http",
-        "options": {}
-      },
-      "asn": "AS54113",
-      "data": "HTTP/1.1 500 Domain Not Found\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nconnection: keep-alive\r\nX-Served-By: cache-bur17545-BUR\r\nContent-Length: 251\r\nAccept-Ranges: bytes\r\nDate: Mon, 27 Nov 2017 18:58:03 GMT\r\nVia: 1.1 varnish\r\nConnection: keep-alive\r\n\r\n",
-      "deprecated": {
-        "html": {
-          "eol": "2016-12-31",
-          "new": "http.html"
-        },
-        "title": {
-          "eol": "2016-12-31",
-          "new": "http.title"
-        }
-      },
-      "domains": [],
-      "hash": -1371226506,
-      "hostnames": [],
-      "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.193.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.193.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-bur17545-BUR</p></body></html>",
-      "http": {
-        "components": {},
-        "favicon": null,
-        "host": "151.101.193.140",
-        "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.193.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.193.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-bur17545-BUR</p></body></html>",
-        "html_hash": 1725882378,
-        "location": "/",
-        "redirects": [],
-        "robots": null,
-        "server": "Varnish",
-        "sitemap": null,
-        "title": "Fastly error: unknown domain 151.101.193.140"
-      },
-      "ip": 2540028300,
-      "ip_str": "151.101.193.140",
-      "isp": "Fastly",
-      "location": {
-        "area_code": 415,
-        "city": "San Francisco",
-        "country_code": "US",
-        "country_code3": "USA",
-        "country_name": "United States",
-        "dma_code": 807,
-        "latitude": 37.7697,
-        "longitude": -122.39330000000001,
-        "postal_code": "94107",
-        "region_code": "CA"
-      },
-      "opts": {},
-      "org": "Fastly",
-      "os": null,
-      "port": 80,
-      "timestamp": "2017-11-27T18:58:03.883309",
-      "title": "Fastly error: unknown domain 151.101.193.140",
-      "transport": "tcp"
-    }
-  ],
-  "dma_code": 807,
-  "hostnames": [],
-  "ip": 2540028300,
-  "ip_str": "151.101.193.140",
-  "isp": "Fastly",
-  "last_update": "2017-11-27T18:58:03.883309",
-  "latitude": 37.7697,
-  "longitude": -122.39330000000001,
-  "org": "Fastly",
-  "os": null,
-  "ports": [
-    443,
-    80
-  ],
-  "postal_code": "94107",
-  "region_code": "CA",
-  "tags": [],
-  "vulns": [
-    "!CVE-2014-0160"
-  ]
-}
+Searching for subdomains for 151.101.1.140
 Server Location: San Francisco US - 94107
 ISP: Fastly
-Starting Nmap Service and Script scan
-{
-  "addresses": {
-    "ipv4": "138.197.125.24"
-  },
-  "hostnames": [
-    {
-      "name": "",
-      "type": ""
-    }
-  ],
-  "status": {
-    "reason": "user-set",
-    "state": "up"
-  },
-  "tcp": {
-    "53": {
-      "conf": "10",
-      "cpe": "",
-      "extrainfo": "",
-      "name": "domain",
-      "product": "",
-      "reason": "syn-ack",
-      "state": "open",
-      "version": ""
-    },
-    "80": {
-      "conf": "10",
-      "cpe": "cpe:/a:igor_sysoev:nginx",
-      "extrainfo": "",
-      "name": "http",
-      "product": "nginx",
-      "reason": "syn-ack",
-      "script": {
-        "http-server-header": "nginx",
-        "http-title": "Did not follow redirect to https://138.197.125.24/"
-      },
-      "state": "open",
-      "version": ""
-    },
-    "443": {
-      "conf": "10",
-      "cpe": "cpe:/a:igor_sysoev:nginx",
-      "extrainfo": "",
-      "name": "http",
-      "product": "nginx",
-      "reason": "syn-ack",
-      "script": {
-        "http-title": " GitHub Field Day",
-        "ssl-cert": "Subject: commonName=jonlu.ca\nSubject Alternative Name: DNS:blackboard.today, DNS:blackboardusc.com, DNS:githubfieldday.me, DNS:jonlu.ca, DNS:jonluca.me, DNS:secure.jonlu.ca, DNS:secure.scopeusc.com, DNS:shibboleth.blackboardusc.com, DNS:www.blackboard.today, DNS:www.blackboardusc.com, DNS:www.githubfieldday.me, DNS:www.jonlu.ca, DNS:www.jonluca.me\nNot valid before: 2017-11-09T02:05:58\nNot valid after:  2018-02-07T02:05:58",
-        "ssl-date": "TLS randomness does not represent time",
-        "tls-nextprotoneg": "\n  http/1.1"
-      },
-      "state": "open",
-      "version": ""
-    }
-  },
-  "vendor": {}
-}
-Host : 138.197.125.24 ()
+Starting Nmap Scan
+Host : 151.101.1.140 ()
 ----------
 Protocol: tcp
 port: 53	state: open
 port: 80	state: open
-	service: nginx
 port: 443	state: open
-	service: nginx
-	Certificate:
-	 Subject: commonName=jonlu.ca
-	 Subject Alternative Name: DNS:blackboard.today, DNS:blackboardusc.com, DNS:githubfieldday.me, DNS:jonlu.ca, DNS:jonluca.me, DNS:secure.jonlu.ca, DNS:secure.scopeusc.com, DNS:shibboleth.blackboardusc.com, DNS:www.blackboard.today, DNS:www.blackboardusc.com, DNS:www.githubfieldday.me, DNS:www.jonlu.ca, DNS:www.jonluca.me
-Nmap Found Domain: blackboard.today
-Nmap Found Domain: blackboardusc.com
-Nmap Found Domain: githubfieldday.me
-Nmap Found Domain: jonlu.ca
-Nmap Found Domain: jonluca.me
-Nmap Found Domain: secure.jonlu.ca
-Nmap Found Domain: secure.scopeusc.com
-Nmap Found Domain: shibboleth.blackboardusc.com
-Nmap Found Domain: www.blackboard.today
-Nmap Found Domain: www.blackboardusc.com
-Nmap Found Domain: www.githubfieldday.me
-Nmap Found Domain: www.jonlu.ca
-Nmap Found Domain: www.jonluca.me
-	 Not valid before: 2017-11-09T02:05:58
-	 Not valid after:  2018-02-07T02:05:58
-Found 139 domains
+Found 126 domains
 ----------------
-di.reddit.com
-zz.reddit.com
-celebs.reddit.com
-fr.reddit.com
-http://blog.reddit.com
-www.blackboard.today
-buttons.reddit.com
-roosterteeth.reddit.com
-hp.reddit.com
-sf.reddit.com
-http://re.reddit.com
-ds.reddit.com
-mx02.reddit.com
-http://m.reddit.com
-http://np.reddit.com
-chickflixxx.reddit.com
-sendbird.reddit.com
-4x.reddit.com
-alb.reddit.com
-www.amp.reddit.com
-gateway.reddit.com
-en.reddit.com
-http://reddit.com
-pl.reddit.com
-ma.reddit.com
-nsfw.reddit.com
-mx03.reddit.com
-mo.reddit.com
-www.blackboardusc.com
-oauth.reddit.com
-out.reddit.com
-cr.reddit.com
-yi.reddit.com
-origin.reddit.com
-4chan.reddit.com
-pixel.reddit.com
-aa.reddit.com
-www.jonlu.ca
-i.reddit.com
-hl.reddit.com
-www.np.reddit.com
-rr.reddit.com
-about.reddit.com
-api.reddit.com
-http://en.reddit.com
-augustames.reddit.com
-pp.reddit.com
-githubfieldday.me
-nt.reddit.com
-http://rr.reddit.com
-www.githubfieldday.me
-e.reddit.com
-http://zz.reddit.com
-pay.reddit.com
-ss.reddit.com
-as.reddit.com
-secure.jonlu.ca
-kissanime.reddit.com
-hm.reddit.com
-http://sss.www.reddit.com.ru2.gsr.awhoer.net
 pihole.reddit.com
+handjob.reddit.com
 http://ww.reddit.com
-medicine.reddit.com
-topsandbottoms.reddit.com
-blackboard.today
-se.reddit.com
-ca.reddit.com
-secure.scopeusc.com
-reddit.com
-hookers.reddit.com
-feet.reddit.com
-pornvids.reddit.com
-space.reddit.com
-jonlu.ca
-trees.reddit.com
-so.reddit.com
-arielwinter.reddit.com
-bu.reddit.com
-http://dg.reddit.com
-cu.reddit.com
-http://metareddit.com
-mfa.reddit.com
-http://fr.reddit.com
-http://ureddit.com
-mailp236.reddit.com
-http://iy.reddit.com
-sp.reddit.com
+cr.reddit.com
 eg.reddit.com
+i.reddit.com
+se.reddit.com
+fj.reddit.com
+ads.reddit.com
+nl.reddit.com
+http://rr.reddit.com
+http://nj.reddit.com
+nj.reddit.com
+http://re.reddit.com
+hp.reddit.com
+reddit.com
+sendbird.reddit.com
+4chan.reddit.com
+gateway.reddit.com
+es.reddit.com
+cp.reddit.com
+blowjobs.reddit.com
+rr.reddit.com
+api.reddit.com
+beta.reddit.com
+rhs.reddit.com
+http://m.reddit.com
+http://ads.reddit.com
 globaloffensive.reddit.com
 pc.reddit.com
-m3.reddit.com
-kronoswow.reddit.com
-blackboardusc.com
-dr.reddit.com
-blog.reddit.com
-beta.reddit.com
-http://ads.reddit.com
-es.reddit.com
-www.reddit.com
-www.jonluca.me
-bdsmgw.reddit.com
-whowouldwin.reddit.com
-aq.reddit.com
-amp.reddit.com
-handjob.reddit.com
-www.i.reddit.com
-blowjobs.reddit.com
-nj.reddit.com
-nl.reddit.com
-buttcoin.reddit.com
-shibboleth.blackboardusc.com
-sn.reddit.com
-genderotica.reddit.com
-gu.reddit.com
-np.reddit.com
-http://nj.reddit.com
-http://nm.reddit.com
-ns.reddit.com
-ads.reddit.com
-bo.reddit.com
-askreddit.reddit.com
-http://www.reddit.com
-us.reddit.com
-re.reddit.com
-st.reddit.com
-http://www.np.reddit.com
-jonluca.me
-nm.reddit.com
-bj.reddit.com
+http://ureddit.com
 mod.reddit.com
-m.reddit.com
-zo.reddit.com
-fj.reddit.com
-rhs.reddit.com
-code.reddit.com
-au.reddit.com
+bj.reddit.com
+sp.reddit.com
+pixel.reddit.com
+ds.reddit.com
+ma.reddit.com
+space.reddit.com
 conservative.reddit.com
-cp.reddit.com
+au.reddit.com
+as.reddit.com
+whowouldwin.reddit.com
+cu.reddit.com
+hookers.reddit.com
+http://blog.reddit.com
+m.reddit.com
+ns.reddit.com
+http://en.reddit.com
+pp.reddit.com
+http://sss.www.reddit.com.ru2.gsr.awhoer.net
+nt.reddit.com
+chickflixxx.reddit.com
+bu.reddit.com
+http://www.np.reddit.com
+buttcoin.reddit.com
+fr.reddit.com
+st.reddit.com
+http://fr.reddit.com
+dr.reddit.com
+http://np.reddit.com
+4x.reddit.com
+http://zz.reddit.com
+amp.reddit.com
+roosterteeth.reddit.com
+oauth.reddit.com
+origin.reddit.com
+www.i.reddit.com
+blog.reddit.com
+buttons.reddit.com
+kronoswow.reddit.com
+mx02.reddit.com
+pl.reddit.com
+pornvids.reddit.com
+arielwinter.reddit.com
+http://www.reddit.com
+np.reddit.com
+www.reddit.com
+http://nm.reddit.com
+di.reddit.com
+genderotica.reddit.com
+sn.reddit.com
+http://iy.reddit.com
+trees.reddit.com
+bdsmgw.reddit.com
+sf.reddit.com
+mo.reddit.com
+mailp236.reddit.com
+http://metareddit.com
+en.reddit.com
+www.np.reddit.com
+gu.reddit.com
+ss.reddit.com
+m3.reddit.com
+www.amp.reddit.com
+aq.reddit.com
+augustames.reddit.com
+kissanime.reddit.com
+ca.reddit.com
+us.reddit.com
+so.reddit.com
+bo.reddit.com
 qu.reddit.com
+medicine.reddit.com
+code.reddit.com
+e.reddit.com
+hl.reddit.com
+mfa.reddit.com
+feet.reddit.com
+hm.reddit.com
+re.reddit.com
+nsfw.reddit.com
+alb.reddit.com
+pay.reddit.com
+topsandbottoms.reddit.com
+http://dg.reddit.com
+zo.reddit.com
+askreddit.reddit.com
+about.reddit.com
+http://reddit.com
+out.reddit.com
+yi.reddit.com
+mx03.reddit.com
+aa.reddit.com
+nm.reddit.com
+zz.reddit.com
+celebs.reddit.com
+--- 6.98229193687439 seconds ---
