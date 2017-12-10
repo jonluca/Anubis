@@ -105,7 +105,9 @@ class Target(Base):
 							content = content.replace("DNS:", '')
 							new_domains = content.split(",")
 							for domain in new_domains:
-								if domain not in self.domains:
+								domain = domain.strip()
+								if domain not in self.domains and domain.endswith(
+												self.options["TARGET"]):
 									self.domains.append(domain)
 									if self.options["--verbose"]:
 										print("Nmap Found Domain:", domain.strip())
@@ -121,11 +123,17 @@ class Target(Base):
 		                       headers=headers, params=params)
 		results = results.text.split('\n')
 		for res in results:
-			if res.split(",")[0] != "":
-				url = res.split(",")[0]
-				self.domains.append(url)
-				if self.options["--verbose"]:
-					print("HackerTarget Found Domain:", url.strip())
+			try:
+				if res.split(",")[0] != "":
+					domain = res.split(",")[0]
+					domain = domain.strip()
+					if domain not in self.domains and domain.endswith(
+									self.options["TARGET"]):
+						self.domains.append(domain)
+						if self.options["--verbose"]:
+							print("HackerTarget Found Domain:", domain.strip())
+			except Exception as e:
+				pass
 
 	def search_virustotal(self):
 		headers = {'dnt': '1', 'accept-encoding': 'gzip, deflate, br',
@@ -145,12 +153,13 @@ class Target(Base):
 			trim_to_subdomain = scraped[
 			                    scraped.find("observed-subdomains"):scraped.rfind(
 				                    "<script>")].split('\n')
-			for entry in trim_to_subdomain:
-				if entry.strip().endswith(self.options["TARGET"]):
-					if entry.strip() not in self.domains:
-						self.domains.append(entry.strip())
+			for domain in trim_to_subdomain:
+				if domain.strip().endswith(self.options["TARGET"]):
+					if domain.strip() not in self.domains and domain.endswith(
+									self.options["TARGET"]):
+						self.domains.append(domain.strip())
 						if self.options["--verbose"]:
-							print("VirustTotal Found Domain:", entry.strip())
+							print("VirustTotal Found Domain:", domain.strip())
 		except Exception as e:
 			self.handle_exception(e, "Error parsing virustotal")
 			pass
@@ -179,11 +188,12 @@ class Target(Base):
 			subdomain_finder = re.compile(
 				'<a href="http://toolbar.netcraft.com/site_report\?url=(.*)">')
 			links = subdomain_finder.findall(trimmed)
-			for link in links:
-				if link.strip() not in self.domains:
-					self.domains.append(link.strip())
+			for domain in links:
+				if domain.strip() not in self.domains and domain.endswith(
+								self.options["TARGET"]):
+					self.domains.append(domain.strip())
 					if self.options["--verbose"]:
-						print("Netcraft Found Domain:", link.strip())
+						print("Netcraft Found Domain:", domain.strip())
 		except Exception as e:
 			self.handle_exception(e, "Error parsing netcraft output")
 			pass
@@ -209,13 +219,13 @@ class Target(Base):
 				          '</tbody>')].split('\n')
 			for entry in trimmed:
 				if entry.strip().startswith('<td style="border-left-style: none;">'):
-					content = entry.replace('<td style="border-left-style: none;">', '')
-					content = content.replace('</td>', '')
-					if self.options["TARGET"] in content:
-						if content.strip() not in self.domains:
-							self.domains.append(content.strip())
+					domain = entry.replace('<td style="border-left-style: none;">', '')
+					domain = domain.replace('</td>', '')
+					if self.options["TARGET"] in domain:
+						if domain.strip() not in self.domains:
+							self.domains.append(domain.strip())
 							if self.options["--verbose"]:
-								print("Pkey Found Domain:", content.strip())
+								print("Pkey Found Domain:", domain.strip())
 		except Exception as e:
 			self.handle_exception(e, "Error parsing pkey")
 			pass
@@ -285,6 +295,6 @@ class Target(Base):
 				unique_ips.add(resolved_ip)
 			except Exception as e:
 				self.handle_exception(e)
-		print("Found " + len(unique_ips) + " unique IPs")
+		print("Found %s unique IPs" % len(unique_ips))
 		for ip in unique_ips:
 			ColorPrint.green(ip)
