@@ -13,7 +13,7 @@ Options:
   --version                   show version and exit
   -v --verbose                print debug info and full request output
   --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
-  -s --ssl                    run an ssl scan
+  -s --ssl                    run an ssl scan and output cipher + chain info
 
 Help:
   For help using this tool, please open an issue on the Github repository:
