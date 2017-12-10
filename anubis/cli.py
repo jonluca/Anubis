@@ -1,15 +1,16 @@
 """Example of program with many options using docopt.
 Usage:
-  anubis -t TARGET [-o FILENAME] [--with-nmap]
+  anubis -t TARGET [-o FILENAME] [--with-nmap] [-v]
   anubis -h
   anubis --version
   
 Options:
-  -h --help            show this help message and exit
-  -t --target          set target
-  --with-nmap          perform an nmap service/script scan
-  -o --output          save to filename
-  --version            show version and exit
+  -h --help               show this help message and exit
+  -t --target             set target
+  --with-nmap             perform an nmap service/script scan
+  -o --output             save to filename
+  -i --additional-info    show additional information about the host from Shodan (requires API key)
+  --version               show version and exit
 
 Help:
   For help using this tool, please open an issue on the Github repository:
@@ -53,6 +54,7 @@ class StdOutHook():
 
 def main():
 	import anubis.commands
+	from anubis.API import *
 	options = docopt(__doc__, version=VERSION)
 
 	if options["--output"]:

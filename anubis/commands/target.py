@@ -7,10 +7,7 @@ import nmap
 import requests
 import shodan
 
-from anubis.API import *
 from anubis.utils.ColorPrint import *
-
-api = shodan.Shodan(SHODAN_KEY)
 from .base import Base
 
 
@@ -32,11 +29,12 @@ class Target(Base):
 		print("Searching for subdomains for", self.ip)
 
 		# perform scans
-		self.subdomain_hackertarget()
-		self.search_virustotal()
-		self.search_pkey()
-		self.search_netcraft()
-
+		# self.subdomain_hackertarget()
+		# self.search_virustotal()
+		# self.search_pkey()
+		# self.search_netcraft()
+		if self.options["--additional-info"]:
+			self.search_shodan()
 		if self.options["--with-nmap"]:
 			self.scan_host()
 
@@ -189,9 +187,18 @@ class Target(Base):
 			pass
 
 	def search_shodan(self):
+		from anubis.API import *
+
+		if not SHODAN_KEY:
+			print(
+				"To run with additional information, you must set http://shodan.io's API key. You can either set it manually here, or ")
+			api = shodan.Shodan(input("Key: "))
+		else:
+			api = shodan.Shodan(SHODAN_KEY)
+
 		if self.ip != "":
 			try:
-				results = api.search(self.ip)
+				results = api.host(self.ip)
 				print('Results found: %s' % results['total'])
 				for result in results['matches']:
 					print('IP: %s' % result['ip_str'])
