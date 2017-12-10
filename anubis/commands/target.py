@@ -2,6 +2,7 @@
 
 import re
 import socket
+from json import *
 
 import nmap
 import requests
@@ -84,6 +85,8 @@ class Target(Base):
 							for domain in new_domains:
 								if domain not in self.domains:
 									self.domains.append(domain)
+									if self.options["--verbose"]:
+										print("Nmap Found Domain:", domain.strip())
 				except:
 					pass
 
@@ -97,7 +100,10 @@ class Target(Base):
 		results = results.text.split('\n')
 		for res in results:
 			if res.split(",")[0] != "":
-				self.domains.append(res.split(",")[0])
+				url = res.split(",")[0]
+				self.domains.append(url)
+				if self.options["--verbose"]:
+					print("HackerTarget Found Domain:", url.strip())
 
 	def search_virustotal(self):
 		headers = {'dnt': '1', 'accept-encoding': 'gzip, deflate, br',
@@ -121,6 +127,8 @@ class Target(Base):
 				if entry.strip().endswith(self.options["TARGET"]):
 					if entry.strip() not in self.domains:
 						self.domains.append(entry.strip())
+						if self.options["--verbose"]:
+							print("VirustTotal Found Domain:", entry.strip())
 		except:
 			ColorPrint.red("Error parsing virustotal")
 			pass
@@ -152,6 +160,8 @@ class Target(Base):
 			for link in links:
 				if link.strip() not in self.domains:
 					self.domains.append(link.strip())
+					if self.options["--verbose"]:
+						print("Netcraft Found Domain:", link.strip())
 		except Exception as e:
 			print("Error parsing netcraft output")
 			pass
@@ -182,26 +192,36 @@ class Target(Base):
 					if self.options["TARGET"] in content:
 						if content.strip() not in self.domains:
 							self.domains.append(content.strip())
+							if self.options["--verbose"]:
+								print("Pkey Found Domain:", content.strip())
 		except:
 			print("Error parsing pkey")
 			pass
 
 	def search_shodan(self):
-		from anubis.API import *
+		from anubis.API import SHODAN_KEY
 
 		if not SHODAN_KEY:
 			print(
-				"To run with additional information, you must set http://shodan.io's API key. You can either set it manually here, or ")
-			api = shodan.Shodan(input("Key: "))
+				"To run with additional information, you must set http://shodan.io's API key. You can either set it manually here, or set it within anubis/API.py\nKey: ",
+				end='')
+			KEY = input()
+			api = shodan.Shodan(KEY)
 		else:
 			api = shodan.Shodan(SHODAN_KEY)
 
 		if self.ip != "":
 			try:
 				results = api.host(self.ip)
-				print('Results found: %s' % results['total'])
-				for result in results['matches']:
-					print('IP: %s' % result['ip_str'])
-					print(result['data'])
+				if self.options["--verbose"]:
+					print(dumps(results, indent=2, sort_keys=True))
+
+				print('Server Location:', results['city'], results['country_code'], '-',
+				      results['postal_code'])
+				print("ISP: %s" % results['isp'])
+				if results['os'] is not None:
+					print("Possible OS: %s" % results['os'])
 			except shodan.APIError as e:
 				print('Error: %s' % e)
+			except:
+				print("Error retrieving additional info")
