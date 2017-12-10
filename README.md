@@ -108,7 +108,8 @@ Found 6 unique IPs
 151.101.65.140
 54.172.97.226
 54.172.97.229
-Execution took 0:00:04.604```
+Execution took 0:00:04.604
+```
 
 ### Advanced
 ```anubis -t reddit.com --with-nmap -o temp.txt -is --overwrite-nmap-scan "-F -T5"``` 
