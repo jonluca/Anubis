@@ -21,7 +21,7 @@ class Target(Base):
 	domains = []
 	ip = ""
 
-	def handle_exception(self, e, message):
+	def handle_exception(self, e, message =""):
 		if self.options["--verbose"]:
 			ColorPrint.red(e)
 		if message:
@@ -40,10 +40,10 @@ class Target(Base):
 		print("Searching for subdomains for", self.ip)
 
 		# perform scans
-		# self.subdomain_hackertarget()
-		# self.search_virustotal()
-		# self.search_pkey()
-		# self.search_netcraft()
+		self.subdomain_hackertarget()
+		self.search_virustotal()
+		self.search_pkey()
+		self.search_netcraft()
 		if self.options["--ssl"]:
 			self.ssl_scan()
 		if self.options["--additional-info"]:
