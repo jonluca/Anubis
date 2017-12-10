@@ -44,7 +44,7 @@ class Target(Base):
 	def scan_host(self):
 		print("Scanning for services...")
 		nm = nmap.PortScanner()
-		nm.scan(hosts=self.ip, arguments='-nPn -sV')
+		nm.scan(hosts=self.ip, arguments='-nPn -sV -sC')
 		for host in nm.all_hosts():
 			print('----------------------------------------------------')
 			print('Host : %s (%s)' % (host, nm[host].hostname()))
@@ -54,7 +54,7 @@ class Target(Base):
 			print('Protocol : %s' % proto)
 			lport = nm[host][proto].keys()
 			for port in lport:
-				print('port : %s\tstate : %s' % (port, nm[host][proto][port]['state']))
+				print('port : %s\tstate : %s' % (port, nm[host][proto][port]))
 
 	def subdomain_hackertarget(self):
 		headers = {
