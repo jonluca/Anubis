@@ -8,124 +8,158 @@
   d8888888888 888  888 Y88b 888 888 d88P 888      X88
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
-Searching for subdomains for 151.101.65.140
-{
-  "area_code": 415,
-  "asn": "AS54113",
-  "city": "San Francisco",
-  "country_code": "US",
-  "country_code3": "USA",
-  "country_name": "United States",
-  "data": [
-    {
-      "_shodan": {
-        "crawler": "6ff540e4d43ec69d8de2a7b60e1de2d9ddb406dc",
-        "id": "f72707e2-30ff-4d6f-bdce-9ec28b64f569",
-        "module": "http",
-        "options": {}
-      },
-      "asn": "AS54113",
-      "data": "HTTP/1.1 500 Domain Not Found\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nconnection: keep-alive\r\nX-Served-By: cache-sin18020-SIN\r\nContent-Length: 249\r\nAccept-Ranges: bytes\r\nDate: Sun, 10 Dec 2017 09:20:05 GMT\r\nVia: 1.1 varnish\r\nConnection: keep-alive\r\n\r\n",
-      "deprecated": {
-        "html": {
-          "eol": "2016-12-31",
-          "new": "http.html"
-        },
-        "title": {
-          "eol": "2016-12-31",
-          "new": "http.title"
-        }
-      },
-      "domains": [],
-      "hash": 1306894861,
-      "hostnames": [],
-      "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.65.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.65.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin18020-SIN</p></body></html>",
-      "http": {
-        "components": {},
-        "favicon": null,
-        "host": "151.101.65.140",
-        "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.65.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.65.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin18020-SIN</p></body></html>",
-        "html_hash": -75495100,
-        "location": "/",
-        "redirects": [],
-        "robots": null,
-        "server": "Varnish",
-        "sitemap": null,
-        "title": "Fastly error: unknown domain 151.101.65.140"
-      },
-      "ip": 2539995532,
-      "ip_str": "151.101.65.140",
-      "isp": "Fastly",
-      "location": {
-        "area_code": 415,
-        "city": "San Francisco",
-        "country_code": "US",
-        "country_code3": "USA",
-        "country_name": "United States",
-        "dma_code": 807,
-        "latitude": 37.7697,
-        "longitude": -122.39330000000001,
-        "postal_code": "94107",
-        "region_code": "CA"
-      },
-      "opts": {},
-      "org": "Fastly",
-      "os": null,
-      "port": 80,
-      "timestamp": "2017-12-10T09:21:18.505715",
-      "title": "Fastly error: unknown domain 151.101.65.140",
-      "transport": "tcp"
-    }
-  ],
-  "dma_code": 807,
-  "hostnames": [],
-  "ip": 2539995532,
-  "ip_str": "151.101.65.140",
-  "isp": "Fastly",
-  "last_update": "2017-12-10T09:21:18.505715",
-  "latitude": 37.7697,
-  "longitude": -122.39330000000001,
-  "org": "Fastly",
-  "os": null,
-  "ports": [
-    80,
-    443
-  ],
-  "postal_code": "94107",
-  "region_code": "CA",
-  "tags": [],
-  "vulns": [
-    "!CVE-2014-0160"
-  ]
-}
+Searching for subdomains for 151.101.1.140
 Server Location: San Francisco US - 94107
 ISP: Fastly
-Scanning for services...
-Host : 138.197.125.24 ()
+Starting nmap scan (options -nPn -sV -sC
+Host : 151.101.1.140 ()
 ----------
 Protocol: tcp
 port: 53	state: open
 port: 80	state: open
-	service: nginx
+	service: Varnish
 port: 443	state: open
-	service: nginx
+	service: Varnish
 	ssl-cert:
-	 Subject: commonName=jonlu.ca
-	 Subject Alternative Name: DNS:blackboard.today, DNS:blackboardusc.com, DNS:githubfieldday.me, DNS:jonlu.ca, DNS:jonluca.me, DNS:secure.jonlu.ca, DNS:secure.scopeusc.com, DNS:shibboleth.blackboardusc.com, DNS:www.blackboard.today, DNS:www.blackboardusc.com, DNS:www.githubfieldday.me, DNS:www.jonlu.ca, DNS:www.jonluca.me
-	 Not valid before: 2017-11-09T02:05:58
-	 Not valid after:  2018-02-07T02:05:58
-Found 13 domains
+	 Subject: commonName=*.reddit.com/organizationName=Reddit Inc./stateOrProvinceName=California/countryName=US
+	 Subject Alternative Name: DNS:*.reddit.com, DNS:reddit.com, DNS:*.redditmedia.com, DNS:engine.a.redditmedia.com, DNS:redditmedia.com, DNS:*.redd.it, DNS:redd.it, DNS:www.redditstatic.com, DNS:imgless.reddituploads.com, DNS:i.reddituploads.com, DNS:*.thumbs.redditmedia.com
+	 Not valid before: 2015-08-17T00:00:00
+	 Not valid after:  2018-08-21T12:00:00
+Found 136 domains
 ----------------
-www.githubfieldday.me
-secure.jonlu.ca
-www.blackboard.today
-shibboleth.blackboardusc.com
-githubfieldday.me
-jonlu.ca
-www.blackboardusc.com
-blackboardusc.com
-blackboard.today
-www.jonlu.ca
-www.jonluca.me
-secure.scopeusc.com
-jonluca.me
+imgless.reddituploads.com
+ca.reddit.com
+http://re.reddit.com
+roosterteeth.reddit.com
+*.reddit.com
+www.reddit.com
+ss.reddit.com
+us.reddit.com
+4chan.reddit.com
+gu.reddit.com
+re.reddit.com
+eg.reddit.com
+*.thumbs.redditmedia.com
+topsandbottoms.reddit.com
+sendbird.reddit.com
+buttons.reddit.com
+www.i.reddit.com
+http://np.reddit.com
+origin.reddit.com
+fr.reddit.com
+sn.reddit.com
+globaloffensive.reddit.com
+oauth.reddit.com
+bj.reddit.com
+di.reddit.com
+www.redditstatic.com
+http://ureddit.com
+bo.reddit.com
+rr.reddit.com
+zo.reddit.com
+zz.reddit.com
+http://en.reddit.com
+mod.reddit.com
+sf.reddit.com
+ads.reddit.com
+http://nj.reddit.com
+api.reddit.com
+bdsmgw.reddit.com
+nj.reddit.com
+ma.reddit.com
+www.amp.reddit.com
+ns.reddit.com
+nl.reddit.com
+reddit.com
+genderotica.reddit.com
+code.reddit.com
+amp.reddit.com
+arielwinter.reddit.com
+m.reddit.com
+ra.reddit.com
+pihole.reddit.com
+e.reddit.com
+blog.reddit.com
+hl.reddit.com
+http://sss.www.reddit.com.ru2.gsr.awhoer.net
+rhs.reddit.com
+nt.reddit.com
+sp.reddit.com
+aa.reddit.com
+buttcoin.reddit.com
+nsfw.reddit.com
+kronoswow.reddit.com
+beta.reddit.com
+yi.reddit.com
+alb.reddit.com
+as.reddit.com
+http://metareddit.com
+redditmedia.com
+4x.reddit.com
+nm.reddit.com
+np.reddit.com
+i.reddit.com
+ds.reddit.com
+handjob.reddit.com
+st.reddit.com
+cu.reddit.com
+whowouldwin.reddit.com
+http://www.reddit.com
+http://iy.reddit.com
+m3.reddit.com
+se.reddit.com
+http://blog.reddit.com
+gateway.reddit.com
+i.reddituploads.com
+pc.reddit.com
+about.reddit.com
+au.reddit.com
+pixel.reddit.com
+aq.reddit.com
+mo.reddit.com
+so.reddit.com
+fj.reddit.com
+celebs.reddit.com
+trees.reddit.com
+cp.reddit.com
+chickflixxx.reddit.com
+dr.reddit.com
+feet.reddit.com
+http://reddit.com
+es.reddit.com
+http://ww.reddit.com
+http://fr.reddit.com
+mx03.reddit.com
+http://ads.reddit.com
+mailp236.reddit.com
+pl.reddit.com
+hm.reddit.com
+out.reddit.com
+conservative.reddit.com
+mfa.reddit.com
+http://dg.reddit.com
+cr.reddit.com
+pay.reddit.com
+http://rr.reddit.com
+http://www.np.reddit.com
+bu.reddit.com
+hookers.reddit.com
+http://m.reddit.com
+http://nm.reddit.com
+*.redd.it
+www.np.reddit.com
+qu.reddit.com
+kissanime.reddit.com
+pp.reddit.com
+http://zz.reddit.com
+*.redditmedia.com
+askreddit.reddit.com
+redd.it
+engine.a.redditmedia.com
+pornvids.reddit.com
+augustames.reddit.com
+space.reddit.com
+hp.reddit.com
+en.reddit.com
+mx02.reddit.com
+medicine.reddit.com

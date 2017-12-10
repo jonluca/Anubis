@@ -1,4 +1,4 @@
-"""Example of program with many options using docopt.
+"""
 Usage:
   anubis -t TARGET [-o FILENAME] [--with-nmap] [-iv]
   anubis -h
