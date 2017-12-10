@@ -21,24 +21,27 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 ## Usage
 
     Usage:
-      anubis -t TARGET [-o FILENAME] [--with-nmap] [-iv]
+      anubis -t TARGET [-o FILENAME] [--with-nmap] [-ivs] [--overwrite-nmap-scan SCAN]
       anubis -h
       anubis --version
       
     Options:
-      -h --help               show this help message and exit
-      -t --target             set target
-      --with-nmap             perform an nmap service/script scan
-      -o --output             save to filename
-      -i --additional-info    show additional information about the host from Shodan (requires API key)
-      --version               show version and exit
-      -v --verbose            print debug info/full info dumps
+      -h --help                   show this help message and exit
+      -t --target                 set target
+      --with-nmap                 perform an nmap service/script scan
+      -o --output                 save to filename
+      -i --additional-info        show additional information about the host from Shodan (requires API key)
+      --version                   show version and exit
+      -v --verbose                print debug info and full request output
+      --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
+      -s --ssl                    run an ssl scan and output cipher + chain info
     
     Help:
       For help using this tool, please open an issue on the Github repository:
-      https://github.com/jonluca/anubis
-      
+      https://github.com/jonluca/anubis  
+          
 ## Sample Output
+
 ### Basic
 ```anubis -t reddit.com``` 
 
