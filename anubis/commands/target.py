@@ -4,8 +4,10 @@ from json import dumps
 
 import requests
 import shodan
+from anubis.utils.ColorPrint import *
 
 from anubis.API import *
+
 api = shodan.Shodan(SHODAN_KEY)
 from .base import Base
 
@@ -16,12 +18,12 @@ class Target(Base):
 
 	def run(self):
 		self.subdomain_hackertarget()
-		print('You supplied the following options:',
-		      dumps(self.options, indent=2, sort_keys=True))
+		#self.search_shodan()
 
 	def subdomain_hackertarget(self):
-		headers = {'Upgrade-Insecure-Requests': '1',
-		           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+		print("Searching for subdomains...")
+		headers = {
+			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 		params = (('q', self.options["TARGET"]),)
 
 		results = requests.get('http://api.hackertarget.com/hostsearch/',
@@ -30,7 +32,11 @@ class Target(Base):
 		for res in results:
 			self.domains.append(res.split(","))
 
-		print(dumps(self.domains, indent=2, sort_keys=True))
+		print("Found", len(self.domains), "domains")
+		for domain in self.domains:
+			if len(domain) == 2:
+				ColorPrint.red(domain[0],end='')
+				print(": ",domain[1])
 
 	def search_shodan(self):
 		try:
