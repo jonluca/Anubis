@@ -1,0 +1,42 @@
+
+        d8888                   888      d8b
+       d88888                   888      Y8P
+      d88P888                   888
+     d88P 888 88888b.  888  888 88888b.  888 .d8888b
+    d88P  888 888 "88b 888  888 888 "88b 888 88K
+   d88P   888 888  888 888  888 888  888 888 "Y8888b.
+  d8888888888 888  888 Y88b 888 888 d88P 888      X88
+ d88P     888 888  888  "Y88888 88888P"  888  88888P'
+	
+Searching for subdomains for 138.197.125.24
+Scanning for services...
+Host : 138.197.125.24 ()
+----------
+Protocol: tcp
+port: 53	state: open
+port: 80	state: open
+	service: nginx
+port: 443	state: open
+	service: nginx
+	ssl-cert:
+	 Subject: commonName=jonlu.ca
+	 Subject Alternative Name: DNS:blackboard.today, DNS:blackboardusc.com, DNS:githubfieldday.me, DNS:jonlu.ca, DNS:jonluca.me, DNS:secure.jonlu.ca, DNS:secure.scopeusc.com, DNS:shibboleth.blackboardusc.com, DNS:www.blackboard.today, DNS:www.blackboardusc.com, DNS:www.githubfieldday.me, DNS:www.jonlu.ca, DNS:www.jonluca.me
+	 Not valid before: 2017-11-09T02:05:58
+	 Not valid after:  2018-02-07T02:05:58
+Found 15 domains
+----------------
+githubfieldday.me
+jonlu.ca
+secure.jonlu.ca
+blackboard.today
+blackboardusc.com
+www.jonluca.me
+www.jonlu.ca
+secure.scopeusc.com
+www.jonlu.ca
+www.blackboard.today
+shibboleth.blackboardusc.com
+jonlu.ca
+www.blackboardusc.com
+jonluca.me
+www.githubfieldday.me
