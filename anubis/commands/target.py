@@ -4,6 +4,9 @@ import re
 import shutil
 from json import *
 
+import dns.query
+import dns.resolver
+import dns.zone
 import nmap
 import requests
 import shodan
@@ -42,6 +45,7 @@ class Target(Base):
 		print("Searching for subdomains for", self.ip)
 
 		# perform scans
+		self.dns_zonetransfer()
 		self.subdomain_hackertarget()
 		self.search_virustotal()
 		self.search_pkey()
@@ -313,3 +317,34 @@ class Target(Base):
 		print("Found %s unique IPs" % len(unique_ips))
 		for ip in unique_ips:
 			ColorPrint.green(ip)
+
+	def dns_zonetransfer(self):
+		print("Testing for zone transfers")
+		zonetransfers = []
+		resolver = dns.resolver.Resolver()
+		try:
+			answers = resolver.query(self.options["TARGET"], 'NS')
+		except Exception as e:
+			self.handle_exception(e, "Error checking for Zone Transfers")
+
+		resolved_ips = []
+		for ns in answers:
+			ns = str(ns).rstrip('.')
+			resolved_ips.append(socket.gethostbyname(ns))
+
+		for ip in resolved_ips:
+			try:
+				zone = dns.zone.from_xfr(dns.query.xfr(ip, self.options["TARGET"]))
+				for name, node in zone.nodes.items():
+					name = str(name)
+					if name not in ["@", "*"]:
+						zonetransfers.append(name + '.' + self.options["TARGET"])
+			except:
+				pass
+
+		if zonetransfers:
+			print("Zone transfers possible:")
+			for zone in zonetransfers:
+				ColorPrint.red(zone)
+		else:
+			print("No zone transfers possible")
