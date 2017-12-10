@@ -8,7 +8,7 @@
   d8888888888 888  888 Y88b 888 888 d88P 888      X88
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
-Searching for subdomains for 151.101.65.140
+Searching for subdomains for 151.101.129.140
 VirusTotal is currently ratelimiting this IP - go to virustotal.com and complete the captcha to continue.
 Running SSL Scan
 Available TLSv1.0 Ciphers:
@@ -18,15 +18,15 @@ Available TLSv1.0 Ciphers:
     TLS_RSA_WITH_AES_128_CBC_SHA
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
 Available TLSv1.2 Ciphers:
-    TLS_RSA_WITH_AES_256_CBC_SHA
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
     TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+    TLS_RSA_WITH_AES_256_CBC_SHA
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+    TLS_RSA_WITH_AES_128_GCM_SHA256
+    TLS_RSA_WITH_AES_128_CBC_SHA
     TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-    TLS_RSA_WITH_AES_128_GCM_SHA256
-    TLS_RSA_WITH_AES_128_CBC_SHA
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
  * Certificate Information:
      Content
@@ -63,10 +63,22 @@ Available TLSv1.2 Ciphers:
        Cert Serial Number:                08CF7DA9B222C9D983C50D993F2F5437
        This Update:                       Dec 10 16:18:57 2017 GMT
        Next Update:                       Dec 17 15:33:57 2017 GMT
+ * OpenSSL Heartbleed:
+                                          OK - Not vulnerable to Heartbleed
+ * HTTP Security Headers:
+       NOT SUPPORTED - Server did not send an HSTS header
+
+     HTTP Public Key Pinning (HPKP)
+       NOT SUPPORTED - Server did not send an HPKP header
+
+     Computed HPKP Pins for Current Chain
+      0 - *.reddit.com                                  3FUu+FYb3IyHxicQEMs5sSzs207fuv25p7NGRIPDaAw=
+      1 - DigiCert SHA2 Secure Server CA                5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=
+      2 - DigiCert Global Root CA                       r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=
 Server Location: San Francisco US - 94107
 ISP: Fastly
 Starting Nmap Scan
-Host : 151.101.65.140 ()
+Host : 151.101.129.140 ()
 ----------
 Protocol: tcp
 port: 53	state: open
@@ -74,34 +86,35 @@ port: 80	state: open
 port: 443	state: open
 Found 27 domains
 ----------------
-mailp236.reddit.com: 151.101.193.140
-http://www.reddit.com: 151.101.193.140
-http://rr.reddit.com: 151.101.193.140
-http://iy.reddit.com: 151.101.193.140
+alb.reddit.com: 52.201.172.48
 http://zz.reddit.com: 151.101.193.140
-http://en.reddit.com: 151.101.193.140
-alb.reddit.com: 54.175.72.23
 http://re.reddit.com: 151.101.193.140
-http://np.reddit.com: 151.101.193.140
-rhs.reddit.com: 54.172.97.229
-http://dg.reddit.com: 151.101.193.140
-http://ads.reddit.com: 151.101.193.140
-origin.reddit.com: 54.172.97.226
-http://nj.reddit.com: 151.101.193.140
-http://fr.reddit.com: 151.101.193.140
-out.reddit.com: 54.174.14.76
+http://iy.reddit.com: 151.101.193.140
+http://rr.reddit.com: 151.101.193.140
 http://www.np.reddit.com: 151.101.193.140
-http://nm.reddit.com: 151.101.193.140
-http://ww.reddit.com: 151.101.193.140
-mx02.reddit.com: 151.101.193.140
-http://blog.reddit.com: 151.101.193.140
 mx03.reddit.com: 151.101.193.140
+http://blog.reddit.com: 151.101.193.140
+http://en.reddit.com: 151.101.193.140
+http://ww.reddit.com: 151.101.193.140
+mailp236.reddit.com: 151.101.193.140
+http://nj.reddit.com: 151.101.193.140
+http://www.reddit.com: 151.101.193.140
 http://m.reddit.com: 151.101.193.140
-reddit.com: 151.101.193.140
-Found 5 unique IPs
-54.174.14.76
+out.reddit.com: 54.174.14.76
+origin.reddit.com: 54.172.97.226
+rhs.reddit.com: 54.172.97.228
+http://ads.reddit.com: 151.101.193.140
+http://fr.reddit.com: 151.101.193.140
+http://nm.reddit.com: 151.101.193.140
+http://np.reddit.com: 151.101.193.140
+mx02.reddit.com: 151.101.193.140
+reddit.com: 151.101.129.140
+http://dg.reddit.com: 151.101.193.140
+Found 6 unique IPs
+54.172.97.228
 151.101.193.140
-54.175.72.23
+151.101.129.140
+54.174.14.76
 54.172.97.226
-54.172.97.229
-Execution took 0:00:27.716
+52.201.172.48
+Execution took 0:00:08.736

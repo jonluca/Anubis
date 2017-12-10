@@ -8,6 +8,8 @@ import nmap
 import requests
 import shodan
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
+from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
+from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import *
 from sslyze.server_connectivity import *
 from sslyze.synchronous_scanner import *
@@ -282,6 +284,19 @@ class Target(Base):
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
 			for entry in scan_result.as_text():
 				print(entry)
+
+			# Heartbleed vulnerability info
+			command = HeartbleedScanCommand()
+			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			for entry in scan_result.as_text():
+				print(entry)
+
+			# HTTP Headers info
+			command = HttpHeadersScanCommand()
+			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			for entry in scan_result.as_text():
+				print(entry)
+
 		except Exception as e:
 			self.handle_exception(e, "Error running SSL scan")
 			pass
