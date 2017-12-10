@@ -36,7 +36,7 @@ class Target(Base):
 		self.search_virustotal()
 		self.search_pkey()
 		self.search_netcraft()
-		
+
 		if self.options["--with-nmap"]:
 			self.scan_host()
 
@@ -150,11 +150,11 @@ class Target(Base):
 				'<div id="copyright">')]
 			subdomain_finder = re.compile(
 				'<a href="http://toolbar.netcraft.com/site_report\?url=(.*)">')
-			links = trimmed.findall(subdomain_finder)
+			links = subdomain_finder.findall(trimmed)
 			for link in links:
 				if link.strip() not in self.domains:
 					self.domains.append(link.strip())
-		except:
+		except Exception as e:
 			print("Error parsing netcraft output")
 			pass
 
