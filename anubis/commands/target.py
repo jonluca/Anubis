@@ -1,6 +1,7 @@
 """The target command."""
 
 import re
+import shutil
 import socket
 from json import *
 
@@ -49,6 +50,11 @@ class Target(Base):
 
 	# Performs an nmap scan of a target, and outputs interesting services/ssl information
 	def scan_host(self):
+
+		if shutil.which("nmap") is None:
+			print("Nmap must be installed to run --with-nmap!")
+			return
+		
 		print("Starting nmap scan (options -nPn -sV -sC")
 		nm = nmap.PortScanner()
 		# nm.scan(hosts=self.ip, arguments='-nPn -sV -sC')
