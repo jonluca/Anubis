@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [--with-nmap] [-ivs] [--overwrite-nmap-scan SCAN]
+  anubis -t TARGET [-o FILENAME] [--with-nmap] [-ivsp] [--overwrite-nmap-scan SCAN]
   anubis -h
   anubis --version
   
