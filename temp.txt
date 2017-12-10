@@ -23,20 +23,18 @@ port: 443	state: open
 	 Subject Alternative Name: DNS:blackboard.today, DNS:blackboardusc.com, DNS:githubfieldday.me, DNS:jonlu.ca, DNS:jonluca.me, DNS:secure.jonlu.ca, DNS:secure.scopeusc.com, DNS:shibboleth.blackboardusc.com, DNS:www.blackboard.today, DNS:www.blackboardusc.com, DNS:www.githubfieldday.me, DNS:www.jonlu.ca, DNS:www.jonluca.me
 	 Not valid before: 2017-11-09T02:05:58
 	 Not valid after:  2018-02-07T02:05:58
-Found 15 domains
+Found 13 domains
 ----------------
-githubfieldday.me
-jonlu.ca
-secure.jonlu.ca
-blackboard.today
-blackboardusc.com
-www.jonluca.me
-www.jonlu.ca
-secure.scopeusc.com
-www.jonlu.ca
-www.blackboard.today
+www.blackboardusc.com
 shibboleth.blackboardusc.com
 jonlu.ca
-www.blackboardusc.com
-jonluca.me
 www.githubfieldday.me
+blackboard.today
+githubfieldday.me
+secure.scopeusc.com
+jonluca.me
+www.blackboard.today
+secure.jonlu.ca
+www.jonluca.me
+www.jonlu.ca
+blackboardusc.com

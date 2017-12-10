@@ -33,11 +33,12 @@ class Target(Base):
 		self.search_pkey()
 		if self.options["--with-nmap"]:
 			self.scan_host()
-		print("Found", len(self.domains), "domains")
-		print("----------------")
+
 		# remove duplicates and clean up
-		map(str.strip, self.domains)
+		self.domains = [x.strip() for x in self.domains]
 		dedupe = set(self.domains)
+		print("Found", len(dedupe), "domains")
+		print("----------------")
 		for domain in dedupe:
 			ColorPrint.green(domain.strip())
 
