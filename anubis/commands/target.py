@@ -277,9 +277,14 @@ class Target(Base):
 			pass
 
 	def resolve_ips(self):
+		unique_ips = set()
 		for domain in self.dedupe:
 			try:
 				resolved_ip = socket.gethostbyname(domain)
-				ColorPrint.green(resolved_ip + ": " + resolved_ip)
+				ColorPrint.green(domain + ": " + resolved_ip)
+				unique_ips.add(resolved_ip)
 			except Exception as e:
 				self.handle_exception(e)
+		print("Found " + len(unique_ips) + " unique IPs")
+		for ip in unique_ips:
+			ColorPrint.green(ip)
