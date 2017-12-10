@@ -69,6 +69,47 @@ api.reddit.com
 ... (truncated for readability)
 ```
 
+`anubis -t reddit.com -ip`
+
+```
+Searching for subdomains for 151.101.65.140
+Server Location: San Francisco US - 94107
+ISP: Fastly
+Found 27 domains
+----------------
+http://www.np.reddit.com: 151.101.193.140
+http://nm.reddit.com: 151.101.193.140
+http://ww.reddit.com: 151.101.193.140
+http://dg.reddit.com: 151.101.193.140
+http://en.reddit.com: 151.101.193.140
+http://ads.reddit.com: 151.101.193.140
+http://zz.reddit.com: 151.101.193.140
+out.reddit.com: 107.23.11.190
+origin.reddit.com: 54.172.97.226
+http://blog.reddit.com: 151.101.193.140
+alb.reddit.com: 52.201.172.48
+http://m.reddit.com: 151.101.193.140
+http://rr.reddit.com: 151.101.193.140
+reddit.com: 151.101.65.140
+http://www.reddit.com: 151.101.193.140
+mx03.reddit.com: 151.101.193.140
+http://fr.reddit.com: 151.101.193.140
+rhs.reddit.com: 54.172.97.229
+http://np.reddit.com: 151.101.193.140
+http://nj.reddit.com: 151.101.193.140
+http://re.reddit.com: 151.101.193.140
+http://iy.reddit.com: 151.101.193.140
+mx02.reddit.com: 151.101.193.140
+mailp236.reddit.com: 151.101.193.140
+Found 6 unique IPs
+52.201.172.48
+151.101.193.140
+107.23.11.190
+151.101.65.140
+54.172.97.226
+54.172.97.229
+Execution took 0:00:04.604```
+
 ### Advanced
 ```anubis -t reddit.com --with-nmap -o temp.txt -is --overwrite-nmap-scan "-F -T5"``` 
 
