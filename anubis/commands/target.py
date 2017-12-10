@@ -1,5 +1,7 @@
 """The target command."""
 
+import socket
+
 import requests
 import shodan
 
@@ -13,9 +15,18 @@ from .base import Base
 class Target(Base):
 	"""Main enumeration module"""
 	domains = []
+	ip = ""
+
+	def init(self):
+		try:
+			self.ip = socket.gethostbyname(self.options["TARGET"])
+		except:
+			ColorPrint.red(
+				"Error connecting to target! Make sure you spelled it correctly and it is a reachable address")
 
 	def run(self):
-		print("Searching for subdomains...")
+		self.init()
+		print("Searching for subdomains for", self.ip)
 		self.subdomain_hackertarget()
 		self.search_virustotal()
 		print("Found", len(self.domains), "domains")
@@ -59,11 +70,12 @@ class Target(Base):
 				self.domains.append(entry.strip())
 
 	def search_shodan(self):
-		try:
-			results = api.search(self.options["TARGET"])
-			print('Results found: %s' % results['total'])
-			for result in results['matches']:
-				print('IP: %s' % result['ip_str'])
-				print(result['data'])
-		except shodan.APIError as e:
-			print('Error: %s' % e)
+		if self.ip != "":
+			try:
+				results = api.search(self.ip)
+				print('Results found: %s' % results['total'])
+				for result in results['matches']:
+					print('IP: %s' % result['ip_str'])
+					print(result['data'])
+			except shodan.APIError as e:
+				print('Error: %s' % e)
