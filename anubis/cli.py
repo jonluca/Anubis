@@ -19,7 +19,7 @@ from inspect import getmembers, isclass
 
 from docopt import docopt
 
-from . import __version__ as VERSION
+VERSION = 1.0
 
 
 def main():
