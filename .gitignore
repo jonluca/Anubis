@@ -23,6 +23,7 @@ sdist/
 var/
 wheels/
 *.egg-info/
+API.py
 .installed.cfg
 *.egg
 MANIFEST

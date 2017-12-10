@@ -3,7 +3,10 @@
 from json import dumps
 
 import requests
+import shodan
 
+SHODAN_API_KEY = ""
+api = shodan.Shodan(SHODAN_API_KEY)
 from .base import Base
 
 
@@ -28,3 +31,13 @@ class Target(Base):
 			self.domains.append(res.split(","))
 
 		print(dumps(self.domains, indent=2, sort_keys=True))
+
+	def search_shodan(self):
+		try:
+			results = api.search(self.options["TARGET"])
+			print('Results found: %s' % results['total'])
+			for result in results['matches']:
+				print('IP: %s' % result['ip_str'])
+				print(result['data'])
+		except shodan.APIError as e:
+			print('Error: %s' % e
