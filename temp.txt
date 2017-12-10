@@ -9,6 +9,7 @@
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
 Searching for subdomains for 138.197.125.24
+Error parsing netcraft output
 Scanning for services...
 Host : 138.197.125.24 ()
 ----------
@@ -25,16 +26,16 @@ port: 443	state: open
 	 Not valid after:  2018-02-07T02:05:58
 Found 13 domains
 ----------------
-www.blackboardusc.com
-shibboleth.blackboardusc.com
 jonlu.ca
-www.githubfieldday.me
+blackboardusc.com
+www.jonlu.ca
 blackboard.today
 githubfieldday.me
-secure.scopeusc.com
-jonluca.me
-www.blackboard.today
-secure.jonlu.ca
 www.jonluca.me
-www.jonlu.ca
-blackboardusc.com
+www.blackboardusc.com
+www.githubfieldday.me
+www.blackboard.today
+shibboleth.blackboardusc.com
+jonluca.me
+secure.jonlu.ca
+secure.scopeusc.com
