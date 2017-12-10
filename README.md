@@ -70,7 +70,7 @@ api.reddit.com
 ... (truncated for readability)
 ```
 
-`anubis -t reddit.com -ip`
+`anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`)
 
 ```
 Searching for subdomains for 151.101.65.140
