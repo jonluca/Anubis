@@ -11,6 +11,13 @@
 
 Welcome to Anubis, a subdomain enumerator and information gathering tool.
 
+## Requirements
+
+``pip install -r requirements``
+
+* Python 3.6
+* Nmap
+
 ## Usage
 
     Usage:
@@ -76,6 +83,7 @@ us.reddit.com
 ```
 
 Additionally, it would write out to a file called "out.txt" in the directory in which it was called.
+
 
 ## Credits
 
