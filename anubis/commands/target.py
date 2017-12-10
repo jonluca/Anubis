@@ -5,8 +5,8 @@ from json import dumps
 import requests
 import shodan
 
-SHODAN_API_KEY = ""
-api = shodan.Shodan(SHODAN_API_KEY)
+from anubis.API import *
+api = shodan.Shodan(SHODAN_KEY)
 from .base import Base
 
 
@@ -40,4 +40,4 @@ class Target(Base):
 				print('IP: %s' % result['ip_str'])
 				print(result['data'])
 		except shodan.APIError as e:
-			print('Error: %s' % e
+			print('Error: %s' % e)
