@@ -11,7 +11,7 @@ Options:
   -o --output             save to filename
   -i --additional-info    show additional information about the host from Shodan (requires API key)
   --version               show version and exit
-  -v --verbose            print debug info/full info dumps
+  -v --verbose            print debug info and full request output
 
 Help:
   For help using this tool, please open an issue on the Github repository:
