@@ -21,7 +21,7 @@ class Target(Base):
 	domains = []
 	ip = ""
 
-	def handle_exception(self, e, message =""):
+	def handle_exception(self, e, message=""):
 		if self.options["--verbose"]:
 			ColorPrint.red(e)
 		if message:
@@ -53,11 +53,14 @@ class Target(Base):
 
 		# remove duplicates and clean up
 		self.domains = [x.strip() for x in self.domains]
-		dedupe = set(self.domains)
-		print("Found", len(dedupe), "domains")
+		self.dedupe = set(self.domains)
+		print("Found", len(self.dedupe), "domains")
 		print("----------------")
-		for domain in dedupe:
-			ColorPrint.green(domain.strip())
+		if self.options["--ip"]:
+			self.resolve_ips()
+		else:
+			for domain in self.dedupe:
+				ColorPrint.green(domain.strip())
 
 	# Performs an nmap scan of a target, and outputs interesting services/ssl information
 	def scan_host(self):
@@ -272,3 +275,11 @@ class Target(Base):
 		except Exception as e:
 			self.handle_exception(e, "Error running SSL scan")
 			pass
+
+	def resolve_ips(self):
+		for domain in self.dedupe:
+			try:
+				resolved_ip = socket.gethostbyname(domain)
+				ColorPrint.green(resolved_ip + ": " + resolved_ip)
+			except Exception as e:
+				self.handle_exception(e)

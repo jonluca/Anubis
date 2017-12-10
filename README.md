@@ -66,6 +66,7 @@ http://reddit.com
 http://nj.reddit.com
 space.reddit.com
 api.reddit.com
+... (truncated for readability)
 ```
 
 ### Advanced
@@ -144,7 +145,7 @@ qu.reddit.com
 cp.reddit.com
 mx02.reddit.com
 nh.reddit.com
-...
+... (truncated for readability)
 ```
 
 Additionally, it would write out to a file called "out.txt" in the directory in which it was called.
