@@ -21,13 +21,13 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 ## Usage
 
     Usage:
-      anubis -t TARGET [-o FILENAME] [--with-nmap] [-ivs] [--overwrite-nmap-scan SCAN]
+      anubis -t TARGET [-ivsp] [-o FILENAME] [--with-nmap] [--overwrite-nmap-scan SCAN]
       anubis -h
       anubis --version
       
     Options:
       -h --help                   show this help message and exit
-      -t --target                 set target
+      -t --target                 set target (required)
       --with-nmap                 perform an nmap service/script scan
       -o --output                 save to filename
       -i --additional-info        show additional information about the host from Shodan (requires API key)
@@ -35,7 +35,8 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
       -v --verbose                print debug info and full request output
       --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
       -s --ssl                    run an ssl scan and output cipher + chain info
-    
+      -p --ip                     outputs the resolved IPs for each subdomain, and a full list of unique ips
+
     Help:
       For help using this tool, please open an issue on the Github repository:
       https://github.com/jonluca/anubis  
@@ -195,4 +196,8 @@ Additionally, it would write out to a file called "out.txt" in the directory in 
 
 ## Credits
 
-CLI Boilerplate by [Skele-CLI](https://github.com/rdegges/skele-cli)
+* CLI Boilerplate by [Skele-CLI](https://github.com/rdegges/skele-cli)
+
+* [sslyze](https://github.com/nabla-c0d3/sslyze)
+
+* [/r/netsec](https://reddit.com/r/netsec)
