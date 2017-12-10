@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [--with-nmap] [-iv] [--overwrite-nmap-scan SCAN]
+  anubis -t TARGET [-o FILENAME] [--with-nmap] [-ivs] [--overwrite-nmap-scan SCAN]
   anubis -h
   anubis --version
   
@@ -13,6 +13,7 @@ Options:
   --version                   show version and exit
   -v --verbose                print debug info and full request output
   --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
+  -s --ssl                    run an ssl scan
 
 Help:
   For help using this tool, please open an issue on the Github repository:
