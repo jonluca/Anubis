@@ -21,6 +21,8 @@ Help:
 
 import sys
 import time
+from functools import reduce
+
 from docopt import docopt
 
 VERSION = 1.0
@@ -53,7 +55,11 @@ class StdOutHook():
 		# python3 compatability, does nothing
 		pass
 
-
+# credit to https://stackoverflow.com/questions/1557571/how-do-i-get-time-of-a-python-programs-execution
+def secondsToStr(t):
+    return "%d:%02d:%02d.%03d" % \
+        reduce(lambda ll,b : divmod(ll[0],b) + ll[1:],
+            [(t*1000,),1000,60,60])
 def main():
 	start_time = time.time()
 
@@ -83,6 +89,6 @@ def main():
 	command = anubis.commands.Target
 	command = command(options)
 	command.run()
-	print("--- %s seconds ---" % (time.time() - start_time))
+	print("Execution took %s" % secondsToStr(time.time() - start_time))
 	if options["--output"]:
 		sys.stdout.writeout()
