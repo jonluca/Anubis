@@ -33,7 +33,7 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
       
 ## Sample Output
 
-```anubis -t reddit.com --with-nmap -o temp.txt -i``` 
+```anubis -t reddit.com --with-nmap -o out.txt -i``` 
 
 ```
         d8888                   888      d8b
@@ -74,6 +74,8 @@ ss.reddit.com
 us.reddit.com
 ...
 ```
+
+Additionally, it would write out to a file called "out.txt" in the directory in which it was called.
 
 ## Credits
 
