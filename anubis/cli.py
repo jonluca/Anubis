@@ -14,6 +14,7 @@ Options:
   -v --verbose                print debug info and full request output
   --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
   -s --ssl                    run an ssl scan and output cipher + chain info
+  -p --ip                     outputs the resolved IPs for each subdomain
 
 Help:
   For help using this tool, please open an issue on the Github repository:
@@ -56,11 +57,13 @@ class StdOutHook():
 		# python3 compatability, does nothing
 		pass
 
+
 # credit to https://stackoverflow.com/questions/1557571/how-do-i-get-time-of-a-python-programs-execution
 def secondsToStr(t):
-    return "%d:%02d:%02d.%03d" % \
-        reduce(lambda ll,b : divmod(ll[0],b) + ll[1:],
-            [(t*1000,),1000,60,60])
+	return "%d:%02d:%02d.%03d" % reduce(lambda ll, b: divmod(ll[0], b) + ll[1:],
+	                                    [(t * 1000,), 1000, 60, 60])
+
+
 def main():
 	start_time = time.time()
 
