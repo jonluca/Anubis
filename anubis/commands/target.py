@@ -2,12 +2,15 @@
 
 import re
 import shutil
-import socket
 from json import *
 
 import nmap
 import requests
 import shodan
+from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
+from sslyze.plugins.openssl_cipher_suites_plugin import *
+from sslyze.server_connectivity import *
+from sslyze.synchronous_scanner import *
 
 from anubis.utils.ColorPrint import *
 from .base import Base
@@ -31,10 +34,12 @@ class Target(Base):
 		print("Searching for subdomains for", self.ip)
 
 		# perform scans
-		self.subdomain_hackertarget()
-		self.search_virustotal()
-		self.search_pkey()
-		self.search_netcraft()
+		# self.subdomain_hackertarget()
+		# self.search_virustotal()
+		# self.search_pkey()
+		# self.search_netcraft()
+		if self.options["--ssl"]:
+			self.ssl_scan()
 		if self.options["--additional-info"]:
 			self.search_shodan()
 		if self.options["--with-nmap"]:
@@ -170,7 +175,7 @@ class Target(Base):
 					self.domains.append(link.strip())
 					if self.options["--verbose"]:
 						print("Netcraft Found Domain:", link.strip())
-		except Exception as e:
+		except Exception:
 			print("Error parsing netcraft output")
 			pass
 
@@ -213,8 +218,8 @@ class Target(Base):
 			print(
 				"To run with additional information, you must set http://shodan.io's API key. You can either set it manually here, or set it within anubis/API.py\nKey: ",
 				end='')
-			KEY = input()
-			api = shodan.Shodan(KEY)
+			key = input()
+			api = shodan.Shodan(key)
 		else:
 			api = shodan.Shodan(SHODAN_KEY)
 
@@ -233,3 +238,33 @@ class Target(Base):
 				print('Error: %s' % e)
 			except:
 				print("Error retrieving additional info")
+
+	def ssl_scan(self):
+		print("Running SSL Scan")
+		try:
+			# Run one scan command to list the server's TLS 1.0 cipher suites
+			server_info = ServerConnectivityInfo(hostname=self.options["TARGET"])
+			server_info.test_connectivity_to_server()
+
+			synchronous_scanner = SynchronousScanner()
+			command = Tlsv10ScanCommand()
+			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			print("Available TLS1.0 Ciphers:")
+			for cipher in scan_result.accepted_cipher_list:
+				print('    {}'.format(cipher.name))
+
+			command = Tlsv12ScanCommand()
+			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			print("Available TLS1.2 Ciphers:")
+			for cipher in scan_result.accepted_cipher_list:
+				print('    {}'.format(cipher.name))
+
+			command = CertificateInfoScanCommand()
+			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			print("Certificate info:")
+			for entry in scan_result.as_text():
+				print(entry)
+		except Exception as e:
+			print(e)
+			ColorPrint.red("Error running SSL scan")
+			pass

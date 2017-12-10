@@ -1,3 +1,4 @@
+sslyze
 requests==2.10.0
 shodan==1.7.7
 python_nmap==0.6.1
