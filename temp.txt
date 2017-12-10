@@ -9,6 +9,97 @@
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
 Searching for subdomains for 151.101.65.140
+{
+  "area_code": 415,
+  "asn": "AS54113",
+  "city": "San Francisco",
+  "country_code": "US",
+  "country_code3": "USA",
+  "country_name": "United States",
+  "data": [
+    {
+      "_shodan": {
+        "crawler": "6ff540e4d43ec69d8de2a7b60e1de2d9ddb406dc",
+        "id": "f72707e2-30ff-4d6f-bdce-9ec28b64f569",
+        "module": "http",
+        "options": {}
+      },
+      "asn": "AS54113",
+      "data": "HTTP/1.1 500 Domain Not Found\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nconnection: keep-alive\r\nX-Served-By: cache-sin18020-SIN\r\nContent-Length: 249\r\nAccept-Ranges: bytes\r\nDate: Sun, 10 Dec 2017 09:20:05 GMT\r\nVia: 1.1 varnish\r\nConnection: keep-alive\r\n\r\n",
+      "deprecated": {
+        "html": {
+          "eol": "2016-12-31",
+          "new": "http.html"
+        },
+        "title": {
+          "eol": "2016-12-31",
+          "new": "http.title"
+        }
+      },
+      "domains": [],
+      "hash": 1306894861,
+      "hostnames": [],
+      "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.65.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.65.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin18020-SIN</p></body></html>",
+      "http": {
+        "components": {},
+        "favicon": null,
+        "host": "151.101.65.140",
+        "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.65.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.65.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-sin18020-SIN</p></body></html>",
+        "html_hash": -75495100,
+        "location": "/",
+        "redirects": [],
+        "robots": null,
+        "server": "Varnish",
+        "sitemap": null,
+        "title": "Fastly error: unknown domain 151.101.65.140"
+      },
+      "ip": 2539995532,
+      "ip_str": "151.101.65.140",
+      "isp": "Fastly",
+      "location": {
+        "area_code": 415,
+        "city": "San Francisco",
+        "country_code": "US",
+        "country_code3": "USA",
+        "country_name": "United States",
+        "dma_code": 807,
+        "latitude": 37.7697,
+        "longitude": -122.39330000000001,
+        "postal_code": "94107",
+        "region_code": "CA"
+      },
+      "opts": {},
+      "org": "Fastly",
+      "os": null,
+      "port": 80,
+      "timestamp": "2017-12-10T09:21:18.505715",
+      "title": "Fastly error: unknown domain 151.101.65.140",
+      "transport": "tcp"
+    }
+  ],
+  "dma_code": 807,
+  "hostnames": [],
+  "ip": 2539995532,
+  "ip_str": "151.101.65.140",
+  "isp": "Fastly",
+  "last_update": "2017-12-10T09:21:18.505715",
+  "latitude": 37.7697,
+  "longitude": -122.39330000000001,
+  "org": "Fastly",
+  "os": null,
+  "ports": [
+    80,
+    443
+  ],
+  "postal_code": "94107",
+  "region_code": "CA",
+  "tags": [],
+  "vulns": [
+    "!CVE-2014-0160"
+  ]
+}
+Server Location: San Francisco US - 94107
+ISP: Fastly
 Scanning for services...
 Host : 138.197.125.24 ()
 ----------
@@ -23,144 +114,18 @@ port: 443	state: open
 	 Subject Alternative Name: DNS:blackboard.today, DNS:blackboardusc.com, DNS:githubfieldday.me, DNS:jonlu.ca, DNS:jonluca.me, DNS:secure.jonlu.ca, DNS:secure.scopeusc.com, DNS:shibboleth.blackboardusc.com, DNS:www.blackboard.today, DNS:www.blackboardusc.com, DNS:www.githubfieldday.me, DNS:www.jonlu.ca, DNS:www.jonluca.me
 	 Not valid before: 2017-11-09T02:05:58
 	 Not valid after:  2018-02-07T02:05:58
-Found 139 domains
+Found 13 domains
 ----------------
-m.reddit.com
-pc.reddit.com
-mailp236.reddit.com
-fr.reddit.com
-m3.reddit.com
-www.np.reddit.com
-http://www.reddit.com
-sf.reddit.com
-bj.reddit.com
-globaloffensive.reddit.com
-mo.reddit.com
-re.reddit.com
-hp.reddit.com
-gateway.reddit.com
-us.reddit.com
-http://re.reddit.com
-http://np.reddit.com
-sn.reddit.com
-nsfw.reddit.com
-eg.reddit.com
-dr.reddit.com
-genderotica.reddit.com
-askreddit.reddit.com
-i.reddit.com
-es.reddit.com
-blackboard.today
-www.blackboard.today
-mx03.reddit.com
-http://iy.reddit.com
-www.jonluca.me
-ns.reddit.com
-yi.reddit.com
-chickflixxx.reddit.com
-pihole.reddit.com
-http://reddit.com
-ma.reddit.com
-4x.reddit.com
-nl.reddit.com
-http://ww.reddit.com
-sp.reddit.com
-http://dg.reddit.com
-np.reddit.com
-space.reddit.com
-secure.scopeusc.com
-aa.reddit.com
-reddit.com
-pay.reddit.com
-mfa.reddit.com
-augustames.reddit.com
-blog.reddit.com
-cp.reddit.com
-code.reddit.com
-as.reddit.com
-topsandbottoms.reddit.com
-nj.reddit.com
-http://zz.reddit.com
-ads.reddit.com
-ca.reddit.com
-oauth.reddit.com
-buttcoin.reddit.com
-http://ureddit.com
-www.blackboardusc.com
-www.i.reddit.com
-4chan.reddit.com
-arielwinter.reddit.com
-amp.reddit.com
-http://m.reddit.com
-conservative.reddit.com
-http://rr.reddit.com
-ra.reddit.com
-rhs.reddit.com
-www.reddit.com
-aq.reddit.com
-handjob.reddit.com
-zo.reddit.com
-qu.reddit.com
-di.reddit.com
-out.reddit.com
-nm.reddit.com
-cr.reddit.com
-feet.reddit.com
-fj.reddit.com
-pp.reddit.com
-www.amp.reddit.com
-jonlu.ca
-http://blog.reddit.com
-origin.reddit.com
-rr.reddit.com
-hl.reddit.com
-http://nj.reddit.com
-http://sss.www.reddit.com.ru2.gsr.awhoer.net
-blackboardusc.com
-so.reddit.com
-st.reddit.com
-whowouldwin.reddit.com
-hm.reddit.com
-http://metareddit.com
 www.githubfieldday.me
-http://nm.reddit.com
-bdsmgw.reddit.com
-buttons.reddit.com
-trees.reddit.com
-mx02.reddit.com
-alb.reddit.com
-about.reddit.com
-http://www.np.reddit.com
-www.jonlu.ca
-http://fr.reddit.com
-http://en.reddit.com
-celebs.reddit.com
-nt.reddit.com
-jonluca.me
-api.reddit.com
-cu.reddit.com
-en.reddit.com
-ss.reddit.com
-shibboleth.blackboardusc.com
-http://ads.reddit.com
-medicine.reddit.com
-hookers.reddit.com
-beta.reddit.com
-pixel.reddit.com
-bo.reddit.com
-ds.reddit.com
-pornvids.reddit.com
-bu.reddit.com
-roosterteeth.reddit.com
-pl.reddit.com
-kissanime.reddit.com
-au.reddit.com
-sendbird.reddit.com
 secure.jonlu.ca
-e.reddit.com
-gu.reddit.com
-kronoswow.reddit.com
-se.reddit.com
+www.blackboard.today
+shibboleth.blackboardusc.com
 githubfieldday.me
-zz.reddit.com
-mod.reddit.com
+jonlu.ca
+www.blackboardusc.com
+blackboardusc.com
+blackboard.today
+www.jonlu.ca
+www.jonluca.me
+secure.scopeusc.com
+jonluca.me

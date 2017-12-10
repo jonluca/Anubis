@@ -1,6 +1,6 @@
 """Example of program with many options using docopt.
 Usage:
-  anubis -t TARGET [-o FILENAME] [--with-nmap] [-v]
+  anubis -t TARGET [-o FILENAME] [--with-nmap] [-iv]
   anubis -h
   anubis --version
   
@@ -11,6 +11,7 @@ Options:
   -o --output             save to filename
   -i --additional-info    show additional information about the host from Shodan (requires API key)
   --version               show version and exit
+  -v --verbose            print debug info/full info dumps
 
 Help:
   For help using this tool, please open an issue on the Github repository:
@@ -54,7 +55,6 @@ class StdOutHook():
 
 def main():
 	import anubis.commands
-	from anubis.API import *
 	options = docopt(__doc__, version=VERSION)
 
 	if options["--output"]:
