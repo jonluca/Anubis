@@ -8,7 +8,7 @@
   d8888888888 888  888 Y88b 888 888 d88P 888      X88
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	
-Searching for subdomains for 151.101.129.140
+Searching for subdomains for 151.101.65.140
 Running SSL Scan
 Available TLSv1.0 Ciphers:
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
@@ -21,11 +21,11 @@ Available TLSv1.2 Ciphers:
     TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-    TLS_RSA_WITH_AES_128_CBC_SHA
-    TLS_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+    TLS_RSA_WITH_AES_128_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+    TLS_RSA_WITH_AES_128_GCM_SHA256
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
  * Certificate Information:
      Content
@@ -65,7 +65,7 @@ Available TLSv1.2 Ciphers:
 Server Location: San Francisco US - 94107
 ISP: Fastly
 Starting Nmap Scan
-Host : 151.101.129.140 ()
+Host : 151.101.65.140 ()
 ----------
 Protocol: tcp
 port: 53	state: open
@@ -73,130 +73,127 @@ port: 80	state: open
 port: 443	state: open
 Found 126 domains
 ----------------
-nd.reddit.com
-askreddit.reddit.com
-roosterteeth.reddit.com
-qu.reddit.com
-cp.reddit.com
-mx02.reddit.com
-nh.reddit.com
-4chan.reddit.com
-www.amp.reddit.com
-gu.reddit.com
-mailp236.reddit.com
-handjob.reddit.com
-bdsmgw.reddit.com
-md.reddit.com
-http://ureddit.com
-m3.reddit.com
-zo.reddit.com
-beta.reddit.com
-http://zz.reddit.com
-conservative.reddit.com
-np.reddit.com
-ds.reddit.com
-buttons.reddit.com
-fr.reddit.com
-dd.reddit.com
-sf.reddit.com
-space.reddit.com
-ca.reddit.com
-http://www.np.reddit.com
-www.reddit.com
-me.reddit.com
-movies.reddit.com
-pl.reddit.com
-di.reddit.com
-pornvids.reddit.com
-pay.reddit.com
-au.reddit.com
-http://ww.reddit.com
-as.reddit.com
-ma.reddit.com
-sendbird.reddit.com
-http://blog.reddit.com
-nl.reddit.com
-augustames.reddit.com
-trees.reddit.com
-whowouldwin.reddit.com
-pc.reddit.com
-en.reddit.com
-te.reddit.com
-arielwinter.reddit.com
-pixel.reddit.com
-http://reddit.com
-ss.reddit.com
-re.reddit.com
-feet.reddit.com
-nm.reddit.com
-celebs.reddit.com
-rr.reddit.com
-http://fr.reddit.com
-nt.reddit.com
-mfa.reddit.com
-cu.reddit.com
-m.reddit.com
-topsandbottoms.reddit.com
-http://iy.reddit.com
-code.reddit.com
-out.reddit.com
-zv.reddit.com
-eg.reddit.com
-alb.reddit.com
-ph.reddit.com
-4x.reddit.com
-zz-qu.reddit.com
-e.reddit.com
-kronoswow.reddit.com
-mo.reddit.com
-mod.reddit.com
-ssl.reddit.com
-rhs.reddit.com
-st.reddit.com
-http://en.reddit.com
-http://nj.reddit.com
-http://rr.reddit.com
-reddit.com
-http://sss.www.reddit.com.ru2.gsr.awhoer.net
-amp.reddit.com
-ns.reddit.com
-globaloffensive.reddit.com
-http://re.reddit.com
-blowjobs.reddit.com
-sn.reddit.com
-ec.reddit.com
-detroitpistons.reddit.com
-http://np.reddit.com
-http://m.reddit.com
-i.reddit.com
-www.i.reddit.com
-bj.reddit.com
-zz-mm.reddit.com
-aq.reddit.com
-hookers.reddit.com
-dr.reddit.com
-nsfw.reddit.com
-origin.reddit.com
-http://www.reddit.com
-so.reddit.com
-hm.reddit.com
-http://metareddit.com
-us.reddit.com
-bu.reddit.com
-aa.reddit.com
-http://dg.reddit.com
-hp.reddit.com
-mx03.reddit.com
-houston.reddit.com
-buttcoin.reddit.com
-es.reddit.com
-http://nm.reddit.com
-ht.reddit.com
-api.reddit.com
-chickflixxx.reddit.com
-pp.reddit.com
-cr.reddit.com
-about.reddit.com
-http://ads.reddit.com
-ne-nm.reddit.com
-Execution took 0:00:10.020
+151.101.1.140: 151.101.1.140
+54.175.72.23: 54.175.72.23
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+54.172.97.226: 54.172.97.226
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+54.174.14.76: 54.174.14.76
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+54.172.97.229: 54.172.97.229
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+34.202.101.199: 34.202.101.199
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+195.88.208.155: 195.88.208.155
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+151.101.1.140: 151.101.1.140
+Execution took 0:00:18.830
