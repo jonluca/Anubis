@@ -23,7 +23,7 @@ sdist/
 var/
 wheels/
 *.egg-info/
-API.py
+anubis/API.py
 .installed.cfg
 *.egg
 MANIFEST
