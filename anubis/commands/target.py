@@ -21,12 +21,18 @@ class Target(Base):
 	domains = []
 	ip = ""
 
+	def handle_exception(self, e, message):
+		if self.options["--verbose"]:
+			ColorPrint.red(e)
+		if message:
+			ColorPrint.red(message)
+
 	def init(self):
 		try:
 			self.ip = socket.gethostbyname(self.options["TARGET"])
-		except:
-			ColorPrint.red(
-				"Error connecting to target! Make sure you spelled it correctly and it is a reachable address")
+		except Exception as e:
+			self.handle_exception(e,
+			                      "Error connecting to target! Make sure you spelled it correctly and it is a reachable address")
 
 	def run(self):
 		# retrieve IP of target
@@ -84,8 +90,8 @@ class Target(Base):
 							print('\tversion: %s' % nm[host][proto][port]['version'])
 						else:
 							print('')
-				except:
-					pass
+				except Exception as e:
+					self.handle_exception(e)
 				try:
 					fix_newline = nm[host][proto][port]['script']['ssl-cert'].split('\n')
 					print('\tCertificate:')
@@ -100,8 +106,8 @@ class Target(Base):
 									self.domains.append(domain)
 									if self.options["--verbose"]:
 										print("Nmap Found Domain:", domain.strip())
-				except:
-					pass
+				except Exception as e:
+					self.handle_exception(e)
 
 	def subdomain_hackertarget(self):
 		headers = {
@@ -142,8 +148,8 @@ class Target(Base):
 						self.domains.append(entry.strip())
 						if self.options["--verbose"]:
 							print("VirustTotal Found Domain:", entry.strip())
-		except:
-			ColorPrint.red("Error parsing virustotal")
+		except Exception as e:
+			self.handle_exception(e, "Error parsing virustotal")
 			pass
 
 	def search_netcraft(self):
@@ -175,8 +181,8 @@ class Target(Base):
 					self.domains.append(link.strip())
 					if self.options["--verbose"]:
 						print("Netcraft Found Domain:", link.strip())
-		except Exception:
-			print("Error parsing netcraft output")
+		except Exception as e:
+			self.handle_exception(e, "Error parsing netcraft output")
 			pass
 
 	def search_pkey(self):
@@ -207,8 +213,8 @@ class Target(Base):
 							self.domains.append(content.strip())
 							if self.options["--verbose"]:
 								print("Pkey Found Domain:", content.strip())
-		except:
-			print("Error parsing pkey")
+		except Exception as e:
+			self.handle_exception(e, "Error parsing pkey")
 			pass
 
 	def search_shodan(self):
@@ -234,37 +240,35 @@ class Target(Base):
 				print("ISP: %s" % results['isp'])
 				if results['os'] is not None:
 					print("Possible OS: %s" % results['os'])
-			except shodan.APIError as e:
-				print('Error: %s' % e)
-			except:
-				print("Error retrieving additional info")
+			except Exception as e:
+				self.handle_exception(e, "Error retrieving additional info")
 
 	def ssl_scan(self):
 		print("Running SSL Scan")
 		try:
-			# Run one scan command to list the server's TLS 1.0 cipher suites
 			server_info = ServerConnectivityInfo(hostname=self.options["TARGET"])
 			server_info.test_connectivity_to_server()
 
+			# TLS 1.0
 			synchronous_scanner = SynchronousScanner()
 			command = Tlsv10ScanCommand()
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
-			print("Available TLS1.0 Ciphers:")
+			print("Available TLSv1.0 Ciphers:")
 			for cipher in scan_result.accepted_cipher_list:
 				print('    {}'.format(cipher.name))
 
+			# TLSv1.2
 			command = Tlsv12ScanCommand()
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
-			print("Available TLS1.2 Ciphers:")
+			print("Available TLSv1.2 Ciphers:")
 			for cipher in scan_result.accepted_cipher_list:
 				print('    {}'.format(cipher.name))
 
+			# Certificate information
 			command = CertificateInfoScanCommand()
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
-			print("Certificate info:")
 			for entry in scan_result.as_text():
 				print(entry)
 		except Exception as e:
-			print(e)
-			ColorPrint.red("Error running SSL scan")
+			self.handle_exception(e, "Error running SSL scan")
 			pass
