@@ -4,6 +4,7 @@ import os
 import re
 import shutil
 from json import *
+from threading import Thread
 
 import censys.certificates
 import censys.ipv4
@@ -47,26 +48,35 @@ class Target(Base):
 		self.init()
 		ColorPrint.green("Searching for subdomains for " + self.ip)
 
-		# perform scans
-		self.scan_subject_alt_name()
-		self.dns_zonetransfer()
-		self.subdomain_hackertarget()
-		self.search_virustotal()
-		self.search_pkey()
-		self.search_netcraft()
-		self.search_dnsdumpster()
+		# multithreaded scans
+		threads = []
 
+		threads.append(Thread(target=self.scan_subject_alt_name()))
+		threads.append(Thread(target=self.dns_zonetransfer()))
+		threads.append(Thread(target=self.subdomain_hackertarget()))
+		threads.append(Thread(target=self.search_virustotal()))
+		threads.append(Thread(target=self.search_pkey()))
+		threads.append(Thread(target=self.search_netcraft()))
+		threads.append(Thread(target=self.search_dnsdumpster()))
+
+		if self.options["--ssl"]:
+			threads.append(Thread(target=self.ssl_scan()))
+		if self.options["--additional-info"]:
+			threads.append(Thread(target=self.search_shodan()))
+		if self.options["--with-nmap"]:
+			threads.append(Thread(target=self.dnssecc_subdomain_enum()))
+			threads.append(Thread(target=self.scan_host()))
+			
 		# Not sure what data we can get from censys yet, but might be useful in the future
 		# self.search_censys()
 
-		if self.options["--ssl"]:
-			self.ssl_scan()
-		if self.options["--additional-info"]:
-			self.search_shodan()
-		if self.options["--with-nmap"]:
-			# self.scan_host()
-			self.dnssecc_subdomain_enum()
+		# Start all threads
+		for x in threads:
+			x.start()
 
+		# Wait for all of them to finish
+		for x in threads:
+			x.join()
 		# remove duplicates and clean up
 		self.domains = [x.strip() for x in self.domains]
 		self.dedupe = set(self.domains)
@@ -130,6 +140,7 @@ class Target(Base):
 					self.handle_exception(e)
 
 	def subdomain_hackertarget(self):
+		print("Searching HackerTarget")
 		headers = {
 			'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 		params = (('q', self.options["TARGET"]),)
@@ -151,6 +162,7 @@ class Target(Base):
 				pass
 
 	def search_virustotal(self):
+		print("Searching VirusTotal")
 		headers = {'dnt': '1', 'accept-encoding': 'gzip, deflate, br',
 		           'accept-language': 'en-US,en;q=0.9,it;q=0.8',
 		           'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
@@ -180,7 +192,7 @@ class Target(Base):
 			pass
 
 	def search_netcraft(self):
-
+		print("Searching NetCraft.com")
 		headers = {'Pragma': 'no-cache', 'DNT': '1',
 		           'Accept-Encoding': 'gzip, deflate, br',
 		           'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
@@ -214,6 +226,7 @@ class Target(Base):
 			pass
 
 	def search_pkey(self):
+		print("Searching Pkey.in")
 		headers = {'Pragma': 'no-cache', 'Origin': 'https://www.pkey.in',
 		           'Accept-Encoding': 'gzip, deflate, br',
 		           'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
@@ -246,6 +259,7 @@ class Target(Base):
 			pass
 
 	def search_shodan(self):
+		print("Scanning Shodan.io")
 		from anubis.API import SHODAN_KEY
 
 		if not SHODAN_KEY:
@@ -273,6 +287,7 @@ class Target(Base):
 				self.handle_exception(e, "Error retrieving additional info")
 
 	def scan_subject_alt_name(self):
+		print("Scanning for Subject Alt Names")
 		try:
 			server_info = ServerConnectivityInfo(hostname=self.options["TARGET"])
 			server_info.test_connectivity_to_server()
@@ -281,6 +296,7 @@ class Target(Base):
 			# Certificate information
 			command = CertificateInfoScanCommand()
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			# Direct object reference is pretty bad, but then again so is the crypto.x509 implementation, so...
 			extensions = scan_result.certificate_chain[0].extensions[6]
 			for entry in extensions.value:
 				if entry.value.strip() not in self.domains:
@@ -393,7 +409,7 @@ class Target(Base):
 				"To run a DNSSEC subdomain enumeration, Anubis must be run as root")
 
 	def search_dnsdumpster(self):
-
+		print("Searching DNSDumpster")
 		headers = {'Pragma': 'no-cache', 'Origin': 'https://dnsdumpster.com',
 		           'Accept-Encoding': 'gzip, deflate, br',
 		           'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
@@ -437,6 +453,7 @@ class Target(Base):
 			pass
 
 	def search_censys(self):
+		print("Searching Censys")
 		from anubis.API import CENSYS_ID, CENSYS_SECRET
 		if not CENSYS_SECRET or not CENSYS_ID:
 			ColorPrint.red(
@@ -447,6 +464,7 @@ class Target(Base):
 			print(cert)
 
 	def scan_google(self):
+		print("Searching Google")
 		base_url = "https://google.com/search?q="
 		append = "&hl=en-US&start="
 		query = "site:" + self.options["TARGET"]
