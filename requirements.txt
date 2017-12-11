@@ -1,7 +1,8 @@
-requests==2.10.0
-docopt==0.6.2
+setuptools==36.5.0
 SSLyze==1.2.0
 python_nmap==0.6.1
-setuptools==36.5.0
 shodan==1.7.7
+docopt==0.6.2
+requests==2.10.0
+censys==0.0.8
 dnspython==1.15.0
