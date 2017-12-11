@@ -1,13 +1,13 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [--with-nmap] [-ivsp] [--overwrite-nmap-scan SCAN]
+  anubis -t TARGET [-o FILENAME] [-ivspn] [--overwrite-nmap-scan SCAN]
   anubis -h
   anubis --version
   
 Options:
   -h --help                   show this help message and exit
   -t --target                 set target
-  --with-nmap                 perform an nmap service/script scan
+  -n --with-nmap                 perform an nmap service/script scan
   -o --output                 save to filename
   -i --additional-info        show additional information about the host from Shodan (requires API key)
   --version                   show version and exit

@@ -66,7 +66,7 @@ class Target(Base):
 		if self.options["--with-nmap"]:
 			threads.append(Thread(target=self.dnssecc_subdomain_enum()))
 			threads.append(Thread(target=self.scan_host()))
-			
+
 		# Not sure what data we can get from censys yet, but might be useful in the future
 		# self.search_censys()
 
@@ -77,6 +77,7 @@ class Target(Base):
 		# Wait for all of them to finish
 		for x in threads:
 			x.join()
+
 		# remove duplicates and clean up
 		self.domains = [x.strip() for x in self.domains]
 		self.dedupe = set(self.domains)
@@ -303,7 +304,7 @@ class Target(Base):
 					self.domains.append(entry.value.strip())
 
 		except Exception as e:
-			self.handle_exception(e, "Subject Alt Name Scan failed")
+			self.handle_exception(e)
 
 	def ssl_scan(self):
 		print("Running SSL Scan")
