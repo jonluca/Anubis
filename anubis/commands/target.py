@@ -1,5 +1,6 @@
 """The target command."""
 
+import os
 import re
 import shutil
 from json import *
@@ -45,17 +46,20 @@ class Target(Base):
 		print("Searching for subdomains for", self.ip)
 
 		# perform scans
-		self.dns_zonetransfer()
-		self.subdomain_hackertarget()
-		self.search_virustotal()
-		self.search_pkey()
-		self.search_netcraft()
+		# self.dns_zonetransfer()
+		# self.subdomain_hackertarget()
+		# self.search_virustotal()
+		# self.search_pkey()
+		# self.search_netcraft()
+		self.search_dnsdumpster()
+
 		if self.options["--ssl"]:
 			self.ssl_scan()
 		if self.options["--additional-info"]:
 			self.search_shodan()
 		if self.options["--with-nmap"]:
-			self.scan_host()
+			# self.scan_host()
+			self.dnssecc_subdomain_enum()
 
 		# remove duplicates and clean up
 		self.domains = [x.strip() for x in self.domains]
@@ -348,3 +352,62 @@ class Target(Base):
 				ColorPrint.red(zone)
 		else:
 			print("No zone transfers possible")
+
+	def dnssecc_subdomain_enum(self):
+		if os.getuid() == 0:
+			print("Starting DNSSEC Enum")
+			nm = nmap.PortScanner()
+			arguments = '-sSU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=' + \
+			            self.options["TARGET"]
+			nm.scan(hosts=self.ip, arguments=arguments)
+			for host in nm.all_hosts():
+				try:
+					print(nm[host]['udp'][53]['script']['dns-nsec-enum'])
+				except:
+					pass
+		else:
+			ColorPrint.red(
+				"To run a DNSSEC subdomain enumeration, Anubis must be run as root")
+
+	def search_dnsdumpster(self):
+
+		headers = {'Pragma': 'no-cache', 'Origin': 'https://dnsdumpster.com',
+		           'Accept-Encoding': 'gzip, deflate, br',
+		           'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
+		           'Upgrade-Insecure-Requests': '1',
+		           'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+		           'Content-Type': 'application/x-www-form-urlencoded',
+		           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+		           'Cache-Control': 'no-cache',
+		           'Referer': 'https://dnsdumpster.com/',
+		           'Connection': 'keep-alive', 'DNT': '1', }
+
+		get_csrf_res = requests.get('https://dnsdumpster.com', headers=headers)
+
+		try:
+			csrf_token = get_csrf_res.headers['Set-Cookie']
+			csrf_token = csrf_token[10:]
+			csrf_token = csrf_token.split(";")[0]
+		except Exception as e:
+			self.handle_exception(e, "Retrieving CSRF Token for DNSDumpster failed")
+			return
+
+		cookies = {'csrftoken': csrf_token, }
+
+		data = [('csrfmiddlewaretoken', csrf_token),
+		        ('targetip', self.options["TARGET"])]
+
+		res = requests.post('https://dnsdumpster.com/', headers=headers,
+		                    cookies=cookies, data=data)
+		try:
+			scraped = res.text
+			subdomain_finder = re.compile('\"\>(.*\.' + self.options["TARGET"] + ')<br>')
+			links = subdomain_finder.findall(scraped)
+			for domain in links:
+				if domain.strip() not in self.domains and domain.endswith(
+								self.options["TARGET"]):
+					self.domains.append(domain.strip())
+					if self.options["--verbose"]:
+						print("DNSDumpster Found Domain:", domain.strip())
+		except:
+			pass
