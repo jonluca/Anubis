@@ -27,9 +27,10 @@ from functools import reduce
 
 from docopt import docopt
 
-VERSION = 1.0
+from . import __version__ as VERSION
 
 
+# Overload stdout to save output and change colors on filewrite
 class StdOutHook():
 	lines = []
 	filename = ""

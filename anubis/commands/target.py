@@ -4,8 +4,10 @@ import os
 import re
 import shutil
 from json import *
+from pprint import pprint
 
-import censys
+import censys.certificates
+import censys.ipv4
 import dns.query
 import dns.resolver
 import dns.zone
@@ -44,15 +46,19 @@ class Target(Base):
 	def run(self):
 		# retrieve IP of target
 		self.init()
-		print("Searching for subdomains for", self.ip)
+		ColorPrint.green("Searching for subdomains for " + self.ip)
 
 		# perform scans
-		# self.dns_zonetransfer()
-		# self.subdomain_hackertarget()
-		# self.search_virustotal()
-		# self.search_pkey()
-		# self.search_netcraft()
+		self.dns_zonetransfer()
+		self.subdomain_hackertarget()
+		self.search_virustotal()
+		self.search_pkey()
+		self.search_netcraft()
 		self.search_dnsdumpster()
+		self.scan_subject_alt_name()
+
+		# Not sure what data we can get from censys yet, but might be useful in the future
+		# self.search_censys()
 
 		if self.options["--ssl"]:
 			self.ssl_scan()
@@ -267,14 +273,31 @@ class Target(Base):
 			except Exception as e:
 				self.handle_exception(e, "Error retrieving additional info")
 
+	def scan_subject_alt_name(self):
+		try:
+			server_info = ServerConnectivityInfo(hostname=self.options["TARGET"])
+			server_info.test_connectivity_to_server()
+			synchronous_scanner = SynchronousScanner()
+
+			# Certificate information
+			command = CertificateInfoScanCommand()
+			scan_result = synchronous_scanner.run_scan_command(server_info, command)
+			for entry in scan_result.extensions:
+				print(entry)
+			pprint(vars(scan_result.extensions['subjectAltName']))
+			for entry in scan_result.as_text():
+				print(entry)
+		except Exception as e:
+			self.handle_exception(e)
+
 	def ssl_scan(self):
 		print("Running SSL Scan")
 		try:
 			server_info = ServerConnectivityInfo(hostname=self.options["TARGET"])
 			server_info.test_connectivity_to_server()
+			synchronous_scanner = SynchronousScanner()
 
 			# TLS 1.0
-			synchronous_scanner = SynchronousScanner()
 			command = Tlsv10ScanCommand()
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
 			print("Available TLSv1.0 Ciphers:")
@@ -415,6 +438,20 @@ class Target(Base):
 			pass
 
 	def search_censys(self):
-		from anubis.API import *
-		certificates = censys.certificates.CensysCertificates(CENSYS_ID,
-		                                                      CENSYS_SECRET)
+		from anubis.API import CENSYS_ID, CENSYS_SECRET
+		if not CENSYS_SECRET or not CENSYS_ID:
+			ColorPrint.red(
+				"To run a Censys scan, you must add your API keys to anubis/API.py")
+			return
+		c = censys.certificates.CensysCertificates(CENSYS_ID, CENSYS_SECRET)
+		for cert in c.search("." + self.options["TARGET"]):
+			print(cert)
+
+	def scan_google(self):
+		base_url = "https://google.com/search?q="
+		append = "&hl=en-US&start="
+		query = "site:" + self.options["TARGET"]
+		for domain in self.domains:
+			query += " -" + domain
+		page_num = 0
+		url = base_url + query + append + page_num
