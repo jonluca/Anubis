@@ -112,8 +112,7 @@ class Target(Base):
 							new_domains = content.split(",")
 							for domain in new_domains:
 								domain = domain.strip()
-								if domain not in self.domains and domain.endswith(
-												self.options["TARGET"]):
+								if domain not in self.domains:
 									self.domains.append(domain)
 									if self.options["--verbose"]:
 										print("Nmap Found Domain:", domain.strip())
@@ -254,7 +253,8 @@ class Target(Base):
 				if self.options["--verbose"]:
 					print(dumps(results, indent=2, sort_keys=True))
 
-				print('Server Location:', results['city'], results['country_code'], '-',
+				print('Server Location:',
+				      results['city'] + ", " + results['country_code'], '-',
 				      results['postal_code'])
 				print("ISP: %s" % results['isp'])
 				if results['os'] is not None:
