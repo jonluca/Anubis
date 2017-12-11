@@ -4,7 +4,6 @@ import os
 import re
 import shutil
 from json import *
-from pprint import pprint
 
 import censys.certificates
 import censys.ipv4
@@ -49,13 +48,13 @@ class Target(Base):
 		ColorPrint.green("Searching for subdomains for " + self.ip)
 
 		# perform scans
+		self.scan_subject_alt_name()
 		self.dns_zonetransfer()
 		self.subdomain_hackertarget()
 		self.search_virustotal()
 		self.search_pkey()
 		self.search_netcraft()
 		self.search_dnsdumpster()
-		self.scan_subject_alt_name()
 
 		# Not sure what data we can get from censys yet, but might be useful in the future
 		# self.search_censys()
@@ -282,13 +281,13 @@ class Target(Base):
 			# Certificate information
 			command = CertificateInfoScanCommand()
 			scan_result = synchronous_scanner.run_scan_command(server_info, command)
-			for entry in scan_result.extensions:
-				print(entry)
-			pprint(vars(scan_result.extensions['subjectAltName']))
-			for entry in scan_result.as_text():
-				print(entry)
+			extensions = scan_result.certificate_chain[0].extensions[6]
+			for entry in extensions.value:
+				if entry.value.strip() not in self.domains:
+					self.domains.append(entry.value.strip())
+
 		except Exception as e:
-			self.handle_exception(e)
+			self.handle_exception(e, "Subject Alt Name Scan failed")
 
 	def ssl_scan(self):
 		print("Running SSL Scan")
