@@ -15,6 +15,7 @@ Options:
   --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
   -s --ssl                    run an ssl scan and output cipher + chain info
   -p --ip                     outputs the resolved IPs for each subdomain, and a full list of unique ips
+  -b --brute-force            attempts to use a common word list to find subdomains (usually not very succesful)
 
 Help:
   For help using this tool, please open an issue on the Github repository:
