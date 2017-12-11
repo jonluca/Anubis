@@ -67,6 +67,8 @@ class Target(Base):
 			threads.append(Thread(target=self.dnssecc_subdomain_enum()))
 			threads.append(Thread(target=self.scan_host()))
 
+		if self.options["--brute-force"]:
+			threads.append(Thread(target=self.brute_force()))
 		# Not sure what data we can get from censys yet, but might be useful in the future
 		# self.search_censys()
 
@@ -473,3 +475,7 @@ class Target(Base):
 			query += " -" + domain
 		page_num = 0
 		url = base_url + query + append + page_num
+
+	def brute_force(self):
+		print("Starting brute force enumartin (warning - will take a while)")
+		lines = [line.rstrip('\n') for line in open('common_subdomains.txt')]
