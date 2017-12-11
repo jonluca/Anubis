@@ -466,6 +466,7 @@ class Target(Base):
 		for cert in c.search("." + self.options["TARGET"]):
 			print(cert)
 
+	# TODO - implement scanning google, bing, yahoo, baidu, and ask
 	def scan_google(self):
 		print("Searching Google")
 		base_url = "https://google.com/search?q="
@@ -476,6 +477,8 @@ class Target(Base):
 		page_num = 0
 		url = base_url + query + append + page_num
 
+	# TODO - Need to implement brute forcing in a non blocking, multi threaded way
 	def brute_force(self):
-		print("Starting brute force enumartin (warning - will take a while)")
+		print(
+			"NOT YET IMPLEMENTED - COMING SOON - Starting brute force enumartin (warning - will take a while)")
 		lines = [line.rstrip('\n') for line in open('common_subdomains.txt')]
