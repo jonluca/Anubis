@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [-ivspn] [--overwrite-nmap-scan SCAN]
+  anubis -t TARGET [-o FILENAME] [-ivspbnd] [--overwrite-nmap-scan SCAN]
   anubis -h
   anubis --version
   
@@ -16,6 +16,7 @@ Options:
   -s --ssl                    run an ssl scan and output cipher + chain info
   -p --ip                     outputs the resolved IPs for each subdomain, and a full list of unique ips
   -b --brute-force            attempts to use a common word list to find subdomains (usually not very succesful)
+  -d --no-anubis-db           don't send results to anubisdb
 
 Help:
   For help using this tool, please open an issue on the Github repository:

@@ -91,6 +91,9 @@ class Target(Base):
 			for domain in self.dedupe:
 				ColorPrint.green(domain.strip())
 
+		if not self.options["--no-anubis-db"]:
+			self.send_to_anubisdb()
+
 	# Performs an nmap scan of a target, and outputs interesting services/ssl information
 	def scan_host(self):
 
@@ -482,3 +485,20 @@ class Target(Base):
 		print(
 			"NOT YET IMPLEMENTED - COMING SOON - Starting brute force enumartin (warning - will take a while)")
 		lines = [line.rstrip('\n') for line in open('common_subdomains.txt')]
+
+	def scan_anubisdb(self):
+		print("Scanning Anubis-DB")
+		res = requests.get(
+			"https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"])
+
+		if res.status_code == 200 and res.text:
+			subdomains = loads(res.text)
+
+			for subdomain in subdomains:
+				if subdomain not in self.domains:
+					self.domains.append(subdomain)
+
+	def send_to_anubisdb(self):
+		data = {'subdomains': dumps(self.domains)}
+		requests.post(
+			"https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"], data=data)
