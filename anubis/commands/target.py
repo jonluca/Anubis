@@ -5,6 +5,7 @@ import re
 import shutil
 from json import *
 
+import censys
 import dns.query
 import dns.resolver
 import dns.zone
@@ -401,7 +402,8 @@ class Target(Base):
 		                    cookies=cookies, data=data)
 		try:
 			scraped = res.text
-			subdomain_finder = re.compile('\"\>(.*\.' + self.options["TARGET"] + ')<br>')
+			subdomain_finder = re.compile(
+				'\"\>(.*\.' + self.options["TARGET"] + ')<br>')
 			links = subdomain_finder.findall(scraped)
 			for domain in links:
 				if domain.strip() not in self.domains and domain.endswith(
@@ -411,3 +413,8 @@ class Target(Base):
 						print("DNSDumpster Found Domain:", domain.strip())
 		except:
 			pass
+
+	def search_censys(self):
+		from anubis.API import *
+		certificates = censys.certificates.CensysCertificates(CENSYS_ID,
+		                                                      CENSYS_SECRET)
