@@ -62,7 +62,7 @@ class Target(Base):
 		self.init()
 		ColorPrint.green(
 			"Searching for subdomains for " + self.ip + " (" + self.options[
-				"TARGET"] + ")")
+				"TARGET"] + ")\n")
 
 		# multithreaded scans
 		threads = []
