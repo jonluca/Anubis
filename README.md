@@ -20,6 +20,8 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 
 ## Installation
 
+Please note Anubis is still in beta. 
+
 `pip install -e .[test]`
 
 Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
