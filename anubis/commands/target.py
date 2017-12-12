@@ -61,7 +61,7 @@ class Target(Base):
 		# retrieve IP of target
 		self.init()
 		ColorPrint.green(
-			"Searching for subdomains for " + self.ip + "(" + self.options[
+			"Searching for subdomains for " + self.ip + " (" + self.options[
 				"TARGET"] + ")")
 
 		# multithreaded scans
