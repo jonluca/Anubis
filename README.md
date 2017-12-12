@@ -27,7 +27,7 @@ Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
 ## Usage
 
     Usage:
-      anubis -t TARGET [-o FILENAME] [-noispbdv] [-w SCAN]
+      anubis -t TARGET [-noispbdv] [-o FILENAME] [-w SCAN]
       anubis -h
       anubis --version
       
