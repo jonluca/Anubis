@@ -111,7 +111,7 @@ class Target(Base):
 		# remove duplicates and clean up
 		self.domains = [x.strip() for x in self.domains]
 		self.dedupe = set(self.domains)
-		
+
 		print("Found", len(self.dedupe), "domains")
 		print("----------------")
 		if self.options["--ip"]:
