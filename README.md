@@ -32,23 +32,29 @@ Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
       anubis --version
       
     Options:
-      -h --help                   show this help message and exit
-      -t --target                 set target
-      -n --with-nmap              perform an nmap service/script scan
-      -o --output                 save to filename
-      -i --additional-info        show additional information about the host from Shodan (requires API key)
-      -s --ssl                    run an ssl scan and output cipher + chain info
-      -p --ip                     outputs the resolved IPs for each subdomain, and a full list of unique ips
-      -b --brute-force            attempts to use a common word list to find subdomains (usually not very succesful)
-      -d --no-anubis-db           don't send results to anubisdb
-      -w --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
-      -v --verbose                print debug info and full request output
-      --version                   show version and exit
+      -h --help                         show this help message and exit
+      -t --target                       set target
+      -n --with-nmap                    perform an nmap service/script scan
+      -o --output                       save to filename
+      -i --additional-info              show additional information about the host from Shodan (requires API key)
+      -s --ssl                          run an ssl scan and output cipher + chain info
+      -p --ip                           outputs the resolved IPs for each subdomain, and a full list of unique ips
+      -b --brute-force                  attempts to use a common word list to find subdomains (usually not very succesful)
+      -d --no-anubis-db                 don't send results to anubisdb
+      -w --overwrite-nmap-scan          overwrite default nmap scan (default -nPn -sV -sC)
+      -v --verbose                      print debug info and full request output
+      --version                         show version and exit
       
     Help:
       For help using this tool, please open an issue on the Github repository:
       https://github.com/jonluca/anubis 
-          
+         
+## About
+
+Anubis collates data from a variety of sources, including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, and NetCraft.
+
+Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized repository of subdomains. Subdomains are *automatically* sent to AnubisDB - to disable this functionality, pass the `d` flag when running Anubis.
+ 
 ## Sample Output
 
 ### Basic
