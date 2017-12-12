@@ -39,7 +39,6 @@ Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
       -i --additional-info              show additional information about the host from Shodan (requires API key)
       -s --ssl                          run an ssl scan and output cipher + chain info
       -p --ip                           outputs the resolved IPs for each subdomain, and a full list of unique ips
-      -b --brute-force                  attempts to use a common word list to find subdomains (usually not very succesful)
       -d --no-anubis-db                 don't send results to anubisdb
       -w --overwrite-nmap-scan          overwrite default nmap scan (default -nPn -sV -sC)
       -v --verbose                      print debug info and full request output
