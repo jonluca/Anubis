@@ -298,7 +298,7 @@ class Target(Base):
 	def search_shodan(self):
 		print("Scanning Shodan.io")
 		try:
-			from anubis.API1 import SHODAN_KEY
+			from anubis.API import SHODAN_KEY
 		except ImportError:
 			ColorPrint.red("Unable to import API keys - make sure API.py exists! (Copy anubis/API_SAMPLE.py to anubis/API.py and fill in with your keys)")
 			return
