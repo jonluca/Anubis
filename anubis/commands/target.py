@@ -58,6 +58,7 @@ class Target(Base):
 		threads.append(Thread(target=self.search_pkey()))
 		threads.append(Thread(target=self.search_netcraft()))
 		threads.append(Thread(target=self.search_dnsdumpster()))
+		threads.append(Thread(target=self.scan_anubisdb()))
 
 		if self.options["--ssl"]:
 			threads.append(Thread(target=self.ssl_scan()))
@@ -392,11 +393,11 @@ class Target(Base):
 				pass
 
 		if zonetransfers:
-			print("Zone transfers possible:")
+			print("\tZone transfers possible:")
 			for zone in zonetransfers:
 				ColorPrint.red(zone)
 		else:
-			print("No zone transfers possible")
+			print("\tNo zone transfers possible")
 
 	def dnssecc_subdomain_enum(self):
 		if os.getuid() == 0:
@@ -499,6 +500,7 @@ class Target(Base):
 					self.domains.append(subdomain)
 
 	def send_to_anubisdb(self):
+		print("Sending to AnubisDB")
 		data = {'subdomains': dumps(self.domains)}
 		requests.post(
 			"https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"], data=data)
