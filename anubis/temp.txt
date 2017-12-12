@@ -1,0 +1,499 @@
+
+        d8888                   888      d8b
+       d88888                   888      Y8P
+      d88P888                   888
+     d88P 888 88888b.  888  888 88888b.  888 .d8888b
+    d88P  888 888 "88b 888  888 888 "88b 888 88K
+   d88P   888 888  888 888  888 888  888 888 "Y8888b.
+  d8888888888 888  888 Y88b 888 888 d88P 888      X88
+ d88P     888 888  888  "Y88888 88888P"  888  88888P'
+	
+Searching for subdomains for 151.101.129.140
+Scanning for Subject Alt Names
+asdf
+Testing for zone transfers
+	No zone transfers possible
+Searching HackerTarget
+HackerTarget Found Domain: reddit.com
+HackerTarget Found Domain: mx02.reddit.com
+HackerTarget Found Domain: mx03.reddit.com
+HackerTarget Found Domain: mailp236.reddit.com
+HackerTarget Found Domain: alb.reddit.com
+HackerTarget Found Domain: origin.reddit.com
+HackerTarget Found Domain: rhs.reddit.com
+HackerTarget Found Domain: out.reddit.com
+Searching VirusTotal
+VirustTotal Found Domain: www.m.reddit.com
+VirustTotal Found Domain: np.reddit.com
+VirustTotal Found Domain: undelete.reddit.com
+VirustTotal Found Domain: ru.reddit.com
+VirustTotal Found Domain: pay.reddit.com
+VirustTotal Found Domain: se.reddit.com
+VirustTotal Found Domain: wh.reddit.com
+VirustTotal Found Domain: n2.reddit.com
+VirustTotal Found Domain: xo.reddit.com
+VirustTotal Found Domain: pp.reddit.com
+VirustTotal Found Domain: ad.reddit.com
+VirustTotal Found Domain: medicine.reddit.com
+VirustTotal Found Domain: w.reddit.com
+VirustTotal Found Domain: ot.reddit.com
+VirustTotal Found Domain: mexico.reddit.com
+VirustTotal Found Domain: magicdeckbuilding.reddit.com
+VirustTotal Found Domain: askgsm.reddit.com
+VirustTotal Found Domain: eg.reddit.com
+VirustTotal Found Domain: science.reddit.com
+VirustTotal Found Domain: xe.reddit.com
+VirustTotal Found Domain: ne.reddit.com
+VirustTotal Found Domain: casualmtg.reddit.com
+VirustTotal Found Domain: twinpeaks.reddit.com
+VirustTotal Found Domain: nr.reddit.com
+VirustTotal Found Domain: psx.reddit.com
+VirustTotal Found Domain: askgaybros.reddit.com
+VirustTotal Found Domain: vd.reddit.com
+VirustTotal Found Domain: www.reddit.com
+VirustTotal Found Domain: about.reddit.com
+VirustTotal Found Domain: ud.reddit.com
+VirustTotal Found Domain: hw.reddit.com
+VirustTotal Found Domain: bo.reddit.com
+VirustTotal Found Domain: cx.reddit.com
+VirustTotal Found Domain: of.reddit.com
+VirustTotal Found Domain: fo.reddit.com
+VirustTotal Found Domain: xh.reddit.com
+VirustTotal Found Domain: ae.reddit.com
+VirustTotal Found Domain: aj.reddit.com
+VirustTotal Found Domain: dc.reddit.com
+VirustTotal Found Domain: wr.reddit.com
+VirustTotal Found Domain: fe.reddit.com
+VirustTotal Found Domain: dm.reddit.com
+VirustTotal Found Domain: tw.reddit.com
+VirustTotal Found Domain: gateway.reddit.com
+VirustTotal Found Domain: ft.reddit.com
+VirustTotal Found Domain: casualconversation.reddit.com
+VirustTotal Found Domain: e.reddit.com
+VirustTotal Found Domain: buttons.reddit.com
+VirustTotal Found Domain: nfl.reddit.com
+VirustTotal Found Domain: oilporn.reddit.com
+VirustTotal Found Domain: av.reddit.com
+VirustTotal Found Domain: oauth.reddit.com
+VirustTotal Found Domain: te.reddit.com
+VirustTotal Found Domain: ne-nm.reddit.com
+VirustTotal Found Domain: ph.reddit.com
+VirustTotal Found Domain: detroitpistons.reddit.com
+VirustTotal Found Domain: zz-mm.reddit.com
+VirustTotal Found Domain: ht.reddit.com
+VirustTotal Found Domain: movies.reddit.com
+VirustTotal Found Domain: me.reddit.com
+VirustTotal Found Domain: ssl.reddit.com
+VirustTotal Found Domain: zz-qu.reddit.com
+VirustTotal Found Domain: nh.reddit.com
+VirustTotal Found Domain: dd.reddit.com
+VirustTotal Found Domain: houston.reddit.com
+VirustTotal Found Domain: md.reddit.com
+VirustTotal Found Domain: zv.reddit.com
+VirustTotal Found Domain: ec.reddit.com
+VirustTotal Found Domain: nd.reddit.com
+VirustTotal Found Domain: blowjobs.reddit.com
+VirustTotal Found Domain: sendbird.reddit.com
+VirustTotal Found Domain: cu.reddit.com
+VirustTotal Found Domain: code.reddit.com
+VirustTotal Found Domain: nm.reddit.com
+VirustTotal Found Domain: i.reddit.com
+VirustTotal Found Domain: buttcoin.reddit.com
+VirustTotal Found Domain: nt.reddit.com
+VirustTotal Found Domain: ma.reddit.com
+VirustTotal Found Domain: as.reddit.com
+VirustTotal Found Domain: chickflixxx.reddit.com
+VirustTotal Found Domain: space.reddit.com
+VirustTotal Found Domain: m.reddit.com
+VirustTotal Found Domain: m3.reddit.com
+VirustTotal Found Domain: rr.reddit.com
+VirustTotal Found Domain: di.reddit.com
+VirustTotal Found Domain: st.reddit.com
+VirustTotal Found Domain: ns.reddit.com
+VirustTotal Found Domain: en.reddit.com
+VirustTotal Found Domain: pl.reddit.com
+VirustTotal Found Domain: pixel.reddit.com
+VirustTotal Found Domain: es.reddit.com
+VirustTotal Found Domain: pornvids.reddit.com
+VirustTotal Found Domain: nsfw.reddit.com
+VirustTotal Found Domain: amp.reddit.com
+VirustTotal Found Domain: 4chan.reddit.com
+VirustTotal Found Domain: celebs.reddit.com
+VirustTotal Found Domain: hookers.reddit.com
+VirustTotal Found Domain: nl.reddit.com
+Searching Pkey.in
+Searching NetCraft.com
+Netcraft Found Domain: http://www.reddit.com
+Netcraft Found Domain: http://reddit.com
+Netcraft Found Domain: http://fr.reddit.com
+Netcraft Found Domain: http://np.reddit.com
+Netcraft Found Domain: http://en.reddit.com
+Netcraft Found Domain: http://m.reddit.com
+Netcraft Found Domain: http://rr.reddit.com
+Netcraft Found Domain: http://iy.reddit.com
+Netcraft Found Domain: http://metareddit.com
+Netcraft Found Domain: http://dg.reddit.com
+Netcraft Found Domain: http://ureddit.com
+Netcraft Found Domain: http://blog.reddit.com
+Netcraft Found Domain: http://nm.reddit.com
+Netcraft Found Domain: http://nj.reddit.com
+Netcraft Found Domain: http://re.reddit.com
+Netcraft Found Domain: http://www.np.reddit.com
+Netcraft Found Domain: http://ads.reddit.com
+Netcraft Found Domain: http://zz.reddit.com
+Netcraft Found Domain: http://ww.reddit.com
+Searching DNSDumpster
+Scanning Anubis-DB
+Running SSL Scan
+Available TLSv1.0 Ciphers:
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+    TLS_RSA_WITH_AES_256_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+    TLS_RSA_WITH_AES_128_CBC_SHA
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA
+Available TLSv1.2 Ciphers:
+    TLS_RSA_WITH_AES_256_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+    TLS_RSA_WITH_AES_128_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+    TLS_RSA_WITH_AES_128_GCM_SHA256
+    TLS_RSA_WITH_3DES_EDE_CBC_SHA
+ * Certificate Information:
+     Content
+       SHA1 Fingerprint:                  f8d1965323111e86e6874aa93cc7c52969fb22bf
+       Common Name:                       *.reddit.com
+       Issuer:                            DigiCert SHA2 Secure Server CA
+       Serial Number:                     11711178161886346105980166697563149367
+       Not Before:                        2015-08-17 00:00:00
+       Not After:                         2018-08-21 12:00:00
+       Signature Algorithm:               sha256
+       Public Key Algorithm:              RSA
+       Key Size:                          2048
+       Exponent:                          65537 (0x10001)
+       DNS Subject Alternative Names:     ['*.reddit.com', 'reddit.com', '*.redditmedia.com', 'engine.a.redditmedia.com', 'redditmedia.com', '*.redd.it', 'redd.it', 'www.redditstatic.com', 'imgless.reddituploads.com', 'i.reddituploads.com', '*.thumbs.redditmedia.com']
+
+     Trust
+       Hostname Validation:               OK - Certificate matches reddit.com
+       AOSP CA Store (7.0.0 r1):          OK - Certificate is trusted
+       Apple CA Store (OS X 10.11.6):     OK - Certificate is trusted
+       Java 7 CA Store (Update 79):       OK - Certificate is trusted
+       Microsoft CA Store (09/2016):      OK - Certificate is trusted
+       Mozilla CA Store (09/2016):        OK - Certificate is trusted
+       Received Chain:                    *.reddit.com --> DigiCert SHA2 Secure Server CA
+       Verified Chain:                    *.reddit.com --> DigiCert SHA2 Secure Server CA --> DigiCert Global Root CA
+       Received Chain Contains Anchor:    OK - Anchor certificate not sent
+       Received Chain Order:              OK - Order is valid
+       Verified Chain contains SHA1:      OK - No SHA1-signed certificate in the verified certificate chain
+
+     OCSP Stapling
+       OCSP Response Status:              successful
+       Validation w/ Mozilla Store:       OK - Response is trusted
+       Responder Id:                      0F80611C823161D52F28E78D4638B42CE1C6D9E2
+       Cert Status:                       good
+       Cert Serial Number:                08CF7DA9B222C9D983C50D993F2F5437
+       This Update:                       Dec 11 22:19:23 2017 GMT
+       Next Update:                       Dec 18 21:34:23 2017 GMT
+ * OpenSSL Heartbleed:
+                                          OK - Not vulnerable to Heartbleed
+ * HTTP Security Headers:
+       NOT SUPPORTED - Server did not send an HSTS header
+
+     HTTP Public Key Pinning (HPKP)
+       NOT SUPPORTED - Server did not send an HPKP header
+
+     Computed HPKP Pins for Current Chain
+      0 - *.reddit.com                                  3FUu+FYb3IyHxicQEMs5sSzs207fuv25p7NGRIPDaAw=
+      1 - DigiCert SHA2 Secure Server CA                5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=
+      2 - DigiCert Global Root CA                       r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=
+Scanning Shodan.io
+{
+  "area_code": 415,
+  "asn": "AS54113",
+  "city": "San Francisco",
+  "country_code": "US",
+  "country_code3": "USA",
+  "country_name": "United States",
+  "data": [
+    {
+      "_shodan": {
+        "crawler": "8640fe85fd23da9f6614a23f63747693b63fc492",
+        "id": "8c98c32a-3a97-48c3-b8b2-87f5f4475fa4",
+        "module": "http",
+        "options": {}
+      },
+      "asn": "AS54113",
+      "data": "HTTP/1.1 500 Domain Not Found\r\nServer: Varnish\r\nRetry-After: 0\r\ncontent-type: text/html\r\nCache-Control: private, no-cache\r\nconnection: keep-alive\r\nX-Served-By: cache-bur17546-BUR\r\nContent-Length: 251\r\nAccept-Ranges: bytes\r\nDate: Wed, 06 Dec 2017 18:27:42 GMT\r\nVia: 1.1 varnish\r\nConnection: keep-alive\r\n\r\n",
+      "deprecated": {
+        "html": {
+          "eol": "2016-12-31",
+          "new": "http.html"
+        },
+        "title": {
+          "eol": "2016-12-31",
+          "new": "http.title"
+        }
+      },
+      "domains": [],
+      "hash": 1719653177,
+      "hostnames": [],
+      "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.129.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.129.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-bur17546-BUR</p></body></html>",
+      "http": {
+        "components": {},
+        "favicon": null,
+        "host": "151.101.129.140",
+        "html": "\n<html>\n<head>\n<title>Fastly error: unknown domain 151.101.129.140</title>\n</head>\n<body>\n<p>Fastly error: unknown domain: 151.101.129.140. Please check that this domain has been added to a service.</p>\n<p>Details: cache-bur17546-BUR</p></body></html>",
+        "html_hash": 529181561,
+        "location": "/",
+        "redirects": [],
+        "robots": null,
+        "server": "Varnish",
+        "sitemap": null,
+        "title": "Fastly error: unknown domain 151.101.129.140"
+      },
+      "ip": 2540011916,
+      "ip_str": "151.101.129.140",
+      "isp": "Fastly",
+      "location": {
+        "area_code": 415,
+        "city": "San Francisco",
+        "country_code": "US",
+        "country_code3": "USA",
+        "country_name": "United States",
+        "dma_code": 807,
+        "latitude": 37.7697,
+        "longitude": -122.39330000000001,
+        "postal_code": "94107",
+        "region_code": "CA"
+      },
+      "opts": {},
+      "org": "Fastly",
+      "os": null,
+      "port": 80,
+      "timestamp": "2017-12-06T18:27:42.881722",
+      "title": "Fastly error: unknown domain 151.101.129.140",
+      "transport": "tcp"
+    }
+  ],
+  "dma_code": 807,
+  "hostnames": [],
+  "ip": 2540011916,
+  "ip_str": "151.101.129.140",
+  "isp": "Fastly",
+  "last_update": "2017-12-06T18:27:42.881722",
+  "latitude": 37.7697,
+  "longitude": -122.39330000000001,
+  "org": "Fastly",
+  "os": null,
+  "ports": [
+    80,
+    443
+  ],
+  "postal_code": "94107",
+  "region_code": "CA",
+  "tags": [],
+  "vulns": [
+    "!CVE-2014-0160"
+  ]
+}
+Server Location: San Francisco, US - 94107
+ISP: Fastly
+To run a DNSSEC subdomain enumeration, Anubis must be run as root
+Starting Nmap Scan
+{
+  "addresses": {
+    "ipv4": "151.101.129.140"
+  },
+  "hostnames": [
+    {
+      "name": "",
+      "type": ""
+    }
+  ],
+  "status": {
+    "reason": "syn-ack",
+    "state": "up"
+  },
+  "tcp": {
+    "80": {
+      "conf": "3",
+      "cpe": "",
+      "extrainfo": "",
+      "name": "http",
+      "product": "",
+      "reason": "syn-ack",
+      "state": "open",
+      "version": ""
+    },
+    "113": {
+      "conf": "3",
+      "cpe": "",
+      "extrainfo": "",
+      "name": "ident",
+      "product": "",
+      "reason": "conn-refused",
+      "state": "closed",
+      "version": ""
+    },
+    "443": {
+      "conf": "3",
+      "cpe": "",
+      "extrainfo": "",
+      "name": "https",
+      "product": "",
+      "reason": "syn-ack",
+      "state": "open",
+      "version": ""
+    }
+  },
+  "vendor": {}
+}
+Host : 151.101.129.140 ()
+----------
+Protocol: tcp
+port: 80	state: open
+'script'
+port: 113	state: closed
+'script'
+port: 443	state: open
+'script'
+Found 125 domains
+----------------
+dd.reddit.com: 151.101.193.140
+se.reddit.com: 151.101.193.140
+pl.reddit.com: 151.101.193.140
+xh.reddit.com: 151.101.193.140
+ot.reddit.com: 151.101.193.140
+oauth.reddit.com: 151.101.193.140
+nsfw.reddit.com: 151.101.193.140
+buttons.reddit.com: 151.101.193.140
+[Errno 8] nodename nor servname provided, or not known
+di.reddit.com: 151.101.193.140
+http://ww.reddit.com: 151.101.193.140
+hookers.reddit.com: 151.101.193.140
+casualmtg.reddit.com: 151.101.193.140
+psx.reddit.com: 151.101.193.140
+ru.reddit.com: 151.101.193.140
+blowjobs.reddit.com: 151.101.193.140
+cu.reddit.com: 151.101.193.140
+i.reddit.com: 151.101.193.140
+eg.reddit.com: 151.101.193.140
+http://nm.reddit.com: 151.101.193.140
+http://iy.reddit.com: 151.101.193.140
+magicdeckbuilding.reddit.com: 151.101.193.140
+mailp236.reddit.com: 151.101.193.140
+http://www.np.reddit.com: 151.101.193.140
+reddit.com: 151.101.129.140
+te.reddit.com: 151.101.193.140
+alb.reddit.com: 52.201.172.48
+askgaybros.reddit.com: 151.101.193.140
+origin.reddit.com: 52.5.206.219
+tw.reddit.com: 151.101.193.140
+np.reddit.com: 151.101.193.140
+bo.reddit.com: 151.101.193.140
+of.reddit.com: 151.101.193.140
+www.m.reddit.com: 151.101.193.140
+av.reddit.com: 151.101.193.140
+m.reddit.com: 151.101.193.140
+4chan.reddit.com: 151.101.193.140
+fo.reddit.com: 151.101.193.140
+me.reddit.com: 151.101.193.140
+http://en.reddit.com: 151.101.193.140
+chickflixxx.reddit.com: 151.101.193.140
+http://zz.reddit.com: 151.101.193.140
+science.reddit.com: 151.101.193.140
+movies.reddit.com: 151.101.193.140
+ssl.reddit.com: 151.101.193.140
+detroitpistons.reddit.com: 151.101.193.140
+pay.reddit.com: 151.101.193.140
+pixel.reddit.com: 34.233.203.248
+http://re.reddit.com: 151.101.193.140
+zz-mm.reddit.com: 151.101.193.140
+nl.reddit.com: 151.101.193.140
+zv.reddit.com: 151.101.193.140
+askgsm.reddit.com: 151.101.193.140
+ft.reddit.com: 151.101.193.140
+http://nj.reddit.com: 151.101.193.140
+xo.reddit.com: 151.101.193.140
+ad.reddit.com: 151.101.193.140
+as.reddit.com: 151.101.193.140
+about.reddit.com: 151.101.193.140
+ma.reddit.com: 151.101.193.140
+ht.reddit.com: 151.101.193.140
+vd.reddit.com: 151.101.193.140
+out.reddit.com: 54.174.14.76
+nm.reddit.com: 151.101.193.140
+es.reddit.com: 151.101.193.140
+http://www.reddit.com: 151.101.193.140
+nd.reddit.com: 151.101.193.140
+http://ads.reddit.com: 151.101.193.140
+undelete.reddit.com: 151.101.193.140
+space.reddit.com: 151.101.193.140
+ne-nm.reddit.com: 151.101.193.140
+medicine.reddit.com: 151.101.193.140
+rhs.reddit.com: 54.172.97.229
+twinpeaks.reddit.com: 151.101.193.140
+ns.reddit.com: 151.101.193.140
+ph.reddit.com: 151.101.193.140
+ae.reddit.com: 151.101.193.140
+aj.reddit.com: 151.101.193.140
+rr.reddit.com: 151.101.193.140
+http://rr.reddit.com: 151.101.193.140
+www.reddit.com: 151.101.193.140
+http://m.reddit.com: 151.101.193.140
+xe.reddit.com: 151.101.193.140
+nh.reddit.com: 151.101.193.140
+wh.reddit.com: 151.101.193.140
+nfl.reddit.com: 151.101.193.140
+oilporn.reddit.com: 151.101.193.140
+en.reddit.com: 151.101.193.140
+code.reddit.com: 151.101.193.140
+st.reddit.com: 151.101.193.140
+http://dg.reddit.com: 151.101.193.140
+http://blog.reddit.com: 151.101.193.140
+n2.reddit.com: 151.101.193.140
+zz-qu.reddit.com: 151.101.193.140
+casualconversation.reddit.com: 151.101.193.140
+pornvids.reddit.com: 151.101.193.140
+celebs.reddit.com: 151.101.193.140
+[Errno 8] nodename nor servname provided, or not known
+fe.reddit.com: 151.101.193.140
+pp.reddit.com: 151.101.193.140
+nr.reddit.com: 151.101.193.140
+sendbird.reddit.com: 151.101.193.140
+cx.reddit.com: 151.101.193.140
+ec.reddit.com: 151.101.193.140
+w.reddit.com: 151.101.193.140
+dc.reddit.com: 151.101.193.140
+hw.reddit.com: 151.101.193.140
+amp.reddit.com: 151.101.193.140
+dm.reddit.com: 151.101.193.140
+http://fr.reddit.com: 151.101.193.140
+mx03.reddit.com: 151.101.193.140
+ud.reddit.com: 151.101.193.140
+m3.reddit.com: 151.101.193.140
+[Errno 8] nodename nor servname provided, or not known
+buttcoin.reddit.com: 151.101.193.140
+http://np.reddit.com: 151.101.193.140
+mexico.reddit.com: 151.101.193.140
+ne.reddit.com: 151.101.193.140
+houston.reddit.com: 151.101.193.140
+md.reddit.com: 151.101.193.140
+wr.reddit.com: 151.101.193.140
+mx02.reddit.com: 151.101.193.140
+gateway.reddit.com: 151.101.193.140
+e.reddit.com: 151.101.193.140
+nt.reddit.com: 151.101.193.140
+Found 7 unique IPs
+151.101.193.140
+52.5.206.219
+54.172.97.229
+52.201.172.48
+34.233.203.248
+151.101.129.140
+54.174.14.76
+Sending to AnubisDB
+Execution took 0:00:20.687
