@@ -21,23 +21,24 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 ## Usage
 
     Usage:
-      anubis -t TARGET [-o FILENAME] [-ivspn] [--overwrite-nmap-scan SCAN]
+      anubis -t TARGET [-o FILENAME] [-noispbdv] [-w SCAN]
       anubis -h
       anubis --version
       
     Options:
       -h --help                   show this help message and exit
       -t --target                 set target
-      -n --with-nmap                 perform an nmap service/script scan
+      -n --with-nmap              perform an nmap service/script scan
       -o --output                 save to filename
       -i --additional-info        show additional information about the host from Shodan (requires API key)
-      --version                   show version and exit
-      -v --verbose                print debug info and full request output
-      --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
       -s --ssl                    run an ssl scan and output cipher + chain info
       -p --ip                     outputs the resolved IPs for each subdomain, and a full list of unique ips
       -b --brute-force            attempts to use a common word list to find subdomains (usually not very succesful)
-    
+      -d --no-anubis-db           don't send results to anubisdb
+      -w --overwrite-nmap-scan SCAN  overwrite default nmap scan (default -nPn -sV -sC)
+      -v --verbose                print debug info and full request output
+      --version                   show version and exit
+      
     Help:
       For help using this tool, please open an issue on the Github repository:
       https://github.com/jonluca/anubis 
