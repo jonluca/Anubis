@@ -18,6 +18,12 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 * Python 3.6
 * Nmap
 
+## Installation
+
+`pip install -e .[test]`
+
+Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
+
 ## Usage
 
     Usage:
