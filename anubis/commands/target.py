@@ -14,6 +14,7 @@ import dns.zone
 import nmap
 import requests
 import shodan
+from anubis.utils.ColorPrint import *
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
 from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
@@ -21,7 +22,6 @@ from sslyze.plugins.openssl_cipher_suites_plugin import *
 from sslyze.server_connectivity import *
 from sslyze.synchronous_scanner import *
 
-from anubis.utils.ColorPrint import *
 from .base import Base
 
 
@@ -180,7 +180,8 @@ class Target(Base):
 			"TARGET"] + '/information/', headers=headers, verify=False)
 		if res.status_code == 403:
 			ColorPrint.red(
-				"VirusTotal is currently ratelimiting this IP - go to virustotal.com and complete the captcha to continue.")
+				"VirusTotal is currently ratelimiting this IP - go to https://www.virustotal.com/en/domain/" +
+				self.options["TARGET"] + "/information/ and complete the captcha to continue.")
 			return
 		scraped = res.text
 		try:
