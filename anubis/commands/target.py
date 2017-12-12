@@ -32,7 +32,7 @@ class Target(Base):
 
 	def handle_exception(self, e, message=""):
 		if self.options["--verbose"]:
-			ColorPrint.red(e)
+			print(e)
 		if message:
 			ColorPrint.red(message)
 
