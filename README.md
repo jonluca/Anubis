@@ -26,6 +26,12 @@ Please note Anubis is still in beta.
 
 Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
 
+###m API Keys
+
+If you wish to use the `--aditional-info` flag, you'll need to set up an API key for https://shodan.io. 
+
+Copy `API_SAMPLE.py` to `APY.py`, 
+
 ## Usage
 
     Usage:
