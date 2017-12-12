@@ -523,7 +523,7 @@ class Target(Base):
 		lines = [line.rstrip('\n') for line in open('common_subdomains.txt')]
 
 	def scan_anubisdb(self):
-		print("Scanning Anubis-DB")
+		print("Searching Anubis-DB")
 		res = requests.get(
 			"https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"])
 
