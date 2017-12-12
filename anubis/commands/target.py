@@ -5,6 +5,7 @@ import re
 import shutil
 from json import *
 from threading import Thread
+from urllib.parse import urlsplit  # Python 3
 
 import censys.certificates
 import censys.ipv4
@@ -37,6 +38,19 @@ class Target(Base):
 			ColorPrint.red(message)
 
 	def init(self):
+		url = self.options["TARGET"]
+
+		if not re.match(r'http(s?)\:', url):
+			url = 'http://' + url
+
+		parsed = urlsplit(url)
+		host = parsed.netloc
+
+		if host.startswith('www.'):
+			host = host[4:]
+
+		self.options["TARGET"] = host
+
 		try:
 			self.ip = socket.gethostbyname(self.options["TARGET"])
 		except Exception as e:
@@ -46,11 +60,14 @@ class Target(Base):
 	def run(self):
 		# retrieve IP of target
 		self.init()
-		ColorPrint.green("Searching for subdomains for " + self.ip)
+		ColorPrint.green(
+			"Searching for subdomains for " + self.ip + "(" + self.options[
+				"TARGET"] + ")")
 
 		# multithreaded scans
 		threads = []
 
+		# Default scans that run every time
 		threads.append(Thread(target=self.scan_subject_alt_name()))
 		threads.append(Thread(target=self.dns_zonetransfer()))
 		threads.append(Thread(target=self.subdomain_hackertarget()))
@@ -58,18 +75,28 @@ class Target(Base):
 		threads.append(Thread(target=self.search_pkey()))
 		threads.append(Thread(target=self.search_netcraft()))
 		threads.append(Thread(target=self.search_dnsdumpster()))
-		threads.append(Thread(target=self.scan_anubisdb()))
 
+		# If they want to send and receive results from Anubis DB
+		if not self.options["--no-anubis-db"]:
+			threads.append(Thread(target=self.scan_anubisdb()))
+
+		# Additional options - ssl cert scan
 		if self.options["--ssl"]:
 			threads.append(Thread(target=self.ssl_scan()))
+
+		# Additional options - shodan.io scan
 		if self.options["--additional-info"]:
 			threads.append(Thread(target=self.search_shodan()))
+
+		# Additional options - nmap scan of dnssec script and a host/port scan
 		if self.options["--with-nmap"]:
 			threads.append(Thread(target=self.dnssecc_subdomain_enum()))
 			threads.append(Thread(target=self.scan_host()))
 
+		# Additional options - brute force common subdomains
 		if self.options["--brute-force"]:
 			threads.append(Thread(target=self.brute_force()))
+
 		# Not sure what data we can get from censys yet, but might be useful in the future
 		# self.search_censys()
 
@@ -84,6 +111,7 @@ class Target(Base):
 		# remove duplicates and clean up
 		self.domains = [x.strip() for x in self.domains]
 		self.dedupe = set(self.domains)
+		
 		print("Found", len(self.dedupe), "domains")
 		print("----------------")
 		if self.options["--ip"]:
@@ -161,7 +189,7 @@ class Target(Base):
 					domain = res.split(",")[0]
 					domain = domain.strip()
 					if domain not in self.domains and domain.endswith(
-									self.options["TARGET"]):
+													"." + self.options["TARGET"]):
 						self.domains.append(domain)
 						if self.options["--verbose"]:
 							print("HackerTarget Found Domain:", domain.strip())
@@ -181,7 +209,8 @@ class Target(Base):
 		if res.status_code == 403:
 			ColorPrint.red(
 				"VirusTotal is currently ratelimiting this IP - go to https://www.virustotal.com/en/domain/" +
-				self.options["TARGET"] + "/information/ and complete the captcha to continue.")
+				self.options[
+					"TARGET"] + "/information/ and complete the captcha to continue.")
 			return
 		scraped = res.text
 		try:
@@ -189,7 +218,7 @@ class Target(Base):
 			                    scraped.find("observed-subdomains"):scraped.rfind(
 				                    "<script>")].split('\n')
 			for domain in trim_to_subdomain:
-				if domain.strip().endswith(self.options["TARGET"]):
+				if domain.strip().endswith("." + self.options["TARGET"]):
 					if domain.strip() not in self.domains and domain.endswith(
 									self.options["TARGET"]):
 						self.domains.append(domain.strip())
@@ -225,7 +254,7 @@ class Target(Base):
 			links = subdomain_finder.findall(trimmed)
 			for domain in links:
 				if domain.strip() not in self.domains and domain.endswith(
-								self.options["TARGET"]):
+												"." + self.options["TARGET"]):
 					self.domains.append(domain.strip())
 					if self.options["--verbose"]:
 						print("Netcraft Found Domain:", domain.strip())
@@ -377,6 +406,7 @@ class Target(Base):
 			answers = resolver.query(self.options["TARGET"], 'NS')
 		except Exception as e:
 			self.handle_exception(e, "Error checking for Zone Transfers")
+			return
 
 		resolved_ips = []
 		for ns in answers:
@@ -453,7 +483,7 @@ class Target(Base):
 			links = subdomain_finder.findall(scraped)
 			for domain in links:
 				if domain.strip() not in self.domains and domain.endswith(
-								self.options["TARGET"]):
+												"." + self.options["TARGET"]):
 					self.domains.append(domain.strip())
 					if self.options["--verbose"]:
 						print("DNSDumpster Found Domain:", domain.strip())
@@ -503,5 +533,8 @@ class Target(Base):
 	def send_to_anubisdb(self):
 		print("Sending to AnubisDB")
 		data = {'subdomains': dumps(self.domains)}
-		requests.post(
+		res = requests.post(
 			"https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"], data=data)
+		if res.status_code != 200:
+			ColorPrint.red(
+				"Error sending results to AnubisDB - Status Code: " + res.status_code)
