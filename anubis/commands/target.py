@@ -75,6 +75,7 @@ class Target(Base):
 		threads.append(Thread(target=self.search_pkey()))
 		threads.append(Thread(target=self.search_netcraft()))
 		threads.append(Thread(target=self.search_dnsdumpster()))
+		threads.append(Thread(target=self.search_passivetotal()))
 
 		# If they want to send and receive results from Anubis DB
 		if not self.options["--no-anubis-db"]:
@@ -109,7 +110,10 @@ class Target(Base):
 			x.join()
 
 		# remove duplicates and clean up
-		self.domains = [x.strip() for x in self.domains]
+
+
+
+		self.domains = self.clean_domains()
 		self.dedupe = set(self.domains)
 
 		print("Found", len(self.dedupe), "domains")
@@ -122,6 +126,16 @@ class Target(Base):
 
 		if not self.options["--no-anubis-db"]:
 			self.send_to_anubisdb()
+
+	def clean_domains(self):
+		cleaned = []
+		for subdomain in self.domains:
+			subdomain = subdomain.replace("http://", "")
+			subdomain = subdomain.replace("https://", "")
+			subdomain = subdomain.replace("ftp://", "")
+			subdomain = subdomain.replace("sftp://", "")
+			cleaned.append(subdomain.strip())
+		return cleaned
 
 	# Performs an nmap scan of a target, and outputs interesting services/ssl information
 	def scan_host(self):
@@ -149,7 +163,7 @@ class Target(Base):
 				print('port: %s\tstate: %s' % (port, nm[host][proto][port]['state']))
 				try:
 					if nm[host][proto][port]['product']:
-						print('\tservice: %s' % (nm[host][proto][port]['product']), end='')
+						print('\tservice: %s' % nm[host][proto][port]['product'], end='')
 						if nm[host][proto][port]['version']:
 							print('\tversion: %s' % nm[host][proto][port]['version'])
 						else:
