@@ -9,9 +9,11 @@
       d8888888888 888  888 Y88b 888 888 d88P 888      X88
      d88P     888 888  888  "Y88888 88888P"  888  88888P'
 
-Welcome to Anubis, a subdomain enumerator and information gathering tool.
+Welcome to Anubis, a subdomain enumerator and information gathering tool. [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
 ## Requirements
+
+Note: If you have both python3 and python2 installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
 
 ``pip install -r requirements.txt``
 
