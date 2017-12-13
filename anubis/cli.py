@@ -44,7 +44,7 @@ class StdOutHook():
     sys.__stdout__.write(text)
     self.lines.append(text)
 
-  def writeout(self):
+  def write_out(self):
     with open(self.filename, "w") as file:
       for line in self.lines:
         # remove stdout colors
@@ -62,7 +62,7 @@ class StdOutHook():
 
 
 # credit to https://stackoverflow.com/questions/1557571/how-do-i-get-time-of-a-python-programs-execution
-def secondsToStr(t):
+def seconds_to_str(t):
   return "%d:%02d:%02d.%03d" % reduce(lambda ll, b: divmod(ll[0], b) + ll[1:],
                                       [(t * 1000,), 1000, 60, 60])
 
@@ -96,6 +96,6 @@ def main():
   command = anubis.commands.Target
   command = command(options)
   command.run()
-  print("Subdomain search took %s" % secondsToStr(time.time() - start_time))
+  print("Subdomain search took %s" % seconds_to_str(time.time() - start_time))
   if options["--output"]:
-    sys.stdout.writeout()
+    sys.stdout.write_out()
