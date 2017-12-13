@@ -24,6 +24,7 @@ var/
 wheels/
 *.egg-info/
 anubis/API.py
+.idea/*
 .installed.cfg
 *.egg
 MANIFEST
