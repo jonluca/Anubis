@@ -16,7 +16,6 @@ import dns.zone
 import nmap
 import requests
 import shodan
-from anubis.utils.ColorPrint import ColorPrint
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
 from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
@@ -24,6 +23,7 @@ from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand, Tlsv1
 from sslyze.server_connectivity import ServerConnectivityInfo
 from sslyze.synchronous_scanner import SynchronousScanner
 
+from anubis.utils.ColorPrint import ColorPrint
 from .base import Base
 
 
@@ -60,21 +60,20 @@ class Target(Base):
                             "Error connecting to target! Make sure you spelled it correctly and it is a reachable address")
 
   def run(self):
-    # retrieve IP of target
+    # Retrieve IP of target and run initial configurations
     self.init()
     ColorPrint.green(
       "Searching for subdomains for " + self.ip + " (" + self.options[
         "TARGET"] + ")\n")
 
-    # multithreaded scans
+    # Multithreaded scans
     threads = [Thread(target=self.scan_subject_alt_name()),
                Thread(target=self.dns_zonetransfer()),
                Thread(target=self.subdomain_hackertarget()),
                Thread(target=self.search_virustotal()),
                Thread(target=self.search_pkey()),
                Thread(target=self.search_netcraft()),
-               Thread(target=self.search_dnsdumpster()),
-               Thread(target=self.search_passivetotal())]
+               Thread(target=self.search_dnsdumpster())]
 
     # Default scans that run every time
 
@@ -111,8 +110,6 @@ class Target(Base):
       x.join()
 
     # remove duplicates and clean up
-
-
 
     self.domains = self.clean_domains()
     self.dedupe = set(self.domains)
@@ -204,7 +201,7 @@ class Target(Base):
           domain = res.split(",")[0]
           domain = domain.strip()
           if domain not in self.domains and domain.endswith(
-                          "." + self.options["TARGET"]):
+                  "." + self.options["TARGET"]):
             self.domains.append(domain)
             if self.options["--verbose"]:
               print("HackerTarget Found Domain:", domain.strip())
@@ -269,7 +266,7 @@ class Target(Base):
       links = subdomain_finder.findall(trimmed)
       for domain in links:
         if domain.strip() not in self.domains and domain.endswith(
-                        "." + self.options["TARGET"]):
+                "." + self.options["TARGET"]):
           self.domains.append(domain.strip())
           if self.options["--verbose"]:
             print("Netcraft Found Domain:", domain.strip())
@@ -503,7 +500,7 @@ class Target(Base):
       links = subdomain_finder.findall(scraped)
       for domain in links:
         if domain.strip() not in self.domains and domain.endswith(
-                        "." + self.options["TARGET"]):
+                "." + self.options["TARGET"]):
           self.domains.append(domain.strip())
           if self.options["--verbose"]:
             print("DNSDumpster Found Domain:", domain.strip())
@@ -524,14 +521,6 @@ class Target(Base):
     c = censys.certificates.CensysCertificates(CENSYS_ID, CENSYS_SECRET)
     for cert in c.search("." + self.options["TARGET"]):
       print(cert)
-
-  def search_passivetotal(self):
-    try:
-      from anubis.API import PASSIVETOTAL_USERNAME, PASSIVETOTAL_KEY
-    except ImportError:
-      ColorPrint.red(
-        "To run a PassiveTotal scan, you must add your API keys to anubis/API.py")
-    pass
 
   # TODO - implement scanning google, bing, yahoo, baidu, and ask
   def scan_google(self):
