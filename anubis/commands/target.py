@@ -312,8 +312,7 @@ class Target(Base):
     try:
       from anubis.API import SHODAN_KEY
     except ImportError:
-      ColorPrint.red(
-        "Unable to import API keys - make sure API.py exists! (Copy anubis/API_SAMPLE.py to anubis/API.py and fill in with your keys)")
+      ColorPrint.red("Unable to import API keys - make sure API.py exists!")
       return
 
     if not SHODAN_KEY:
@@ -407,6 +406,7 @@ class Target(Base):
     for domain in self.dedupe:
       try:
         resolved_ip = socket.gethostbyname(domain)
+        # TODO - Align domains and ips
         ColorPrint.green(domain + ": " + resolved_ip)
         unique_ips.add(resolved_ip)
       except Exception as e:
