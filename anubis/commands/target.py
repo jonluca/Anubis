@@ -3,9 +3,10 @@
 import os
 import re
 import shutil
-from json import *
+import socket
+from json import loads, dumps
 from threading import Thread
-from urllib.parse import urlsplit  # Python 3
+from urllib.parse import urlsplit
 
 import censys.certificates
 import censys.ipv4
@@ -15,13 +16,13 @@ import dns.zone
 import nmap
 import requests
 import shodan
-from anubis.utils.ColorPrint import *
+from anubis.utils.ColorPrint import ColorPrint
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
 from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
-from sslyze.plugins.openssl_cipher_suites_plugin import *
-from sslyze.server_connectivity import *
-from sslyze.synchronous_scanner import *
+from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand, Tlsv12ScanCommand
+from sslyze.server_connectivity import ServerConnectivityInfo
+from sslyze.synchronous_scanner import SynchronousScanner
 
 from .base import Base
 
