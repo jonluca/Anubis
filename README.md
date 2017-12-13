@@ -13,9 +13,9 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool. [Origi
 
 ## Requirements
 
-Note: If you have both python3 and python2 installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
+Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
 
-``pip install -r requirements.txt``
+``pip install  -r requirements.txt``
 
 * Python 3.6
 * Nmap
