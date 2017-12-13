@@ -10,4 +10,5 @@ class Base(object):
     self.kwargs = kwargs
 
   def run(self):
-    raise NotImplementedError('You must implement the run() method yourself!')
+    raise NotImplementedError(
+      'run() method must be implemented by the overloading class')
