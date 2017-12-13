@@ -13,7 +13,7 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 
 ## Requirements
 
-``pip install -r requirements``
+``pip install -r requirements.txt``
 
 * Python 3.6
 * Nmap
@@ -30,7 +30,7 @@ Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
 
 If you wish to use the `--aditional-info` flag, you'll need to set up an API key for https://shodan.io. 
 
-Copy `API_SAMPLE.py` to `APY.py`, 
+Copy `API_SAMPLE.py` to `API.py`, 
 
 ## Usage
 
