@@ -13,7 +13,7 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool.
 
 ## Requirements
 
-``pip install -r requirements``
+``pip install -r requirements.txt``
 
 * Python 3.6
 * Nmap
