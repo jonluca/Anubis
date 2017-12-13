@@ -300,7 +300,8 @@ class Target(Base):
 		try:
 			from anubis.API import SHODAN_KEY
 		except ImportError:
-			ColorPrint.red("Unable to import API keys - make sure API.py exists! (Copy anubis/API_SAMPLE.py to anubis/API.py and fill in with your keys)")
+			ColorPrint.red(
+				"Unable to import API keys - make sure API.py exists! (Copy anubis/API_SAMPLE.py to anubis/API.py and fill in with your keys)")
 			return
 
 		if not SHODAN_KEY:
@@ -496,7 +497,11 @@ class Target(Base):
 
 	def search_censys(self):
 		print("Searching Censys")
-		from anubis.API import CENSYS_ID, CENSYS_SECRET
+		try:
+			from anubis.API import CENSYS_ID, CENSYS_SECRET
+		except ImportError:
+			ColorPrint.red(
+				"To run a Censys scan, you must add your API keys to anubis/API.py")
 		if not CENSYS_SECRET or not CENSYS_ID:
 			ColorPrint.red(
 				"To run a Censys scan, you must add your API keys to anubis/API.py")
@@ -504,6 +509,14 @@ class Target(Base):
 		c = censys.certificates.CensysCertificates(CENSYS_ID, CENSYS_SECRET)
 		for cert in c.search("." + self.options["TARGET"]):
 			print(cert)
+
+	def search_passivetotal(self):
+		try:
+			from anubis.API import PASSIVETOTAL_USERNAME, PASSIVETOTAL_KEY
+		except ImportError:
+			ColorPrint.red(
+				"To run a PassiveTotal scan, you must add your API keys to anubis/API.py")
+		pass
 
 	# TODO - implement scanning google, bing, yahoo, baidu, and ask
 	def scan_google(self):
