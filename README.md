@@ -9,11 +9,13 @@
       d8888888888 888  888 Y88b 888 888 d88P 888      X88
      d88P     888 888  888  "Y88888 88888P"  888  88888P'
 
-Welcome to Anubis, a subdomain enumerator and information gathering tool.
+Welcome to Anubis, a subdomain enumerator and information gathering tool. [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
 ## Requirements
 
-``pip install -r requirements.txt``
+Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
+
+``pip install  -r requirements.txt``
 
 * Python 3.6
 * Nmap
@@ -26,11 +28,6 @@ Please note Anubis is still in beta.
 
 Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
 
-### API Keys
-
-If you wish to use the `--aditional-info` flag, you'll need to set up an API key for https://shodan.io. 
-
-Copy `API_SAMPLE.py` to `APY.py`, 
 
 ## Usage
 
