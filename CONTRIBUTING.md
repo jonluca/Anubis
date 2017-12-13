@@ -23,4 +23,18 @@ And now to reference it within the code, we'd do `options["--example"]`, which i
 
 ## Adding new sources
 
-The bulk of the code is in `anubis/commands/target.py`, starting with the `run()` method. 
+The bulk of the code is in `anubis/commands/target.py`, starting with the `run()` method.
+
+The target URL is in `self.options["TARGET"]`. Feel free to write any additional functions, and then add them to the thread pool in run. 
+
+Your function should not return anything - rather, if it finds any subdomains it should add them to `self.domains`. Make sure it's not been inserted already, and that it's a valid subdomain.
+
+Handle exceptions with `self.handle_exception(e,"stdout message")`
+
+Print to stdout with either `print()` or `ColorPrint.color("message")`
+
+If you have any questions or this is unclear, feel free to open an issue or contact @JonLuca.
+
+## Style
+
+2 spaces for indentation. Follow Google and PEP8 guidelines for the  most part, but I only care as far as it being consistent through the project. 
