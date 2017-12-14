@@ -64,6 +64,15 @@ Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-D
 ## Sample Output
 
 ### Basic
+
+#### Simple Use Case
+
+`anubis -tip  domain.com -o out.txt`
+
+Set's target to `domain.com`, outputs additional information like server and ISP or server hosting provider, then attempts to resolve all URLs and outputs list of unique IPs. Finally, writes all results to out.txt.
+
+#### Other
+
 ```anubis -t reddit.com``` 
 
 ```
