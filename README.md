@@ -17,7 +17,7 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool. [Origi
 
 `pip3 install anubis-netsec`
 
-## More information
+## More Information
 
 Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
 
@@ -32,7 +32,10 @@ If running on Linux distros, openssl and python dev will be required as well, wi
 
 Please note Anubis is still in beta. 
 
-`pip3 install -e .`
+```
+git@github.com:jonluca/Anubis.git
+cd Anubis
+pip3 install .```
 
 Will install it as  CLI program, most likely to `/usr/local/bin/anubis` on *nix machines.
 
