@@ -4,7 +4,7 @@ import os
 import re
 import shutil
 import socket
-from json import loads, dumps
+from json import dumps, loads
 from threading import Thread
 from urllib.parse import urlsplit
 
@@ -73,6 +73,7 @@ class Target(Base):
                Thread(target=self.search_virustotal()),
                Thread(target=self.search_pkey()),
                Thread(target=self.search_netcraft()),
+               Thread(target=self.search_crtsh()),
                Thread(target=self.search_dnsdumpster())]
 
     # Default scans that run every time
@@ -210,12 +211,12 @@ class Target(Base):
 
   def search_virustotal(self):
     print("Searching VirusTotal")
-    headers = {'dnt': '1', 'accept-encoding': 'gzip, deflate, br',
+    headers = {'dnt':             '1', 'accept-encoding': 'gzip, deflate, br',
                'accept-language': 'en-US,en;q=0.9,it;q=0.8',
-               'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
-               'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-               'authority': 'www.virustotal.com',
-               'cookie': 'VT_PREFERRED_LANGUAGE=en', }
+               'user-agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+               'accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+               'authority':       'www.virustotal.com',
+               'cookie':          'VT_PREFERRED_LANGUAGE=en', }
     res = requests.get('https://www.virustotal.com/en/domain/' + self.options[
       "TARGET"] + '/information/', headers=headers, verify=False)
     if res.status_code == 403:
@@ -242,14 +243,14 @@ class Target(Base):
 
   def search_netcraft(self):
     print("Searching NetCraft.com")
-    headers = {'Pragma': 'no-cache', 'DNT': '1',
+    headers = {'Pragma':          'no-cache', 'DNT': '1',
                'Accept-Encoding': 'gzip, deflate, br',
                'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
-               'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
-               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-               'Cache-Control': 'no-cache',
-               'Referer': 'https://searchdns.netcraft.com/?restriction=site+ends+with&host=',
-               'Connection': 'keep-alive', }
+               'User-Agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+               'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+               'Cache-Control':   'no-cache',
+               'Referer':         'https://searchdns.netcraft.com/?restriction=site+ends+with&host=',
+               'Connection':      'keep-alive', }
 
     params = (
       ('restriction', 'site contains'), ('host', self.options["TARGET"]))
@@ -276,15 +277,15 @@ class Target(Base):
 
   def search_pkey(self):
     print("Searching Pkey.in")
-    headers = {'Pragma': 'no-cache', 'Origin': 'https://www.pkey.in',
+    headers = {'Pragma':          'no-cache', 'Origin': 'https://www.pkey.in',
                'Accept-Encoding': 'gzip, deflate, br',
                'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
-               'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
-               'Content-Type': 'application/x-www-form-urlencoded',
-               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-               'Cache-Control': 'no-cache',
-               'Referer': 'http://www.pkey.in/tools-i/search-subdomains',
-               'Connection': 'keep-alive', 'DNT': '1', }
+               'User-Agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+               'Content-Type':    'application/x-www-form-urlencoded',
+               'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+               'Cache-Control':   'no-cache',
+               'Referer':         'http://www.pkey.in/tools-i/search-subdomains',
+               'Connection':      'keep-alive', 'DNT': '1', }
 
     data = [('zone', self.options["TARGET"]), ('submit', ''), ]
     res = requests.post('http://www.pkey.in/tools-i/search-subdomains',
@@ -465,16 +466,16 @@ class Target(Base):
 
   def search_dnsdumpster(self):
     print("Searching DNSDumpster")
-    headers = {'Pragma': 'no-cache', 'Origin': 'https://dnsdumpster.com',
+    headers = {'Pragma':          'no-cache',
+               'Origin':          'https://dnsdumpster.com',
                'Accept-Encoding': 'gzip, deflate, br',
                'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
-               'Upgrade-Insecure-Requests': '1',
-               'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
-               'Content-Type': 'application/x-www-form-urlencoded',
-               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-               'Cache-Control': 'no-cache',
-               'Referer': 'https://dnsdumpster.com/',
-               'Connection': 'keep-alive', 'DNT': '1', }
+               'User-Agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36',
+               'Content-Type':    'application/x-www-form-urlencoded',
+               'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+               'Cache-Control':   'no-cache',
+               'Referer':         'https://dnsdumpster.com/',
+               'Connection':      'keep-alive', 'DNT': '1', }
 
     get_csrf_res = requests.get('https://dnsdumpster.com', headers=headers)
 
@@ -504,7 +505,8 @@ class Target(Base):
           self.domains.append(domain.strip())
           if self.options["--verbose"]:
             print("DNSDumpster Found Domain:", domain.strip())
-    except:
+    except Exception as e:
+      self.handle_exception(e, "Error searching DNS Dumpster")
       pass
 
   def search_censys(self):
@@ -521,6 +523,34 @@ class Target(Base):
     c = censys.certificates.CensysCertificates(CENSYS_ID, CENSYS_SECRET)
     for cert in c.search("." + self.options["TARGET"]):
       print(cert)
+
+  def search_crtsh(self):
+    print("Searching Crt.sh")
+
+    headers = {'Pragma':          'no-cache', 'DNT': '1',
+               'Accept-Encoding': 'gzip, deflate, br',
+               'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
+               'User-Agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
+               'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+               'Cache-Control':   'no-cache', 'Connection': 'keep-alive', }
+
+    params = (('q', '%.' + self.options["TARGET"]),)
+
+    res = requests.get('https://crt.sh/', headers=headers, params=params)
+    try:
+      scraped = res.text
+      subdomain_finder = re.compile(
+        '<TD>(.*\.' + self.options["TARGET"] + ')</TD>')
+      links = subdomain_finder.findall(scraped)
+      for domain in links:
+        if domain.strip() not in self.domains and domain.endswith(
+                "." + self.options["TARGET"]):
+          self.domains.append(domain.strip())
+          if self.options["--verbose"]:
+            print("Crt.sh Found Domain:", domain.strip())
+    except Exception as e:
+      self.handle_exception(e,
+                            "Error searching crt.sh")  # NB. Original query string below. It seems impossible to parse and  # reproduce query strings 100% accurately so the one below is given  # in case the reproduced version is not "correct".  # requests.get('https://crt.sh/?q=%25.badssl.com', headers=headers)
 
   # TODO - implement scanning google, bing, yahoo, baidu, and ask
   def scan_google(self):
@@ -556,5 +586,5 @@ class Target(Base):
     res = requests.post(
       "https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"], data=data)
     if res.status_code != 200:
-      ColorPrint.red(
-        "Error sending results to AnubisDB - Status Code: " + res.status_code)
+      ColorPrint.red("Error sending results to AnubisDB - Status Code: " + str(
+        res.status_code))
