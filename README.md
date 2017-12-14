@@ -20,6 +20,8 @@ Note: If you have both __python3__ and __python2__ installed on your system, you
 * Python **3.6**
 * Nmap
 
+If running on Linux distros, openssl and python dev will be required as well, witch `sudo apt-get install python3-pip python-dev libssl-dev`
+
 ## Installation
 
 Please note Anubis is still in beta. 
