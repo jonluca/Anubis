@@ -15,7 +15,7 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool. [Origi
 
 Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
 
-``pip install  -r requirements.txt``
+``pip3 install  -r requirements.txt``
 
 * Python **3.6**
 * Nmap
@@ -24,9 +24,9 @@ Note: If you have both __python3__ and __python2__ installed on your system, you
 
 Please note Anubis is still in beta. 
 
-`pip install -e .[test]`
+`pip3 install -e .`
 
-Will install it as  CLI program, to `/usr/local/bin/anubis` on macos.
+Will install it as  CLI program, most likely to `/usr/local/bin/anubis` on *nix machines.
 
 
 ## Usage
