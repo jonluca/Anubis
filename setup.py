@@ -30,7 +30,7 @@ class RunTests(Command):
     raise SystemExit(errno)
 
 
-setup(name='Anubis', version=__version__,
+setup(name='anubis-netsec', version=__version__,
       description='Modern and efficient subdomain enumeration and information gathering',
       long_description=long_description,
       url='https://github.com/jonluca/anubis', author='JonLuca DeCaro',
