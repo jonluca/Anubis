@@ -13,6 +13,12 @@ Welcome to Anubis, a subdomain enumerator and information gathering tool. [Origi
 
 ## Requirements
 
+## Easy Install
+
+`pip3 install anubis-netsec`
+
+## More information
+
 Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
 
 ``pip3 install  -r requirements.txt``
