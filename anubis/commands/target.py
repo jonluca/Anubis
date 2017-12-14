@@ -67,7 +67,7 @@ class Target(Base):
         "TARGET"] + ")\n")
 
     # Multithreaded scans
-    threads = [Thread(target=self.scan_subject_alt_name()),
+    threads = [Thread(target=self.search_subject_alt_name()),
                Thread(target=self.dns_zonetransfer()),
                Thread(target=self.subdomain_hackertarget()),
                Thread(target=self.search_virustotal()),
@@ -80,7 +80,7 @@ class Target(Base):
 
     # If they want to send and receive results from Anubis DB
     if not self.options["--no-anubis-db"]:
-      threads.append(Thread(target=self.scan_anubisdb()))
+      threads.append(Thread(target=self.search_anubisdb()))
 
     # Additional options - ssl cert scan
     if self.options["--ssl"]:
@@ -340,8 +340,8 @@ class Target(Base):
       except Exception as e:
         self.handle_exception(e, "Error retrieving additional info")
 
-  def scan_subject_alt_name(self):
-    print("Scanning for Subject Alt Names")
+  def search_subject_alt_name(self):
+    print("Searching for Subject Alt Names")
     try:
       server_info = ServerConnectivityInfo(hostname=self.options["TARGET"])
       server_info.test_connectivity_to_server()
@@ -552,8 +552,8 @@ class Target(Base):
       self.handle_exception(e,
                             "Error searching crt.sh")  # NB. Original query string below. It seems impossible to parse and  # reproduce query strings 100% accurately so the one below is given  # in case the reproduced version is not "correct".  # requests.get('https://crt.sh/?q=%25.badssl.com', headers=headers)
 
-  # TODO - implement scanning google, bing, yahoo, baidu, and ask
-  def scan_google(self):
+  # TODO - implement searching google, bing, yahoo, baidu, and ask
+  def search_google(self):
     print("Searching Google")
     base_url = "https://google.com/search?q="
     append = "&hl=en-US&start="
@@ -568,7 +568,7 @@ class Target(Base):
     print(
       "NOT YET IMPLEMENTED - Starting brute force enumartin (warning - will take a while)")
 
-  def scan_anubisdb(self):
+  def search_anubisdb(self):
     print("Searching Anubis-DB")
     res = requests.get(
       "https://jonlu.ca/anubis/subdomains/" + self.options["TARGET"])
