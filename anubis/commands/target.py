@@ -112,6 +112,9 @@ class Target(Base):
 
     # remove duplicates and clean up
 
+    if self.options["--recursive"]:
+      self.recursive_search()
+
     self.domains = self.clean_domains()
     self.dedupe = set(self.domains)
 
@@ -588,3 +591,6 @@ class Target(Base):
     if res.status_code != 200:
       ColorPrint.red("Error sending results to AnubisDB - Status Code: " + str(
         res.status_code))
+
+  def recursive_search(self):
+    print("todo")
