@@ -17,7 +17,7 @@ Note: If you have both __python3__ and __python2__ installed on your system, you
 
 ``pip install  -r requirements.txt``
 
-* Python 3.6
+* Python **3.6**
 * Nmap
 
 ## Installation
