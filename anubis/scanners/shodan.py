@@ -24,7 +24,7 @@ def search_shodan(self):
     print('Server Location:', results['city'] + ", " + results['country_code'],
           '-', results['postal_code'])
 
-    print("ISP: %s" % results['isp'])
+    print("ISP  or Hosting Company: %s" % results['isp'])
 
     if results['os'] is not None:
       print("Possible OS: %s" % results['os'])
