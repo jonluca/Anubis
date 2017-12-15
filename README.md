@@ -35,7 +35,8 @@ Please note Anubis is still in beta.
 ```
 git@github.com:jonluca/Anubis.git
 cd Anubis
-pip3 install .```
+pip3 install .
+```
 
 Will install it as  CLI program, most likely to `/usr/local/bin/anubis` on *nix machines.
 
