@@ -11,34 +11,34 @@
 
 Welcome to Anubis, a subdomain enumerator and information gathering tool. [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
-## Requirements
+## Installation
 
-## Easy Install
+### Easy Install
+
+Note: Python 3.6 is required
 
 `pip3 install anubis-netsec`
 
-## More Information
-
-Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
-
-``pip3 install  -r requirements.txt``
-
-* Python **3.6**
-* Nmap
-
-If running on Linux distros, openssl and python dev will be required as well, witch `sudo apt-get install python3-pip python-dev libssl-dev`
-
-## Installation
+### Install From Source
 
 Please note Anubis is still in beta. 
 
 ```
 git@github.com:jonluca/Anubis.git
 cd Anubis
-pip3 install .```
+pip3 install  -r requirements.txt
+pip3 install .
+```
 
 Will install it as  CLI program, most likely to `/usr/local/bin/anubis` on *nix machines.
 
+### Additional Requirements
+
+Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
+
+* Nmap
+
+If running on Linux distros, openssl and python dev will be required as well, witch `sudo apt-get install python3-pip python-dev libssl-dev`
 
 ## Usage
 
