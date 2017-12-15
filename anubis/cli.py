@@ -70,7 +70,6 @@ def seconds_to_str(t):
 
 def main():
   if (sys.version_info < (3, 0)):
-    # Python 2 code in this block
     sys.stdout.write("Sorry, requires Python 3.x, not Python 2.x\n")
     sys.exit(1)
 

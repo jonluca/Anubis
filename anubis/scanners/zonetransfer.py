@@ -1,14 +1,18 @@
 import socket
 
-from dns import resolver, zone as dns
+import dns.query
+import dns.resolver
+import dns.zone
 
 from anubis.utils import ColorPrint
 
 
 def dns_zonetransfer(self, target):
   print("Testing for zone transfers")
+
   zonetransfers = []
   resolver = dns.resolver.Resolver()
+
   try:
     answers = resolver.query(target, 'NS')
   except Exception as e:
@@ -16,6 +20,7 @@ def dns_zonetransfer(self, target):
     return
 
   resolved_ips = []
+  
   for ns in answers:
     ns = str(ns).rstrip('.')
     resolved_ips.append(socket.gethostbyname(ns))
