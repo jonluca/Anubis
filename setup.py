@@ -44,7 +44,8 @@ setup(name='anubis-netsec', version=__version__,
                    'Programming Language :: Python :: 3.6', ], keywords='cli',
       packages=find_packages(exclude=['docs', 'tests*']), python_requires='>=3',
       install_requires=['docopt', 'setuptools', 'SSLyze', 'python_nmap',
-                        'shodan', 'requests', 'censys', 'dnspython'],
+                        'shodan', 'requests', 'censys.py', 'dnspython'],
       extras_require={'test': ['coverage', 'pytest', 'pytest-cov'], },
       entry_points={'console_scripts': ['anubis=anubis.cli:main', ], },
-      cmdclass={'test': RunTests}, py_modules=["anubis.utils"], )
+      cmdclass={'test': RunTests},
+      py_modules=["anubis.utils", "anubis.scanners"], )
