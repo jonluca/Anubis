@@ -1,6 +1,5 @@
 """The target command."""
 
-import os
 import re
 import shutil
 import socket
@@ -8,11 +7,6 @@ from json import dumps, loads
 from threading import Thread
 from urllib.parse import urlsplit
 
-import censys.certificates
-import censys.ipv4
-import dns.query
-import dns.resolver
-import dns.zone
 import nmap
 import requests
 import shodan
@@ -24,6 +18,7 @@ from sslyze.server_connectivity import ServerConnectivityInfo
 from sslyze.synchronous_scanner import SynchronousScanner
 
 from anubis.utils.ColorPrint import ColorPrint
+from anubis.scanners import *
 from .base import Base
 
 
@@ -73,7 +68,7 @@ class Target(Base):
                Thread(target=self.search_virustotal()),
                Thread(target=self.search_pkey()),
                Thread(target=self.search_netcraft()),
-               Thread(target=self.search_crtsh()),
+               Thread(target=anubis.scanners.search_crtsh()),
                Thread(target=self.search_dnsdumpster())]
 
     # Default scans that run every time
@@ -99,7 +94,7 @@ class Target(Base):
     if self.options["--brute-force"]:
       threads.append(Thread(target=self.brute_force()))
 
-    # Not sure what data we can get from censys yet, but might be useful in the future
+    # Not sure what data we can get from censys.py yet, but might be useful in the future
     # self.search_censys()
 
     # Start all threads
@@ -419,53 +414,8 @@ class Target(Base):
     for ip in unique_ips:
       ColorPrint.green(ip)
 
-  def dns_zonetransfer(self):
-    print("Testing for zone transfers")
-    zonetransfers = []
-    resolver = dns.resolver.Resolver()
-    try:
-      answers = resolver.query(self.options["TARGET"], 'NS')
-    except Exception as e:
-      self.handle_exception(e, "Error checking for Zone Transfers")
-      return
 
-    resolved_ips = []
-    for ns in answers:
-      ns = str(ns).rstrip('.')
-      resolved_ips.append(socket.gethostbyname(ns))
 
-    for ip in resolved_ips:
-      try:
-        zone = dns.zone.from_xfr(dns.query.xfr(ip, self.options["TARGET"]))
-        for name, node in zone.nodes.items():
-          name = str(name)
-          if name not in ["@", "*"]:
-            zonetransfers.append(name + '.' + self.options["TARGET"])
-      except:
-        pass
-
-    if zonetransfers:
-      print("\tZone transfers possible:")
-      for zone in zonetransfers:
-        ColorPrint.red(zone)
-    else:
-      print("\tNo zone transfers possible")
-
-  def dnssecc_subdomain_enum(self):
-    if os.getuid() == 0:
-      print("Starting DNSSEC Enum")
-      nm = nmap.PortScanner()
-      arguments = '-sSU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=' + \
-                  self.options["TARGET"]
-      nm.scan(hosts=self.ip, arguments=arguments)
-      for host in nm.all_hosts():
-        try:
-          print(nm[host]['udp'][53]['script']['dns-nsec-enum'])
-        except:
-          pass
-    else:
-      ColorPrint.red(
-        "To run a DNSSEC subdomain enumeration, Anubis must be run as root")
 
   def search_dnsdumpster(self):
     print("Searching DNSDumpster")
@@ -512,50 +462,7 @@ class Target(Base):
       self.handle_exception(e, "Error searching DNS Dumpster")
       pass
 
-  def search_censys(self):
-    print("Searching Censys")
-    try:
-      from anubis.API import CENSYS_ID, CENSYS_SECRET
-    except ImportError:
-      ColorPrint.red(
-        "To run a Censys scan, you must add your API keys to anubis/API.py")
-    if not CENSYS_SECRET or not CENSYS_ID:
-      ColorPrint.red(
-        "To run a Censys scan, you must add your API keys to anubis/API.py")
-      return
-    c = censys.certificates.CensysCertificates(CENSYS_ID, CENSYS_SECRET)
-    for cert in c.search("." + self.options["TARGET"]):
-      print(cert)
-
-  def search_crtsh(self):
-    print("Searching Crt.sh")
-
-    headers = {'Pragma':          'no-cache', 'DNT': '1',
-               'Accept-Encoding': 'gzip, deflate, br',
-               'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
-               'User-Agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
-               'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-               'Cache-Control':   'no-cache', 'Connection': 'keep-alive', }
-
-    params = (('q', '%.' + self.options["TARGET"]),)
-
-    res = requests.get('https://crt.sh/', headers=headers, params=params)
-    try:
-      scraped = res.text
-      subdomain_finder = re.compile(
-        '<TD>(.*\.' + self.options["TARGET"] + ')</TD>')
-      links = subdomain_finder.findall(scraped)
-      for domain in links:
-        if domain.strip() not in self.domains and domain.endswith(
-                "." + self.options["TARGET"]):
-          self.domains.append(domain.strip())
-          if self.options["--verbose"]:
-            print("Crt.sh Found Domain:", domain.strip())
-    except Exception as e:
-      self.handle_exception(e,
-                            "Error searching crt.sh")  # NB. Original query string below. It seems impossible to parse and  # reproduce query strings 100% accurately so the one below is given  # in case the reproduced version is not "correct".  # requests.get('https://crt.sh/?q=%25.badssl.com', headers=headers)
-
-  # TODO - implement searching google, bing, yahoo, baidu, and ask
+  # TsODO - implement searching google, bing, yahoo, baidu, and ask
   def search_google(self):
     print("Searching Google")
     base_url = "https://google.com/search?q="
