@@ -57,11 +57,12 @@ class Target(Base):
   def run(self):
     # Retrieve IP of target and run initial configurations
     self.init()
+
     ColorPrint.green(
       "Searching for subdomains for " + self.ip + " (" + self.options[
         "TARGET"] + ")\n")
 
-    # Multithreaded scans
+    # Default scans that run every time
     threads = [
       Thread(target=search_subject_alt_name(self, self.options["TARGET"])),
       Thread(target=dns_zonetransfer(self, self.options["TARGET"])),
@@ -72,7 +73,6 @@ class Target(Base):
       Thread(target=search_crtsh(self, self.options["TARGET"])),
       Thread(target=search_dnsdumpster(self, self.options["TARGET"]))]
 
-    # Default scans that run every time
 
     # If they want to send and receive results from Anubis DB
     if not self.options["--no-anubis-db"]:
@@ -148,16 +148,6 @@ class Target(Base):
     for ip in unique_ips:
       ColorPrint.green(ip)
 
-  # TsODO - implement searching google, bing, yahoo, baidu, and ask
-  def search_google(self):
-    print("Searching Google")
-    base_url = "https://google.com/search?q="
-    append = "&hl=en-US&start="
-    query = "site:" + self.options["TARGET"]
-    for domain in self.domains:
-      query += " -" + domain
-    page_num = 0
-    url = base_url + query + append + str(page_num)
 
   def recursive_search(self):
     print("todo")
