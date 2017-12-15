@@ -122,7 +122,7 @@ class Target(Base):
         ColorPrint.green(domain.strip())
 
     if not self.options["--no-anubis-db"]:
-      send_to_anubisdb()
+      send_to_anubisdb(self, self.options["TARGET"])
 
   def clean_domains(self):
     cleaned = []
