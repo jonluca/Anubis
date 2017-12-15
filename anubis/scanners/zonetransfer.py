@@ -1,16 +1,16 @@
 import socket
 
-import dns
+from dns import resolver, zone as dns
 
 from anubis.utils import ColorPrint
 
 
-def dns_zonetransfer(self):
+def dns_zonetransfer(self, target):
   print("Testing for zone transfers")
   zonetransfers = []
   resolver = dns.resolver.Resolver()
   try:
-    answers = resolver.query(self.options["TARGET"], 'NS')
+    answers = resolver.query(target, 'NS')
   except Exception as e:
     self.handle_exception(e, "Error checking for Zone Transfers")
     return
@@ -22,11 +22,11 @@ def dns_zonetransfer(self):
 
   for ip in resolved_ips:
     try:
-      zone = dns.zone.from_xfr(dns.query.xfr(ip, self.options["TARGET"]))
+      zone = dns.zone.from_xfr(dns.query.xfr(ip, target))
       for name, node in zone.nodes.items():
         name = str(name)
         if name not in ["@", "*"]:
-          zonetransfers.append(name + '.' + self.options["TARGET"])
+          zonetransfers.append(name + '.' + target)
     except:
       pass
 
