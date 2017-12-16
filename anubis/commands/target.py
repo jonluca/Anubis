@@ -73,7 +73,6 @@ class Target(Base):
       Thread(target=search_crtsh(self, self.options["TARGET"])),
       Thread(target=search_dnsdumpster(self, self.options["TARGET"]))]
 
-
     # If they want to send and receive results from Anubis DB
     if not self.options["--no-anubis-db"]:
       threads.append(
@@ -113,8 +112,9 @@ class Target(Base):
     self.domains = self.clean_domains()
     self.dedupe = set(self.domains)
 
-    print("Found", len(self.dedupe), "domains")
+    print("Found", len(self.dedupe), "subdomains")
     print("----------------")
+
     if self.options["--ip"]:
       self.resolve_ips()
     else:
@@ -139,7 +139,7 @@ class Target(Base):
     for domain in self.dedupe:
       try:
         resolved_ip = socket.gethostbyname(domain)
-        # TODO - Align domains and ips
+        # TODO - Align domains and ips in stdout
         ColorPrint.green(domain + ": " + resolved_ip)
         unique_ips.add(resolved_ip)
       except Exception as e:
@@ -147,7 +147,6 @@ class Target(Base):
     print("Found %s unique IPs" % len(unique_ips))
     for ip in unique_ips:
       ColorPrint.green(ip)
-
 
   def recursive_search(self):
     print("todo")
