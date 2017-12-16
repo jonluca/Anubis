@@ -16,7 +16,7 @@ def search_subject_alt_name(self, target):
     # Certificate information
     command = CertificateInfoScanCommand()
     scan_result = synchronous_scanner.run_scan_command(server_info, command)
-    # Direct object reference is pretty bad, but then again so is the crypto.x509 implementation, so...
+    # Direct object reference is pretty bad, but then again so is the crypto.x509 object implementation, so...
     extensions = scan_result.certificate_chain[0].extensions[6]
     for entry in extensions.value:
       if entry.value.strip() not in self.domains:

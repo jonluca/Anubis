@@ -14,12 +14,14 @@ from anubis.scanners.dnssec import dnssecc_subdomain_enum
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
+from anubis.scanners.shodan import search_shodan
+from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 
-
 class TestScanners(TestCase):
   domains = list()
+  options = {"--verbose": True}
 
   def handle_exception(self, e, message=""):
     print(e)
@@ -86,6 +88,23 @@ class TestScanners(TestCase):
     self.domains = list()
     search_pkey(self, "google.com")
     self.assertIn("google.com", self.domains)
+
+  def test_shodan(self):
+    self.ip = "138.197.125.24"
+    search_shodan(self)
+    self.assertIn("ISP", sys.stdout.getvalue())
+
+  def test_ssl(self):
+    ssl_scan(self, "jonlu.ca")
+    # Check that Lets Encrypt Cert id is in output
+    self.assertIn("YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=",
+                  sys.stdout.getvalue())
+
+  def test_san(self):
+    self.domains = list()
+    ssl_scan(self, "jonlu.ca")
+    search_subject_alt_name(self, "jonlu.ca")
+    self.assertIn("www.jonlu.ca", self.domains)
 
 
 class TestVersion(TestCase):
