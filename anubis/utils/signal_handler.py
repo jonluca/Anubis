@@ -27,5 +27,6 @@ class SignalHandler:
     for worker in self.workers:
       worker.join()
 
-    print("Quitting...")
+    sys.__stdout__.write("Quitting...")
+    sys.__stdout__.flush()
     sys.exit(0)

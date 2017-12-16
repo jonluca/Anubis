@@ -1,6 +1,6 @@
 import censys
 
-from anubis.utils import ColorPrint
+from anubis.utils.ColorPrint import ColorPrint
 
 
 def search_censys(self, target):
@@ -10,6 +10,7 @@ def search_censys(self, target):
   except ImportError:
     ColorPrint.red(
       "To run a Censys scan, you must add your API keys to anubis/API.py")
+    return
   if not CENSYS_SECRET or not CENSYS_ID:
     ColorPrint.red(
       "To run a Censys scan, you must add your API keys to anubis/API.py")

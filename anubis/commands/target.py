@@ -80,13 +80,8 @@ class Target(Base):
                Thread(target=search_pkey(self, self.options["TARGET"])),
                Thread(target=search_netcraft(self, self.options["TARGET"])),
                Thread(target=search_crtsh(self, self.options["TARGET"])),
-               Thread(target=search_dnsdumpster(self, self.options["TARGET"]))]
-
-    # If they want to send and receive results from Anubis DB
-    if not self.options["--no-anubis-db"]:
-      threads.append(
-        Thread(target=search_anubisdb(self, self.options["TARGET"])))
-
+               Thread(target=search_dnsdumpster(self, self.options["TARGET"])),
+               Thread(target=search_anubisdb(self, self.options["TARGET"]))]
     # Additional options - ssl cert scan
     if self.options["--ssl"]:
       threads.append(Thread(target=ssl_scan(self, self.options["TARGET"])))
@@ -118,7 +113,7 @@ class Target(Base):
     if self.options["--recursive"]:
       self.recursive_search()
 
-    self.domains = self.clean_domains()
+    self.domains = self.clean_domains(self.domains)
     self.dedupe = set(self.domains)
 
     print("Found", len(self.dedupe), "subdomains")
@@ -133,9 +128,9 @@ class Target(Base):
     if not self.options["--no-anubis-db"]:
       send_to_anubisdb(self, self.options["TARGET"])
 
-  def clean_domains(self):
+  def clean_domains(self, domains):
     cleaned = []
-    for subdomain in self.domains:
+    for subdomain in domains:
       subdomain = subdomain.lower()
       # TODO move to regex matching for (.*)://
       subdomain = subdomain.replace("http://", "")
@@ -167,7 +162,7 @@ class Target(Base):
 
   def recursive_search(self):
     print("Starting recursive search - warning, might take a long time")
-    domains = self.clean_domains()
+    domains = self.clean_domains(self.domains)
     domains_unique = set(domains)
 
     num_workers = 10
@@ -181,7 +176,7 @@ class Target(Base):
       url_queue.put(domain)
 
     # we need to keep track of the workers but not start them yet
-    workers = [SearchWorker(url_queue, self.domains, stopper, self) for i in
+    workers = [SearchWorker(url_queue, self.domains, stopper, self) for _ in
                range(num_workers)]
 
     # create our signal handler and connect it

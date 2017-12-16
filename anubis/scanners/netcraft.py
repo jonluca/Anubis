@@ -15,11 +15,9 @@ def search_netcraft(self, target):
              'Connection':      'keep-alive', }
 
   params = (('restriction', 'site contains'), ('host', target))
-
-  res = requests.get('https://searchdns.netcraft.com/', headers=headers,
-                     params=params)
-
   try:
+    res = requests.get('https://searchdns.netcraft.com/', headers=headers,
+                       params=params)
     scraped = res.text
     trimmed = scraped[scraped.find('<div class="blogtitle">'):scraped.rfind(
       '<div id="copyright">')]
@@ -32,5 +30,5 @@ def search_netcraft(self, target):
         if self.options["--verbose"]:
           print("Netcraft Found Domain:", domain.strip())
   except Exception as e:
-    self.handle_exception(e, "Error parsing netcraft output")
+    self.handle_exception(e, "Error searching NetCraft")
     pass

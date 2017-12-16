@@ -2,7 +2,7 @@ import os
 
 from nmap import nmap
 
-from anubis.utils import ColorPrint
+from anubis.utils.ColorPrint import ColorPrint
 
 
 def dnssecc_subdomain_enum(self, target):
