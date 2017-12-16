@@ -11,6 +11,9 @@ from anubis.scanners.brute_force import brute_force
 from anubis.scanners.crt import search_crtsh
 from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.dnssec import dnssecc_subdomain_enum
+from anubis.scanners.hackertarget import subdomain_hackertarget
+from anubis.scanners.netcraft import search_netcraft
+from anubis.scanners.pkey import search_pkey
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 
@@ -68,6 +71,21 @@ class TestScanners(TestCase):
       self.assertTrue("google" in sys.stdout.getvalue())
     else:
       print("To run DNSSEC test, run as root")
+
+  def test_hackertarget(self):
+    self.domains = list()
+    subdomain_hackertarget(self, "example.com")
+    self.assertIn("www.example.com", self.domains)
+
+  def test_netcraft(self):
+    self.domains = list()
+    search_netcraft(self, "example.com")
+    self.assertIn("http://www.example.com", self.domains)
+
+  def test_pkey(self):
+    self.domains = list()
+    search_pkey(self, "google.com")
+    self.assertIn("google.com", self.domains)
 
 
 class TestVersion(TestCase):
