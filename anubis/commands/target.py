@@ -3,7 +3,9 @@ import queue
 import re
 import signal
 import socket
+import sys
 import threading
+from io import StringIO
 from threading import Thread
 from urllib.parse import urlsplit
 
@@ -31,6 +33,8 @@ class Target(Base):
   domains = list()
   ip = str()
   dedupe = set()
+
+  stdout = sys.stdout
 
   def handle_exception(self, e, message=""):
     if self.options["--verbose"]:
@@ -167,6 +171,10 @@ class Target(Base):
     domains_unique = set(domains)
 
     num_workers = 10
+
+    if self.options["--queue-workers"]:
+      num_workers = int(self.options["--queue-workers"])
+
     stopper = threading.Event()
     url_queue = queue.Queue()
     for domain in domains_unique:
@@ -180,10 +188,15 @@ class Target(Base):
     handler = SignalHandler(stopper, workers)
     signal.signal(signal.SIGINT, handler)
 
+    if not self.options["--verbose"]:
+      # catch stdout and replace it with our own
+      self.stdout, sys.stdout = sys.stdout, StringIO()
+
     # start the threads!
-    for i, worker in enumerate(workers):
-      print('Starting worker {}'.format(i))
+    for worker in workers:
       worker.start()
 
     # wait for the queue to empty
     url_queue.join()
+
+    sys.stdout = self.stdout
