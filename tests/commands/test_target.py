@@ -3,7 +3,6 @@
 import os
 import sys
 from io import StringIO
-from subprocess import PIPE, Popen as popen
 from unittest import TestCase
 
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
@@ -18,6 +17,7 @@ from anubis.scanners.shodan import search_shodan
 from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
+from anubis.utils.ColorPrint import ColorPrint
 
 
 class TestScanners(TestCase):
@@ -34,6 +34,9 @@ class TestScanners(TestCase):
     self.held, sys.stdout = sys.stdout, StringIO()
     # reset domains
     self.domains = list()
+
+  def tearDown(self):
+    self.held.write(sys.stdout.getvalue())
 
   def test_anubis_db(self):
     search_anubisdb(self, "example.com")
@@ -104,7 +107,26 @@ class TestScanners(TestCase):
     self.assertIn("www.jonlu.ca", self.domains)
 
 
-class TestVersion(TestCase):
+class TestColorPrint(TestCase):
 
-  def test_returns_version_information(self):
-    output = popen(['anubis', '--version'], stdout=PIPE).communicate()[0]
+  def setUp(self):
+    # catch stdout
+    self.held, sys.stdout = sys.stdout, StringIO()
+    # reset domains
+    self.domains = list()
+
+  def tearDown(self):
+    # Kind of hacky as it'll dump all of stdout at the end, but better than losing it entirely
+    self.held.write(sys.stdout.getvalue())
+
+  def test_color_print(self):
+    ColorPrint.red("red")
+    self.assertIn("91m", sys.stdout.getvalue())
+    ColorPrint.green("green")
+    self.assertIn("92m", sys.stdout.getvalue())
+    ColorPrint.light_purple("light_purple")
+    self.assertIn("94m", sys.stdout.getvalue())
+    ColorPrint.purple("purple")
+    self.assertIn("95m", sys.stdout.getvalue())
+    ColorPrint.yellow("yellow")
+    self.assertIn("93m", sys.stdout.getvalue())
