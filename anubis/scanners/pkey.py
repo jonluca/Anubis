@@ -14,7 +14,7 @@ def search_pkey(self, target):
              'Connection':      'keep-alive', 'DNT': '1', }
 
   data = [('zone', target), ('submit', ''), ]
-  res = requests.post('http://www.pkey.in/tools-i/search-subdomains',
+  res = requests.post('https://www.pkey.in/tools-i/search-subdomains',
                       headers=headers, data=data, verify=False)
   scraped = res.text
   try:
