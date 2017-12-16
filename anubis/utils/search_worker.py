@@ -1,4 +1,7 @@
+"""Search worker """
+
 import queue
+import sys
 import threading
 from threading import Thread
 
@@ -41,7 +44,8 @@ class SearchWorker(threading.Thread):
       except queue.Empty:
         break
       else:
-        print("Starting " + target)
+        sys.__stdout__.write("Starting recursive search on " + target + "\n")
+        self.parent.stdout.flush()
         # Default scans that run every time
         threads = [Thread(target=dns_zonetransfer(self.parent, target)),
                    Thread(target=search_subject_alt_name(self.parent, target)),
@@ -62,6 +66,7 @@ class SearchWorker(threading.Thread):
 
         for domain in self.domains:
           if domain not in self.master_domains:
+            sys.__stdout__.write("Found new domain: " + domain)
             self.master_domains.append(domain)
             self.domain_queue.put(domain)
 

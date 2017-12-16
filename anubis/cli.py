@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [-noispbdrv] [-w SCAN]
+  anubis -t TARGET [-o FILENAME] [-noispbdrv] [-w SCAN] [-q NUM]
   anubis -h
   anubis --version
   
@@ -15,8 +15,9 @@ Options:
   -b --brute-force                attempts to use a common word list to find subdomains (usually not very succesful)
   -d --no-anubis-db               don't send to or receive from anubisdb
   -r --recursive                  recursively search over all subdomains
-  -w --overwrite-nmap-scan        overwrite default nmap scan (default -nPn -sV -sC)
+  -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
   -v --verbose                    print debug info and full request output
+  -q --queue-workers NUM          override number of queue workers (default: 10, max: 50)
   --version                       show version and exit
 
 Help:
@@ -83,8 +84,17 @@ def main():
     if options["--output"]:
       sys.stdout = StdOutHook(options["FILENAME"])
 
-    # Here we'll try to dynamically match the command the user is trying to run
-    # with a pre-defined command class we've already created.
+    if options["--queue-workers"]:
+      if not options["--recursive"]:
+        print("Queue workers override only works with recursive option!")
+        sys.exit(1)
+      if int(options["--queue-workers"]) > 50:
+        print("Max queue worker override is 50!")
+        sys.exit(1)
+      if int(options["--queue-workers"]) < 1:
+        print("Queue workers can't be negative!")
+        sys.exit(1)
+
     if not options["--target"]:
       print("Target required! Run with -h for usage instructions.")
       return
