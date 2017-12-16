@@ -44,5 +44,6 @@ class TestOptions(TestCase):
     temp = StdOutHook(os.path.join(self.test_dir, 'test.txt'))
     temp.write("test")
     temp.write_out()
+    temp.flush()
     f = open(os.path.join(self.test_dir, 'test.txt'), 'r')
     self.assertIn("test", f.readlines())
