@@ -2,7 +2,7 @@ from json import dumps, loads
 
 import requests
 
-from anubis.utils import ColorPrint
+from anubis.utils.ColorPrint import ColorPrint
 
 
 def search_anubisdb(self, target):

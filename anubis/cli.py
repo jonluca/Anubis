@@ -17,7 +17,7 @@ Options:
   -r --recursive                  recursively search over all subdomains
   -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
   -v --verbose                    print debug info and full request output
-  -q --queue-workers NUM          override number of queue workers (default: 10, max: 50)
+  -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)
   --version                       show version and exit
 
 Help:
@@ -31,11 +31,12 @@ from functools import reduce
 
 from docopt import docopt
 
+# noinspection PyPep8Naming
 from . import __version__ as VERSION
 
 
 # Overload stdout to save output and change colors on filewrite
-class StdOutHook():
+class StdOutHook:
   lines = []
   filename = ""
 
@@ -88,8 +89,8 @@ def main():
       if not options["--recursive"]:
         print("Queue workers override only works with recursive option!")
         sys.exit(1)
-      if int(options["--queue-workers"]) > 50:
-        print("Max queue worker override is 50!")
+      if int(options["--queue-workers"]) > 100:
+        print("Max queue worker override is 100!")
         sys.exit(1)
       if int(options["--queue-workers"]) < 1:
         print("Queue workers can't be negative!")

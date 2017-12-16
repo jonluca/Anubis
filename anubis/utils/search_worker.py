@@ -5,6 +5,7 @@ import sys
 import threading
 from threading import Thread
 
+from anubis.scanners.anubis_db import search_anubisdb
 from anubis.scanners.crt import search_crtsh
 from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.hackertarget import subdomain_hackertarget
@@ -54,7 +55,8 @@ class SearchWorker(threading.Thread):
                    Thread(target=search_pkey(self.parent, target)),
                    Thread(target=search_netcraft(self.parent, target)),
                    Thread(target=search_crtsh(self.parent, target)),
-                   Thread(target=search_dnsdumpster(self.parent, target))]
+                   Thread(target=search_dnsdumpster(self.parent, target)),
+                   Thread(target=search_anubisdb(self, target))]
 
         # Start all threads
         for x in threads:
@@ -64,6 +66,7 @@ class SearchWorker(threading.Thread):
         for x in threads:
           x.join()
 
+        self.domains = self.parent.clean_domains(self.domains)
         for domain in self.domains:
           if domain not in self.master_domains:
             sys.__stdout__.write("Found new domain: " + domain)
