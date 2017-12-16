@@ -2,6 +2,7 @@
 
 import re
 import socket
+from queue import Queue
 from threading import Thread
 from urllib.parse import urlsplit
 
@@ -64,13 +65,15 @@ class Target(Base):
 
     # Default scans that run every time
     threads = [Thread(target=dns_zonetransfer(self, self.options["TARGET"])),
-      Thread(target=search_subject_alt_name(self, self.options["TARGET"])),
-      Thread(target=subdomain_hackertarget(self, self.options["TARGET"])),
-      Thread(target=search_virustotal(self, self.options["TARGET"])),
-      Thread(target=search_pkey(self, self.options["TARGET"])),
-      Thread(target=search_netcraft(self, self.options["TARGET"])),
-      Thread(target=search_crtsh(self, self.options["TARGET"])),
-      Thread(target=search_dnsdumpster(self, self.options["TARGET"]))]
+               Thread(
+                 target=search_subject_alt_name(self, self.options["TARGET"])),
+               Thread(
+                 target=subdomain_hackertarget(self, self.options["TARGET"])),
+               Thread(target=search_virustotal(self, self.options["TARGET"])),
+               Thread(target=search_pkey(self, self.options["TARGET"])),
+               Thread(target=search_netcraft(self, self.options["TARGET"])),
+               Thread(target=search_crtsh(self, self.options["TARGET"])),
+               Thread(target=search_dnsdumpster(self, self.options["TARGET"]))]
 
     # If they want to send and receive results from Anubis DB
     if not self.options["--no-anubis-db"]:
@@ -148,4 +151,14 @@ class Target(Base):
       ColorPrint.green(ip)
 
   def recursive_search(self):
-    print("todo")
+    domains = self.clean_domains()
+    domains_unique = set(domains)
+    visited = {}
+    for domain in domains_unique:
+      visited[domain] = False
+
+
+class RecursiveQueue():
+
+  def append(self, element):
+
