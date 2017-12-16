@@ -11,7 +11,6 @@ def search_anubisdb(self, target):
 
   if res.status_code == 200 and res.text:
     subdomains = loads(res.text)
-
     for subdomain in subdomains:
       if subdomain not in self.domains:
         self.domains.append(subdomain)

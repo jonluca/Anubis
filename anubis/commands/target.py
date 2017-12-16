@@ -63,9 +63,8 @@ class Target(Base):
         "TARGET"] + ")\n")
 
     # Default scans that run every time
-    threads = [
+    threads = [Thread(target=dns_zonetransfer(self, self.options["TARGET"])),
       Thread(target=search_subject_alt_name(self, self.options["TARGET"])),
-      Thread(target=dns_zonetransfer(self, self.options["TARGET"])),
       Thread(target=subdomain_hackertarget(self, self.options["TARGET"])),
       Thread(target=search_virustotal(self, self.options["TARGET"])),
       Thread(target=search_pkey(self, self.options["TARGET"])),
