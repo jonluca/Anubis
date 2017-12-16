@@ -11,35 +11,34 @@
 
 Welcome to Anubis, a subdomain enumerator and information gathering tool. [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
-## Requirements
+## Installation
 
-## Easy Install
+### Easy Install
+
+Note: Python 3.6 is required
 
 `pip3 install anubis-netsec`
 
-## More Information
-
-Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
-
-``pip3 install  -r requirements.txt``
-
-* Python **3.6**
-* Nmap
-
-If running on Linux distros, openssl and python dev will be required as well, witch `sudo apt-get install python3-pip python-dev libssl-dev`
-
-## Installation
+### Install From Source
 
 Please note Anubis is still in beta. 
 
 ```
 git@github.com:jonluca/Anubis.git
 cd Anubis
+pip3 install  -r requirements.txt
 pip3 install .
 ```
 
 Will install it as  CLI program, most likely to `/usr/local/bin/anubis` on *nix machines.
 
+### Additional Requirements
+
+Note: If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
+
+* Nmap
+
+If running on Linux distros, openssl and python dev will be required as well, witch `sudo apt-get install python3-pip python-dev libssl-dev`
 
 ## Usage
 
@@ -86,27 +85,27 @@ Set's target to `domain.com`, outputs additional information like server and ISP
 ```anubis -t reddit.com``` 
 
 ```
-Searching for subdomains for 151.101.129.140
-Found 126 domains
+Searching for subdomains for 151.101.65.140 (reddit.com)
+
+Testing for zone transfers
+Searching for Subject Alt Names
+Searching HackerTarget
+Searching VirusTotal
+Searching Pkey.in
+Searching NetCraft.com
+Searching crt.sh
+Searching DNSDumpster
+Searching Anubis-DB
+Found 193 subdomains
 ----------------
-aa.reddit.com
-ss.reddit.com
-qu.reddit.com
-roosterteeth.reddit.com
-http://dg.reddit.com
-pp.reddit.com
-i.reddit.com
-http://www.reddit.com
-di.reddit.com
-bj.reddit.com
-augustames.reddit.com
-so.reddit.com
-www.reddit.com
-http://reddit.com
-http://nj.reddit.com
-space.reddit.com
-api.reddit.com
+fj.reddit.com
+se.reddit.com
+gateway.reddit.com
+beta.reddit.com
+ww.reddit.com
 ... (truncated for readability)
+Sending to AnubisDB
+Subdomain search took 0:00:20.390
 ```
 
 `anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`)

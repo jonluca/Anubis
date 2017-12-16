@@ -47,4 +47,5 @@ setup(name='anubis-netsec', version=__version__,
                         'shodan', 'requests', 'censys', 'dnspython'],
       extras_require={'test': ['coverage', 'pytest', 'pytest-cov'], },
       entry_points={'console_scripts': ['anubis=anubis.cli:main', ], },
-      cmdclass={'test': RunTests}, py_modules=["anubis.utils"], )
+      cmdclass={'test': RunTests},
+      py_modules=["anubis.utils", "anubis.scanners"], )
