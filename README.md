@@ -154,7 +154,17 @@ Execution took 0:00:04.604
 ```anubis -t reddit.com --with-nmap -o temp.txt -is --overwrite-nmap-scan "-F -T5"``` 
 
 ```
-Searching for subdomains for 151.101.129.140
+Searching for subdomains for 151.101.65.140 (reddit.com)
+
+Testing for zone transfers
+Searching for Subject Alt Names
+Searching HackerTarget
+Searching VirusTotal
+Searching Pkey.in
+Searching NetCraft.com
+Searching crt.sh
+Searching DNSDumpster
+Searching Anubis-DB
 Running SSL Scan
 Available TLSv1.0 Ciphers:
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
@@ -164,14 +174,14 @@ Available TLSv1.0 Ciphers:
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
 Available TLSv1.2 Ciphers:
     TLS_RSA_WITH_AES_256_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
     TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-    TLS_RSA_WITH_AES_128_CBC_SHA
+    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
     TLS_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
     TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+    TLS_RSA_WITH_AES_128_CBC_SHA
     TLS_RSA_WITH_3DES_EDE_CBC_SHA
  * Certificate Information:
      Content
@@ -206,27 +216,41 @@ Available TLSv1.2 Ciphers:
        Responder Id:                      0F80611C823161D52F28E78D4638B42CE1C6D9E2
        Cert Status:                       good
        Cert Serial Number:                08CF7DA9B222C9D983C50D993F2F5437
-       This Update:                       Dec 10 16:18:57 2017 GMT
-       Next Update:                       Dec 17 15:33:57 2017 GMT
-Server Location: San Francisco US - 94107
-ISP: Fastly
+       This Update:                       Dec 16 16:20:41 2017 GMT
+       Next Update:                       Dec 23 15:35:41 2017 GMT
+ * OpenSSL Heartbleed:
+                                          OK - Not vulnerable to Heartbleed
+ * HTTP Security Headers:
+       NOT SUPPORTED - Server did not send an HSTS header
+
+     HTTP Public Key Pinning (HPKP)
+       NOT SUPPORTED - Server did not send an HPKP header
+
+     Computed HPKP Pins for Current Chain
+      0 - *.reddit.com                                  3FUu+FYb3IyHxicQEMs5sSzs207fuv25p7NGRIPDaAw=
+      1 - DigiCert SHA2 Secure Server CA                5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=
+      2 - DigiCert Global Root CA                       r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=
+Searching Shodan.io for additional information
+Server Location: San Francisco, US - 94107
+ISP  or Hosting Company: Fastly
+To run a DNSSEC subdomain enumeration, Anubis must be run as root
 Starting Nmap Scan
-Host : 151.101.129.140 ()
+Host : 151.101.65.140 ()
 ----------
 Protocol: tcp
-port: 53	state: open
 port: 80	state: open
 port: 443	state: open
-Found 126 domains
+Found 195 subdomains
 ----------------
-nd.reddit.com
-askreddit.reddit.com
-roosterteeth.reddit.com
-qu.reddit.com
-cp.reddit.com
-mx02.reddit.com
-nh.reddit.com
+nm.reddit.com
+ne.reddit.com
+sonics.reddit.com
+aj.reddit.com
+fo.reddit.com
+f5.reddit.com
 ... (truncated for readability)
+Sending to AnubisDB
+Subdomain search took 0:00:26.579
 ```
 
 Additionally, it would write out to a file called "out.txt" in the directory in which it was called.
