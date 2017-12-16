@@ -19,6 +19,7 @@ from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 
+
 class TestScanners(TestCase):
   domains = list()
   options = {"--verbose": True}
@@ -29,7 +30,10 @@ class TestScanners(TestCase):
       print(message)
 
   def setUp(self):
+    # catch stdout
     self.held, sys.stdout = sys.stdout, StringIO()
+    # reset domains
+    self.domains = list()
 
   def test_anubis_db(self):
     search_anubisdb(self, "example.com")
@@ -41,7 +45,6 @@ class TestScanners(TestCase):
     self.assertTrue("Error" not in sys.stdout.getvalue())
 
   def test_crt(self):
-    self.domains = list()
     search_crtsh(self, "jonlu.ca")
     self.assertIn("secure.jonlu.ca", self.domains)
 
@@ -55,7 +58,6 @@ class TestScanners(TestCase):
     self.assertTrue("Error" not in sys.stdout.getvalue())
 
   def test_virustotal(self):
-    self.domains = list()
     search_virustotal(self, "example.com")
     if "limiting" in sys.stdout.getvalue():
       print("VirusTotal rate limiting")
@@ -63,7 +65,6 @@ class TestScanners(TestCase):
     self.assertIn("yy.example.com", self.domains)
 
   def test_dnsdumpster(self):
-    self.domains = list()
     search_dnsdumpster(self, "example.com")
     self.assertIn("www.example.com", self.domains)
 
@@ -75,17 +76,14 @@ class TestScanners(TestCase):
       print("To run DNSSEC test, run as root")
 
   def test_hackertarget(self):
-    self.domains = list()
     subdomain_hackertarget(self, "example.com")
     self.assertIn("www.example.com", self.domains)
 
   def test_netcraft(self):
-    self.domains = list()
     search_netcraft(self, "example.com")
     self.assertIn("http://www.example.com", self.domains)
 
   def test_pkey(self):
-    self.domains = list()
     search_pkey(self, "google.com")
     self.assertIn("google.com", self.domains)
 
@@ -101,7 +99,6 @@ class TestScanners(TestCase):
                   sys.stdout.getvalue())
 
   def test_san(self):
-    self.domains = list()
     ssl_scan(self, "jonlu.ca")
     search_subject_alt_name(self, "jonlu.ca")
     self.assertIn("www.jonlu.ca", self.domains)
