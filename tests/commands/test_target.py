@@ -1,5 +1,6 @@
 """Tests for our main anubis CLI module."""
 
+import os
 import sys
 from io import StringIO
 from subprocess import PIPE, Popen as popen
@@ -8,8 +9,12 @@ from unittest import TestCase
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
 from anubis.scanners.brute_force import brute_force
 from anubis.scanners.crt import search_crtsh
-from anubis.scanners.zonetransfer import dns_zonetransfer
+from anubis.scanners.dnsdumpster import search_dnsdumpster
+from anubis.scanners.dnssec import dnssecc_subdomain_enum
 from anubis.scanners.virustotal import search_virustotal
+from anubis.scanners.zonetransfer import dns_zonetransfer
+
+
 class TestScanners(TestCase):
   domains = list()
 
@@ -31,8 +36,9 @@ class TestScanners(TestCase):
     self.assertTrue("Error" not in sys.stdout.getvalue())
 
   def test_crt(self):
+    self.domains = list()
     search_crtsh(self, "jonlu.ca")
-    self.assertIn("www.jonlu.ca", self.domains)
+    self.assertIn("secure.jonlu.ca", self.domains)
 
   def test_bruteforce(self):
     brute_force(self, "jonlu.ca")
@@ -44,9 +50,24 @@ class TestScanners(TestCase):
     self.assertTrue("Error" not in sys.stdout.getvalue())
 
   def test_virustotal(self):
-    search_virustotal(self, "jonlu.ca")
-    self.assertIn("www.jonlu.ca", self.domains)
+    self.domains = list()
+    search_virustotal(self, "example.com")
+    if "limiting" in sys.stdout.getvalue():
+      print("VirusTotal rate limiting")
+      return
+    self.assertIn("yy.example.com", self.domains)
 
+  def test_dnsdumpster(self):
+    self.domains = list()
+    search_dnsdumpster(self, "example.com")
+    self.assertIn("www.example.com", self.domains)
+
+  def test_dnssec(self):
+    if os.getuid() == 0:
+      dnssecc_subdomain_enum(self, "google.com")
+      self.assertTrue("google" in sys.stdout.getvalue())
+    else:
+      print("To run DNSSEC test, run as root")
 
 
 class TestVersion(TestCase):
