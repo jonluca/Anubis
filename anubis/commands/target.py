@@ -1,7 +1,9 @@
 """The target command."""
-
+import queue
 import re
+import signal
 import socket
+import threading
 from threading import Thread
 from urllib.parse import urlsplit
 
@@ -19,6 +21,8 @@ from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
+from anubis.utils.search_worker import SearchWorker
+from anubis.utils.signal_handler import SignalHandler
 from .base import Base
 
 
@@ -128,13 +132,18 @@ class Target(Base):
   def clean_domains(self):
     cleaned = []
     for subdomain in self.domains:
+      subdomain = subdomain.lower()
+      # TODO move to regex matching for (.*)://
       subdomain = subdomain.replace("http://", "")
       subdomain = subdomain.replace("https://", "")
       subdomain = subdomain.replace("ftp://", "")
       subdomain = subdomain.replace("sftp://", "")
+      # Some pkey return instances like example.com. - remove the final .
       if subdomain.endswith('.'):
         subdomain = subdomain[:-1]
-
+      # If it's an email address, only take the domain part
+      if "@" in subdomain:
+        subdomain = subdomain.split("@")[1]
       cleaned.append(subdomain.strip())
     return cleaned
 
@@ -153,8 +162,28 @@ class Target(Base):
       ColorPrint.green(ip)
 
   def recursive_search(self):
+    print("Starting recursive search - warning, might take a long time")
     domains = self.clean_domains()
     domains_unique = set(domains)
-    visited = {}
+
+    num_workers = 10
+    stopper = threading.Event()
+    url_queue = queue.Queue()
     for domain in domains_unique:
-      visited[domain] = False
+      url_queue.put(domain)
+
+    # we need to keep track of the workers but not start them yet
+    workers = [SearchWorker(url_queue, self.domains, stopper, self) for i in
+               range(num_workers)]
+
+    # create our signal handler and connect it
+    handler = SignalHandler(stopper, workers)
+    signal.signal(signal.SIGINT, handler)
+
+    # start the threads!
+    for i, worker in enumerate(workers):
+      print('Starting worker {}'.format(i))
+      worker.start()
+
+    # wait for the queue to empty
+    url_queue.join()
