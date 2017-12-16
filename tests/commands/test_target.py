@@ -59,6 +59,8 @@ class TestScanners(TestCase):
   def test_zonetransfer(self):
     dns_zonetransfer(self, "jonlu.ca")
     self.assertTrue("Error" not in sys.stdout.getvalue())
+    dns_zonetransfer(self, "$FALSE$")
+    self.assertTrue("Error" in sys.stdout.getvalue())
 
   def test_virustotal(self):
     search_virustotal(self, "example.com")

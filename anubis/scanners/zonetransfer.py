@@ -4,8 +4,6 @@ import dns.query
 import dns.resolver
 import dns.zone
 
-from anubis.utils import ColorPrint
-
 
 def dns_zonetransfer(self, target):
   print("Testing for zone transfers")
@@ -20,7 +18,7 @@ def dns_zonetransfer(self, target):
     return
 
   resolved_ips = []
-  
+
   for ns in answers:
     ns = str(ns).rstrip('.')
     resolved_ips.append(socket.gethostbyname(ns))
@@ -38,4 +36,4 @@ def dns_zonetransfer(self, target):
   if zonetransfers:
     print("\tZone transfers possible:")
     for zone in zonetransfers:
-      ColorPrint.red(zone)
+      print(zone)

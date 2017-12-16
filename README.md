@@ -85,27 +85,27 @@ Set's target to `domain.com`, outputs additional information like server and ISP
 ```anubis -t reddit.com``` 
 
 ```
-Searching for subdomains for 151.101.129.140
-Found 126 domains
+Searching for subdomains for 151.101.65.140 (reddit.com)
+
+Testing for zone transfers
+Searching for Subject Alt Names
+Searching HackerTarget
+Searching VirusTotal
+Searching Pkey.in
+Searching NetCraft.com
+Searching crt.sh
+Searching DNSDumpster
+Searching Anubis-DB
+Found 193 subdomains
 ----------------
-aa.reddit.com
-ss.reddit.com
-qu.reddit.com
-roosterteeth.reddit.com
-http://dg.reddit.com
-pp.reddit.com
-i.reddit.com
-http://www.reddit.com
-di.reddit.com
-bj.reddit.com
-augustames.reddit.com
-so.reddit.com
-www.reddit.com
-http://reddit.com
-http://nj.reddit.com
-space.reddit.com
-api.reddit.com
+fj.reddit.com
+se.reddit.com
+gateway.reddit.com
+beta.reddit.com
+ww.reddit.com
 ... (truncated for readability)
+Sending to AnubisDB
+Subdomain search took 0:00:20.390
 ```
 
 `anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`)
