@@ -39,5 +39,3 @@ def dns_zonetransfer(self, target):
     print("\tZone transfers possible:")
     for zone in zonetransfers:
       ColorPrint.red(zone)
-  else:
-    print("\tNo zone transfers possible")

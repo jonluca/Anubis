@@ -69,13 +69,14 @@ def seconds_to_str(t):
 
 
 def main():
-  if (sys.version_info < (3, 0)):
+  if sys.version_info < (3, 0):
     sys.stdout.write("Sorry, requires Python 3.x, not Python 2.x\n")
     sys.exit(1)
 
   start_time = time.time()
 
   import anubis.commands
+
   options = docopt(__doc__, version=VERSION)
 
   if options["--output"]:
@@ -98,8 +99,7 @@ def main():
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 	""")
 
-  command = anubis.commands.Target
-  command = command(options)
+  command = anubis.commands.Target(options)
   command.run()
   print("Subdomain search took %s" % seconds_to_str(time.time() - start_time))
   if options["--output"]:
