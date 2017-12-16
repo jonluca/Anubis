@@ -6,7 +6,7 @@ from anubis.utils.ColorPrint import ColorPrint
 
 
 def search_shodan(self):
-  print("Scanning Shodan.io")
+  print("Searching Shodan.io for additional information")
   try:
     from anubis.API import SHODAN_KEY
   except ImportError:

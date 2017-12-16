@@ -2,7 +2,6 @@
 
 import re
 import socket
-from queue import Queue
 from threading import Thread
 from urllib.parse import urlsplit
 
@@ -133,6 +132,9 @@ class Target(Base):
       subdomain = subdomain.replace("https://", "")
       subdomain = subdomain.replace("ftp://", "")
       subdomain = subdomain.replace("sftp://", "")
+      if subdomain.endswith('.'):
+        subdomain = subdomain[:-1]
+
       cleaned.append(subdomain.strip())
     return cleaned
 
@@ -156,9 +158,3 @@ class Target(Base):
     visited = {}
     for domain in domains_unique:
       visited[domain] = False
-
-
-class RecursiveQueue():
-
-  def append(self, element):
-
