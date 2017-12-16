@@ -12,7 +12,7 @@ def search_crtsh(self, target):
              'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
              'Cache-Control':   'no-cache', 'Connection': 'keep-alive', }
 
-  params = (('q', '%.' + self.options["TARGET"]),)
+  params = (('q', '%.' + target),)
 
   res = requests.get('https://crt.sh/', headers=headers, params=params)
   try:

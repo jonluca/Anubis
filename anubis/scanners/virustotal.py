@@ -13,7 +13,7 @@ def search_virustotal(self, target):
              'cookie':          'VT_PREFERRED_LANGUAGE=en', }
   res = requests.get(
     'https://www.virustotal.com/en/domain/' + target + '/information/',
-    headers=headers, verify=False)
+    headers=headers)
   if res.status_code == 403:
     ColorPrint.red(
       "VirusTotal is currently ratelimiting this IP - go to https://www.virustotal.com/en/domain/" + target + "/information/ and complete the captcha to continue.")
