@@ -21,12 +21,12 @@ def search_shodan(self):
     if self.options["--verbose"]:
       print(dumps(results, indent=2, sort_keys=True))
 
-    print('Server Location:', results['city'] + ", " + results['country_code'],
-          '-', results['postal_code'])
+    print('Server Location: ' + str(results['city']) + ", " + str(
+      results['country_code']) + ' - ' + str(results['postal_code']))
 
-    print("ISP  or Hosting Company: %s" % results['isp'])
+    print("ISP  or Hosting Company: %s" % str(results['isp']))
 
     if results['os'] is not None:
-      print("Possible OS: %s" % results['os'])
+      print("Possible OS: %s" % str(results['os']))
   except Exception as e:
     self.handle_exception(e, "Error retrieving additional info")

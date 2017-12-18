@@ -132,17 +132,24 @@ class Target(Base):
     cleaned = []
     for subdomain in domains:
       subdomain = subdomain.lower()
-      # TODO move to regex matching for (.*)://
-      subdomain = subdomain.replace("http://", "")
-      subdomain = subdomain.replace("https://", "")
-      subdomain = subdomain.replace("ftp://", "")
-      subdomain = subdomain.replace("sftp://", "")
+      if subdomain.find("//") != -1:
+        subdomain = subdomain[subdomain.find("//") + 2:]
       # Some pkey return instances like example.com. - remove the final .
       if subdomain.endswith('.'):
         subdomain = subdomain[:-1]
+      # sometimes we'll get something like /www.example.com
+      if subdomain[0] in ["\\", ".", "/", "#", "$", "%"]:
+        subdomain = subdomain[1:]
       # If it's an email address, only take the domain part
       if "@" in subdomain:
-        subdomain = subdomain.split("@")[1]
+        subdomain = subdomain.split("@")
+        # If it's an actual email like mail@example.com, take example.com
+        if len(subdomain) > 1:
+          subdomain = subdomain[1]
+        else:
+          # If for some reason it's example.com@, take example.com
+          subdomain = subdomain[0]
+
       cleaned.append(subdomain.strip())
     return cleaned
 
@@ -150,15 +157,20 @@ class Target(Base):
     unique_ips = set()
     for domain in self.dedupe:
       try:
+        # Attempt to get IP
         resolved_ip = socket.gethostbyname(domain)
-        # TODO - Align domains and ips in stdout
-        ColorPrint.green(domain + ": " + resolved_ip)
-        unique_ips.add(resolved_ip)
       except Exception as e:
         self.handle_exception(e)
+        # If getting IP fails, fallback to empty string
+        resolved_ip = ""
+      # TODO - Align domains and ips in stdout
+      ColorPrint.green(domain + ": " + resolved_ip)
+      unique_ips.add(resolved_ip)
     print("Found %s unique IPs" % len(unique_ips))
     for ip in unique_ips:
-      ColorPrint.green(ip)
+      # String truthiness ignores empty strings
+      if ip:
+        ColorPrint.green(ip)
 
   def recursive_search(self):
     print("Starting recursive search - warning, might take a long time")
