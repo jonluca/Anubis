@@ -1,14 +1,5 @@
 # Anubis
 
-
-
-Welcome to Anubis, a subdomain enumerator and information gathering tool.
-
-
-
-
-# Anubis
-
         d8888                   888      d8b
        d88888                   888      Y8P
       d88P888                   888
@@ -83,7 +74,7 @@ If running on Linux distros, openssl and python dev will be required as well, wi
     Help:
       For help using this tool, please open an issue on the Github repository:
       https://github.com/jonluca/anubis
-      
+
 ### Basic
 
 #### Common Use Case
