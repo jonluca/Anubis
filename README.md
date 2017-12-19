@@ -269,10 +269,6 @@ Run tests on their own, in native pytest environment
 ```pytest```
 
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * CLI Boilerplate by [Skele-CLI](https://github.com/rdegges/skele-cli)
