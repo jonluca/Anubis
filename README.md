@@ -1,21 +1,40 @@
 # Anubis
 
-            d8888                   888      d8b
-           d88888                   888      Y8P
-          d88P888                   888
-         d88P 888 88888b.  888  888 88888b.  888 .d8888b
-        d88P  888 888 "88b 888  888 888 "88b 888 88K
-       d88P   888 888  888 888  888 888  888 888 "Y8888b.
-      d8888888888 888  888 Y88b 888 888 d88P 888      X88
-     d88P     888 888  888  "Y88888 88888P"  888  88888P'
+
 
 Welcome to Anubis, a subdomain enumerator and information gathering tool.
 
+
+
+
+# Anubis
+
+        d8888                   888      d8b
+       d88888                   888      Y8P
+      d88P888                   888
+     d88P 888 88888b.  888  888 88888b.  888 .d8888b
+    d88P  888 888 "88b 888  888 888 "88b 888 88K
+   d88P   888 888  888 888  888 888  888 888 "Y8888b.
+  d8888888888 888  888 Y88b 888 888 d88P 888      X88
+ d88P     888 888  888  "Y88888 88888P"  888  88888P'
+
+Anubis is a subdomain enumeration and information gathering tool. Paired with it's sister project, Anubis-DB, it provides an up to date and informative glance into any targets topology.
+
 [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
-## Installation
+## Getting Started
 
-### Easy Install
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+* Nmap
+
+If you are running Linux, the following are also required:
+
+`sudo apt-get install python3-pip python-dev libssl-dev libffi-dev`
+
+### Installing
 
 Note: Python 3.6 is required
 
@@ -23,7 +42,7 @@ Note: Python 3.6 is required
 
 ### Install From Source
 
-Please note Anubis is still in beta. 
+Please note Anubis is still in beta.
 
 ```
 git@github.com:jonluca/Anubis.git
@@ -32,13 +51,7 @@ pip3 install  -r requirements.txt
 pip3 install .
 ```
 
-Will install it as  CLI program, most likely to `/usr/local/bin/anubis` on *nix machines.
-
-### Additional Requirements
-
-* [nmap](https://nmap.org/)
-
-### Other Notes
+#### Other Notes
 
 If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
 
@@ -53,7 +66,7 @@ If running on Linux distros, openssl and python dev will be required as well, wi
 
     Options:
       -h --help                       show this help message and exit
-      -t --target                     set target
+      -t --target                     set target (comma separated, no spaces, if multiple)
       -n --with-nmap                  perform an nmap service/script scan
       -o --output                     save to filename
       -i --additional-info            show additional information about the host from Shodan (requires API key)
@@ -69,19 +82,11 @@ If running on Linux distros, openssl and python dev will be required as well, wi
 
     Help:
       For help using this tool, please open an issue on the Github repository:
-      https://github.com/jonluca/anubis 
-         
-## About
-
-Anubis collates data from a variety of sources, including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, and NetCraft.
-
-Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized repository of subdomains. Subdomains are *automatically* sent to AnubisDB - to disable this functionality, pass the `d` flag when running Anubis.
- 
-## Sample Output
-
+      https://github.com/jonluca/anubis
+      
 ### Basic
 
-#### Simple Use Case
+#### Common Use Case
 
 `anubis -tip  domain.com -o out.txt`
 
@@ -89,7 +94,7 @@ Set's target to `domain.com`, outputs additional information like server and ISP
 
 #### Other
 
-```anubis -t reddit.com``` 
+```anubis -t reddit.com``` Simplest use of Anubis, just runs subdomain enumeration
 
 ```
 Searching for subdomains for 151.101.65.140 (reddit.com)
@@ -115,7 +120,7 @@ Sending to AnubisDB
 Subdomain search took 0:00:20.390
 ```
 
-`anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`)
+`anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`) - resolves IPs and outputs list of uniques, and provides additional information through https://shodan.io
 
 ```
 Searching for subdomains for 151.101.65.140
@@ -158,7 +163,7 @@ Execution took 0:00:04.604
 ```
 
 ### Advanced
-```anubis -t reddit.com --with-nmap -o temp.txt -is --overwrite-nmap-scan "-F -T5"``` 
+```anubis -t reddit.com --with-nmap -o temp.txt -is --overwrite-nmap-scan "-F -T5"```
 
 ```
 Searching for subdomains for 151.101.65.140 (reddit.com)
@@ -260,15 +265,48 @@ Sending to AnubisDB
 Subdomain search took 0:00:26.579
 ```
 
-Additionally, it would write out to a file called "out.txt" in the directory in which it was called.
+## Running the tests
+
+Run all test *with coverage*
+
+```
+ python3 setup.py test
+```
+
+Run tests on their own, in native pytest environment
+
+```pytest```
 
 
-## Credits
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
 
 * CLI Boilerplate by [Skele-CLI](https://github.com/rdegges/skele-cli)
 
 * [sslyze](https://github.com/nabla-c0d3/sslyze)
 
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/jonluca/Anubis/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+
+## Authors
+
+* **JonLuca DeCaro** - *Initial work* - [Anubis](https://github.com/Anubis)
+
+See also the list of [contributors](https://github.com/jonluca/Anubis/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the GPLv3 License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
 * [/r/netsec](https://reddit.com/r/netsec)
 
 * [BitQuark for the most common subdomains](https://github.com/bitquark/dnspop/tree/master/results)
+
