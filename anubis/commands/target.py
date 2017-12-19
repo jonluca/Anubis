@@ -43,64 +43,65 @@ class Target(Base):
       ColorPrint.red(message)
 
   def init(self):
-    url = self.options["TARGET"]
+    self.options["TARGET"] = self.options["TARGET"].split(",")
+    for i in range(len(self.options["TARGET"])):
+      url = self.options["TARGET"][i]
 
-    if not re.match(r'http(s?):', url):
-      url = 'http://' + url
+      if not re.match(r'http(s?):', url):
+        url = 'http://' + url
 
-    parsed = urlsplit(url)
-    host = parsed.netloc
+      parsed = urlsplit(url)
+      host = parsed.netloc
 
-    if host.startswith('www.'):
-      host = host[4:]
+      if host.startswith('www.'):
+        host = host[4:]
 
-    self.options["TARGET"] = host
+      self.options["TARGET"][i] = host
 
-    try:
-      self.ip = socket.gethostbyname(self.options["TARGET"])
-    except Exception as e:
-      self.handle_exception(e,
-                            "Error connecting to target! Make sure you spelled it correctly and it is a reachable address")
+      try:
+        ColorPrint.green("Searching for subdomains for " + socket.gethostbyname(
+          self.options["TARGET"][i]) + " (" + self.options["TARGET"][i] + ")")
+      except Exception as e:
+        self.handle_exception(e,
+                              "Error connecting to target! Make sure you spelled it correctly and it is a resolvable address")
+        raise e
+    print("")
 
   def run(self):
     # Retrieve IP of target and run initial configurations
     self.init()
+    for i in range(len(self.options["TARGET"])):
+      # Default scans that run every time
+      threads = [
+        Thread(target=dns_zonetransfer(self, self.options["TARGET"][i])),
+        Thread(target=search_subject_alt_name(self, self.options["TARGET"][i])),
+        Thread(target=subdomain_hackertarget(self, self.options["TARGET"][i])),
+        Thread(target=search_virustotal(self, self.options["TARGET"][i])),
+        Thread(target=search_pkey(self, self.options["TARGET"][i])),
+        Thread(target=search_netcraft(self, self.options["TARGET"][i])),
+        Thread(target=search_crtsh(self, self.options["TARGET"][i])),
+        Thread(target=search_dnsdumpster(self, self.options["TARGET"][i])),
+        Thread(target=search_anubisdb(self, self.options["TARGET"][i]))]
+      # Additional options - ssl cert scan
+      if self.options["--ssl"]:
+        threads.append(Thread(target=ssl_scan(self, self.options["TARGET"][i])))
 
-    ColorPrint.green(
-      "Searching for subdomains for " + self.ip + " (" + self.options[
-        "TARGET"] + ")\n")
+      # Additional options - shodan.io scan
+      if self.options["--additional-info"]:
+        threads.append(Thread(target=search_shodan(self)))
 
-    # Default scans that run every time
-    threads = [Thread(target=dns_zonetransfer(self, self.options["TARGET"])),
-               Thread(
-                 target=search_subject_alt_name(self, self.options["TARGET"])),
-               Thread(
-                 target=subdomain_hackertarget(self, self.options["TARGET"])),
-               Thread(target=search_virustotal(self, self.options["TARGET"])),
-               Thread(target=search_pkey(self, self.options["TARGET"])),
-               Thread(target=search_netcraft(self, self.options["TARGET"])),
-               Thread(target=search_crtsh(self, self.options["TARGET"])),
-               Thread(target=search_dnsdumpster(self, self.options["TARGET"])),
-               Thread(target=search_anubisdb(self, self.options["TARGET"]))]
-    # Additional options - ssl cert scan
-    if self.options["--ssl"]:
-      threads.append(Thread(target=ssl_scan(self, self.options["TARGET"])))
+      # Additional options - nmap scan of dnssec script and a host/port scan
+      if self.options["--with-nmap"]:
+        threads.append(Thread(
+          target=dnssecc_subdomain_enum(self, self.options["TARGET"][i])))
+        threads.append(Thread(target=scan_host(self)))
 
-    # Additional options - shodan.io scan
-    if self.options["--additional-info"]:
-      threads.append(Thread(target=search_shodan(self)))
+      # Additional options - brute force common subdomains
+      if self.options["--brute-force"]:
+        threads.append(
+          Thread(target=brute_force(self, self.options["TARGET"][i])))
 
-    # Additional options - nmap scan of dnssec script and a host/port scan
-    if self.options["--with-nmap"]:
-      threads.append(
-        Thread(target=dnssecc_subdomain_enum(self, self.options["TARGET"])))
-      threads.append(Thread(target=scan_host(self)))
-
-    # Additional options - brute force common subdomains
-    if self.options["--brute-force"]:
-      threads.append(Thread(target=brute_force(self, self.options["TARGET"])))
-
-    # Start all threads
+      # Start all threads
     for x in threads:
       x.start()
 

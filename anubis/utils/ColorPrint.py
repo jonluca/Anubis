@@ -7,21 +7,21 @@ class ColorPrint:
   END = '\033[0m'
 
   @classmethod
-  def red(cls, s, **kwargs):
-    print(cls.RED + s + cls.END, **kwargs)
+  def red(self, s, **kwargs):
+    print(self.RED + s + self.END, **kwargs)
 
   @classmethod
-  def green(cls, s, **kwargs):
-    print(cls.GREEN + s + cls.END, **kwargs)
+  def green(self, s, **kwargs):
+    print(self.GREEN + s + self.END, **kwargs)
 
   @classmethod
-  def yellow(cls, s, **kwargs):
-    print(cls.YELLOW + s + cls.END, **kwargs)
+  def yellow(self, s, **kwargs):
+    print(self.YELLOW + s + self.END, **kwargs)
 
   @classmethod
-  def light_purple(cls, s, **kwargs):
-    print(cls.LIGHT_PURPLE + s + cls.END, **kwargs)
+  def light_purple(self, s, **kwargs):
+    print(self.LIGHT_PURPLE + s + self.END, **kwargs)
 
   @classmethod
-  def purple(cls, s, **kwargs):
-    print(cls.PURPLE + s + cls.END, **kwargs)
+  def purple(self, s, **kwargs):
+    print(self.PURPLE + s + self.END, **kwargs)

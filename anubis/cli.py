@@ -1,12 +1,12 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [-noispbdrv] [-w SCAN] [-q NUM] 
+  anubis -t TARGET [-o FILENAME] [-noispbdrv] [-w SCAN] [-q NUM]
   anubis -h
   anubis --version
   
 Options:
   -h --help                       show this help message and exit
-  -t --target                     set target
+  -t --target                     set target (comma separated, no spaces, if multiple)
   -n --with-nmap                  perform an nmap service/script scan
   -o --output                     save to filename
   -i --additional-info            show additional information about the host from Shodan (requires API key)

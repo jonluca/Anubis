@@ -44,7 +44,8 @@ class TestScanners(TestCase):
 
   def test_send_to_anubis(self):
     self.domains.append("www.example.com")
-    send_to_anubisdb(self, "example.com")
+    send_to_anubisdb(self,
+                     ["example.com"])  # Send to anubis db takes in an array
     self.assertTrue("Error" not in sys.stdout.getvalue())
 
   def test_crt(self):
@@ -94,6 +95,9 @@ class TestScanners(TestCase):
 
   def test_shodan(self):
     self.ip = "138.197.125.24"
+    self.options = {}
+    self.options["TARGET"] = ["jonlu.ca"]
+    self.options["--verbose"] = True
     search_shodan(self)
     self.assertIn("ISP", sys.stdout.getvalue())
 
