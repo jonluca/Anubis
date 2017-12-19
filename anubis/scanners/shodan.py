@@ -1,3 +1,4 @@
+import socket
 from json import dumps
 
 import shodan
@@ -14,19 +15,19 @@ def search_shodan(self):
     return
 
   api = shodan.Shodan(SHODAN_KEY)
+  for i in range(len(self.options["TARGET"])):
+    try:
+      results = api.host(socket.gethostbyname(self.options["TARGET"][i]))
 
-  try:
-    results = api.host(self.ip)
+      if self.options["--verbose"]:
+        print(dumps(results, indent=2, sort_keys=True))
 
-    if self.options["--verbose"]:
-      print(dumps(results, indent=2, sort_keys=True))
+      print('Server Location: ' + str(results['city']) + ", " + str(
+        results['country_code']) + ' - ' + str(results['postal_code']))
 
-    print('Server Location: ' + str(results['city']) + ", " + str(
-      results['country_code']) + ' - ' + str(results['postal_code']))
+      print("ISP  or Hosting Company: %s" % str(results['isp']))
 
-    print("ISP  or Hosting Company: %s" % str(results['isp']))
-
-    if results['os'] is not None:
-      print("Possible OS: %s" % str(results['os']))
-  except Exception as e:
-    self.handle_exception(e, "Error retrieving additional info")
+      if results['os'] is not None:
+        print("Possible OS: %s" % str(results['os']))
+    except Exception as e:
+      self.handle_exception(e, "Error retrieving additional info")
