@@ -36,7 +36,7 @@ Note: Python 3.6 is required
 Please note Anubis is still in beta.
 
 ```
-git@github.com:jonluca/Anubis.git
+git clone git@github.com:jonluca/Anubis.git
 cd Anubis
 pip3 install  -r requirements.txt
 pip3 install .
