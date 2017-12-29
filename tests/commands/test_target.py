@@ -55,6 +55,12 @@ class TestScanners(TestCase):
                      ["example.com"])  # Send to anubis db takes in an array
     self.assertTrue("Error" not in sys.stdout.getvalue())
 
+    send_to_anubisdb(self, ["example.com", "www.example.com"])
+    self.assertTrue("multiple" in sys.stdout.getvalue())
+
+    send_to_anubisdb(self, ["example"])
+    self.assertTrue("Error" in sys.stdout.getvalue())
+
   def test_crt(self):
     search_crtsh(self, "jonlu.ca")
     self.assertIn("secure.jonlu.ca", self.domains)
@@ -146,6 +152,15 @@ class TestScanners(TestCase):
     t = Timer(3.0, send_siginit)
     t.start()
     sleep(5)
+
+  def test_exception(self):
+    self.options["--verbose"] = True
+    try:
+      raise Exception("Oh No")
+    except Exception as e:
+      Target.handle_exception(self, e, "Test Exception")
+      self.assertTrue("Test" in sys.stdout.getvalue())
+
 
 
 class TestColorPrint(TestCase):
