@@ -5,6 +5,7 @@ import sys
 from io import StringIO
 from unittest import TestCase
 
+from anubis.commands.target import Target
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
 from anubis.scanners.brute_force import brute_force
 from anubis.scanners.crt import search_crtsh
@@ -13,6 +14,7 @@ from anubis.scanners.dnssec import dnssecc_subdomain_enum
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
+from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
@@ -32,6 +34,7 @@ class TestScanners(TestCase):
   def setUp(self):
     # catch stdout
     self.held, sys.stdout = sys.stdout, StringIO()
+    self.stdout = sys.stdout
     # reset domains
     self.domains = list()
 
@@ -111,6 +114,21 @@ class TestScanners(TestCase):
     ssl_scan(self, "jonlu.ca")
     search_subject_alt_name(self, "jonlu.ca")
     self.assertIn("www.jonlu.ca", self.domains)
+
+  def test_recursive(self):
+    self.options = {}
+    # Set target to domain we know only has 1 subdomain, for speeds sake
+    self.options["TARGET"] = ["neverssl.com"]
+    self.domains.append("neverssl.com")
+    self.options["--verbose"] = True
+    self.options["--queue-workers"] = False
+    recursive_search(self)
+    self.domains = self.clean_domains(self.domains)
+    self.assertIn("www.neverssl.com", self.domains)
+
+  # Pass through function for recursive search
+  def clean_domains(self, domains):
+    return Target.clean_domains(self, domains)
 
 
 class TestColorPrint(TestCase):
