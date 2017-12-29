@@ -1,8 +1,12 @@
 """Tests for our main anubis CLI module."""
 
 import os
+import signal
 import sys
 from io import StringIO
+from subprocess import PIPE, Popen as popen
+from threading import Timer
+from time import sleep
 from unittest import TestCase
 
 from anubis.commands.target import Target
@@ -129,6 +133,19 @@ class TestScanners(TestCase):
   # Pass through function for recursive search
   def clean_domains(self, domains):
     return Target.clean_domains(self, domains)
+
+  def test_sigints(self):
+    # Declare function to send sigint, after timer
+
+
+    proc1 = popen(['anubis', '-tr','neverssl.com'], stdout=PIPE)
+    def send_siginit():
+      popen.send_signal(proc1, signal.SIGINT)
+      self.assertTrue("Quitting" in sys.stdout.getvalue())
+
+    t = Timer(3.0, send_siginit)
+    t.start()
+    sleep(5)
 
 
 class TestColorPrint(TestCase):
