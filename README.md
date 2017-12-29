@@ -1,6 +1,6 @@
 # Anubis
 
-[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis) [Coverage](https://github.com/jonluca/Anubis/blob/master/coverage.svg)
+[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis) ![Coverage](https://github.com/jonluca/Anubis/blob/master/coverage.svg)
 
 
 ```
