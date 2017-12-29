@@ -1,5 +1,8 @@
 # Anubis
 
+[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis)
+
+
 ```
         d8888                   888      d8b
        d88888                   888      Y8P
@@ -17,7 +20,6 @@ Anubis is a subdomain enumeration and information gathering tool. Anubis collate
 
 ## Getting Started
 
-[Badges]()
 
 ### Prerequisites
 
