@@ -14,8 +14,8 @@ def search_crtsh(self, target):
 
   params = (('q', '%.' + target),)
 
-  res = requests.get('https://crt.sh/', headers=headers, params=params)
   try:
+    res = requests.get('https://crt.sh/', headers=headers, params=params)
     scraped = res.text
     subdomain_finder = re.compile('<TD>(.*\.' + target + ')</TD>')
     links = subdomain_finder.findall(scraped)
