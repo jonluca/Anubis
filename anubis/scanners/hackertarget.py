@@ -9,6 +9,7 @@ def subdomain_hackertarget(self, target):
 
   results = requests.get('http://api.hackertarget.com/hostsearch/',
                          headers=headers, params=params)
+  print(results.text)
   results = results.text.split('\n')
   for res in results:
     try:
@@ -20,4 +21,5 @@ def subdomain_hackertarget(self, target):
           if self.options["--verbose"]:
             print("HackerTarget Found Domain:", domain.strip())
     except:
+      print("except")
       pass
