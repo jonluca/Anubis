@@ -14,7 +14,7 @@
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 ```
 
-Anubis is a subdomain enumeration and information gathering tool. Anubis collates data from a variety of sources, including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, and NetCraft. Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized repository of subdomains. Subdomains are *automatically* sent to AnubisDB - to disable this functionality, pass the `d` flag when running Anubis.
+Anubis is a subdomain enumeration and information gathering tool. Anubis collates data from a variety of sources, including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, and NetCraft. Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized repository of subdomains.
 
 [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
@@ -68,7 +68,7 @@ If running on Linux distros, openssl and python dev will be required as well, wi
       -s --ssl                        run an ssl scan and output cipher + chain info
       -p --ip                         outputs the resolved IPs for each subdomain, and a full list of unique ips
       -b --brute-force                attempts to use a common word list to find subdomains (usually not very succesful)
-      -d --no-anubis-db               don't send to or receive from anubisdb
+      -d --send-to-anubis-db          send results to anubisdb
       -r --recursive                  recursively search over all subdomains
       -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
       -v --verbose                    print debug info and full request output
