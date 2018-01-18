@@ -83,9 +83,9 @@ If running on Linux distros, openssl and python dev will be required as well, wi
 
 #### Common Use Case
 
-`anubis -tip  domain.com -o out.txt`
+`anubis -tipa  domain.com -o out.txt`
 
-Set's target to `domain.com`, outputs additional information like server and ISP or server hosting provider, then attempts to resolve all URLs and outputs list of unique IPs. Finally, writes all results to out.txt.
+Set's target to `domain.com`, (`-t`) outputs additional information (`i`) like server and ISP or server hosting provider, then attempts to resolve all URLs (`p`) and outputs list of unique IPs and sends to Anubis-DB (`a`). Finally, writes all results to out.txt (`o`).
 
 #### Other
 
