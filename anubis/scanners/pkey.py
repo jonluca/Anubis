@@ -16,7 +16,7 @@ def search_pkey(self, target):
   data = [('zone', target), ('submit', ''), ]
   try:
     res = requests.post('https://www.pkey.in/tools-i/search-subdomains',
-                      headers=headers, data=data, verify=False, timeout=5.0)
+                      headers=headers, data=data, verify=False, timeout=10.0)
     scraped = res.text
     trimmed = scraped[scraped.find('<table class="clearborder">'):scraped.rfind(
       '</tbody>')].split('\n')
