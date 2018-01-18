@@ -122,7 +122,7 @@ class Target(Base):
       for domain in self.dedupe:
         ColorPrint.green(domain.strip())
 
-    if self.options["--no-anubis-db"]:
+    if self.options["--send-to-anubis-db"]:
       send_to_anubisdb(self, self.options["TARGET"])
 
   def clean_domains(self, domains):
@@ -162,7 +162,8 @@ class Target(Base):
         resolved_ip = ""
       # TODO - Align domains and ips in stdout
       ColorPrint.green(domain + ": " + resolved_ip)
-      unique_ips.add(resolved_ip)
+      if resolved_ip:
+        unique_ips.add(resolved_ip)
     print("Found %s unique IPs" % len(unique_ips))
     for ip in unique_ips:
       # String truthiness ignores empty strings
