@@ -12,6 +12,8 @@ Make sure you include the following:
 * Full stack trace if crash or installation error
 * Machine details (OS, build number, distro, etc.)
 
+Also, please assign @jonluca to all issues at first.
+
 Please replace this line with a brief summary of your issue.
 
 ### Features:
