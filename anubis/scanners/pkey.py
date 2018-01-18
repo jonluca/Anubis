@@ -14,10 +14,10 @@ def search_pkey(self, target):
              'Connection':      'keep-alive', 'DNT': '1', }
 
   data = [('zone', target), ('submit', ''), ]
-  res = requests.post('https://www.pkey.in/tools-i/search-subdomains',
-                      headers=headers, data=data, verify=False)
-  scraped = res.text
   try:
+    res = requests.post('https://www.pkey.in/tools-i/search-subdomains',
+                      headers=headers, data=data, verify=False, timeout=5.0)
+    scraped = res.text
     trimmed = scraped[scraped.find('<table class="clearborder">'):scraped.rfind(
       '</tbody>')].split('\n')
     for entry in trimmed:
