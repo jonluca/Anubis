@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [-noispadrv] [-w SCAN] [-q NUM]
+  anubis -t TARGET [-o FILENAME] [-noispbarv] [-w SCAN] [-q NUM]
   anubis -h
   anubis --version
   
