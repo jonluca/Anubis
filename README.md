@@ -1,8 +1,6 @@
 # Anubis
 
-[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis) ![Coverage](https://github.com/jonluca/Anubis/blob/master/coverage.svg) [![GitHub issues](https://img.shields.io/github/issues/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/issues) [![GitHub license](https://img.shields.io/github/license/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/blob/master/LICENSE) [![Libraries.io for GitHub](https://img.shields.io/librariesio/github/jonluca/Anubis.svg)](https://libraries.io/github/jonluca/Anubis)
-
-
+[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis) ![Coverage](https://github.com/jonluca/Anubis/blob/master/coverage.svg) [![GitHub issues](https://img.shields.io/github/issues/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/issues) [![GitHub license](https://img.shields.io/github/license/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/blob/master/LICENSE) 
 ```
         d8888                   888      d8b
        d88888                   888      Y8P
@@ -45,12 +43,6 @@ cd Anubis
 pip3 install  -r requirements.txt
 pip3 install .
 ```
-
-#### Other Notes
-
-If you have both __python3__ and __python2__ installed on your system, you might have to replace all instances of `pip` to `pip3` in the commands below.
-
-If running on Linux distros, openssl and python dev will be required as well, witch `sudo apt-get install python3-pip python-dev libssl-dev libffi-dev`
 
 ## Usage
 
