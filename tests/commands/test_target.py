@@ -141,7 +141,7 @@ class TestScanners(TestCase):
 
   # Pass through function for recursive search
   def clean_domains(self, domains):
-    return Target.clean_domains(self, domains)
+    return clean_domains(domains)
 
   def test_sigints(self):
     # Declare function to send sigint, after timer
