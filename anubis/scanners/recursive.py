@@ -11,7 +11,7 @@ from anubis.utils.signal_handler import SignalHandler
 
 def recursive_search(self):
   print("Starting recursive search - warning, might take a long time")
-  domains = self.clean_domains(self.domains)
+  domains = clean_domains(self.domains)
   domains_unique = set(domains)
   num_workers = 10
 

@@ -2,7 +2,7 @@
 import re
 import socket
 import sys
-from threading import Thread
+import threading
 from urllib.parse import urlsplit
 
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
@@ -22,6 +22,32 @@ from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
 
 from .base import Base
+
+
+def clean_domains(domains):
+  cleaned = []
+  for subdomain in domains:
+    subdomain = subdomain.lower()
+    if subdomain.find("//") != -1:
+      subdomain = subdomain[subdomain.find("//") + 2:]
+    # Some pkey return instances like example.com. - remove the final .
+    if subdomain.endswith('.'):
+      subdomain = subdomain[:-1]
+    # sometimes we'll get something like /www.example.com
+    if subdomain[0] in ["\\", ".", "/", "#", "$", "%"]:
+      subdomain = subdomain[1:]
+    # If it's an email address, only take the domain part
+    if "@" in subdomain:
+      subdomain = subdomain.split("@")
+      # If it's an actual email like mail@example.com, take example.com
+      if len(subdomain) > 1:
+        subdomain = subdomain[1]
+      else:
+        # If for some reason it's example.com@, take example.com
+        subdomain = subdomain[0]
+
+    cleaned.append(subdomain.strip())
+  return cleaned
 
 
 class Target(Base):
@@ -68,41 +94,43 @@ class Target(Base):
     self.init()
     for i in range(len(self.options["TARGET"])):
       # Default scans that run every time
-      threads = [
-        Thread(target=dns_zonetransfer(self, self.options["TARGET"][i])),
-        Thread(target=search_subject_alt_name(self, self.options["TARGET"][i])),
-        Thread(target=subdomain_hackertarget(self, self.options["TARGET"][i])),
-        Thread(target=search_virustotal(self, self.options["TARGET"][i])),
-        Thread(target=search_pkey(self, self.options["TARGET"][i])),
-        Thread(target=search_netcraft(self, self.options["TARGET"][i])),
-        Thread(target=search_crtsh(self, self.options["TARGET"][i])),
-        Thread(target=search_dnsdumpster(self, self.options["TARGET"][i])),
-        Thread(target=search_anubisdb(self, self.options["TARGET"][i]))]
+      target = self.options["TARGET"][i]
+      processes = [
+        threading.Thread(target=dns_zonetransfer, args=(self, target)),
+        threading.Thread(target=search_subject_alt_name, args=(self, target)),
+        threading.Thread(target=subdomain_hackertarget, args=(self, target)),
+        threading.Thread(target=search_virustotal, args=(self, target)),
+        threading.Thread(target=search_pkey, args=(self, target)),
+        threading.Thread(target=search_netcraft, args=(self, target)),
+        threading.Thread(target=search_crtsh, args=(self, target)),
+        threading.Thread(target=search_dnsdumpster, args=(self, target)),
+        threading.Thread(target=search_anubisdb, args=(self, target))]
+      print('test')
       # Additional options - ssl cert scan
       if self.options["--ssl"]:
-        threads.append(Thread(target=ssl_scan(self, self.options["TARGET"][i])))
+        processes.append(threading.Thread(target=ssl_scan, args=(self, target)))
 
       # Additional options - shodan.io scan
       if self.options["--additional-info"]:
-        threads.append(Thread(target=search_shodan(self)))
+        processes.append(threading.Thread(target=search_shodan, args=(self,)))
 
       # Additional options - nmap scan of dnssec script and a host/port scan
       if self.options["--with-nmap"]:
-        threads.append(Thread(
-          target=dnssecc_subdomain_enum(self, self.options["TARGET"][i])))
-        threads.append(Thread(target=scan_host(self)))
+        processes.append(
+          threading.Thread(target=dnssecc_subdomain_enum, args=(self, target)))
+        processes.append(threading.Thread(target=scan_host, args=(self)))
 
       # Additional options - brute force common subdomains
       if self.options["--brute-force"]:
-        threads.append(
-          Thread(target=brute_force(self, self.options["TARGET"][i])))
+        processes.append(
+          threading.Thread(target=brute_force, args=(self, target)))
 
-      # Start all threads
-    for x in threads:
+      # Start all processes
+    for x in processes:
       x.start()
 
     # Wait for all of them to finish
-    for x in threads:
+    for x in processes:
       x.join()
 
     # remove duplicates and clean up
@@ -110,7 +138,7 @@ class Target(Base):
     if self.options["--recursive"]:
       recursive_search(self)
 
-    self.domains = self.clean_domains(self.domains)
+    self.domains = clean_domains(self.domains)
     self.dedupe = set(self.domains)
 
     print("Found", len(self.dedupe), "subdomains")
@@ -124,31 +152,6 @@ class Target(Base):
 
     if self.options["--send-to-anubis-db"]:
       send_to_anubisdb(self, self.options["TARGET"])
-
-  def clean_domains(self, domains):
-    cleaned = []
-    for subdomain in domains:
-      subdomain = subdomain.lower()
-      if subdomain.find("//") != -1:
-        subdomain = subdomain[subdomain.find("//") + 2:]
-      # Some pkey return instances like example.com. - remove the final .
-      if subdomain.endswith('.'):
-        subdomain = subdomain[:-1]
-      # sometimes we'll get something like /www.example.com
-      if subdomain[0] in ["\\", ".", "/", "#", "$", "%"]:
-        subdomain = subdomain[1:]
-      # If it's an email address, only take the domain part
-      if "@" in subdomain:
-        subdomain = subdomain.split("@")
-        # If it's an actual email like mail@example.com, take example.com
-        if len(subdomain) > 1:
-          subdomain = subdomain[1]
-        else:
-          # If for some reason it's example.com@, take example.com
-          subdomain = subdomain[0]
-
-      cleaned.append(subdomain.strip())
-    return cleaned
 
   def resolve_ips(self):
     unique_ips = set()
