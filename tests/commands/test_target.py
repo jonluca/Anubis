@@ -105,9 +105,8 @@ class TestScanners(TestCase):
   # As of 1/18/18, Pkey currently constantly times out
   def test_pkey(self):
     search_pkey(self, "google.com")
-    #self.assertIn("google.com", self.domains)
+    # self.assertIn("google.com", self.domains)
     self.assertTrue(True)
-
 
   def test_shodan(self):
     self.ip = "138.197.125.24"
@@ -141,13 +140,14 @@ class TestScanners(TestCase):
 
   # Pass through function for recursive search
   def clean_domains(self, domains):
-    return clean_domains(domains)
+    return Target.clean_domains(domains)
 
   def test_sigints(self):
     # Declare function to send sigint, after timer
 
+    proc1 = popen(['anubis', '-tr', 'neverssl.com'], stdout=PIPE)
 
-    proc1 = popen(['anubis', '-tr','neverssl.com'], stdout=PIPE)
+    # Function to send sigint to our processes, make sure that it outputss "Quitting" then ends
     def send_siginit():
       popen.send_signal(proc1, signal.SIGINT)
       self.assertTrue("Quitting" in sys.stdout.getvalue())
@@ -163,7 +163,6 @@ class TestScanners(TestCase):
     except Exception as e:
       Target.handle_exception(self, e, "Test Exception")
       self.assertTrue("Test" in sys.stdout.getvalue())
-
 
 
 class TestColorPrint(TestCase):
