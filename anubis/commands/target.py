@@ -20,7 +20,6 @@ from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
-
 from .base import Base
 
 
@@ -70,15 +69,18 @@ class Target(Base):
       # Default scans that run every time
       target = self.options["TARGET"][i]
       threads = [threading.Thread(target=dns_zonetransfer, args=(self, target)),
-        threading.Thread(target=search_subject_alt_name, args=(self, target)),
-        threading.Thread(target=subdomain_hackertarget, args=(self, target)),
-        threading.Thread(target=search_virustotal, args=(self, target)),
-        threading.Thread(target=search_pkey, args=(self, target)),
-        threading.Thread(target=search_netcraft, args=(self, target)),
-        threading.Thread(target=search_crtsh, args=(self, target)),
-        threading.Thread(target=search_dnsdumpster, args=(self, target)),
-        threading.Thread(target=search_anubisdb, args=(self, target))]
-      print('test')
+                 threading.Thread(target=search_subject_alt_name,
+                                  args=(self, target)),
+                 threading.Thread(target=subdomain_hackertarget,
+                                  args=(self, target)),
+                 threading.Thread(target=search_virustotal,
+                                  args=(self, target)),
+                 threading.Thread(target=search_pkey, args=(self, target)),
+                 threading.Thread(target=search_netcraft, args=(self, target)),
+                 threading.Thread(target=search_crtsh, args=(self, target)),
+                 threading.Thread(target=search_dnsdumpster,
+                                  args=(self, target)),
+                 threading.Thread(target=search_anubisdb, args=(self, target))]
       # Additional options - ssl cert scan
       if self.options["--ssl"]:
         threads.append(threading.Thread(target=ssl_scan, args=(self, target)))
