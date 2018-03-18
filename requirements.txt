@@ -1,4 +1,4 @@
-setuptools==36.5.0
+setuptools==38.5.2
 SSLyze==1.4.0
 python_nmap==0.6.1
 shodan==1.7.7
