@@ -60,7 +60,6 @@ class Target(Base):
         self.handle_exception(e,
                               "Error connecting to target! Make sure you spelled it correctly and it is a resolvable address")
         raise e
-    print("")
 
   def run(self):
     # Retrieve IP of target and run initial configurations
