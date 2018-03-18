@@ -1,9 +1,12 @@
-from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
-from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
-from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
-from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand, Tlsv12ScanCommand
-from sslyze.server_connectivity import ServerConnectivityInfo
-from sslyze.synchronous_scanner import SynchronousScanner
+try:
+  from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
+  from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
+  from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
+  from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand, Tlsv12ScanCommand
+  from sslyze.server_connectivity_info import ServerConnectivityInfo
+  from sslyze.synchronous_scanner import SynchronousScanner
+except:
+  print("Unable to properly import sslyze!")
 
 
 def search_subject_alt_name(self, target):
