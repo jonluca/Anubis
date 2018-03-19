@@ -81,7 +81,7 @@ class TestScanners(TestCase):
     if "limiting" in sys.stdout.getvalue():
       print("VirusTotal rate limiting")
       return
-    self.assertIn("yy.example.com", self.domains)
+    self.assertIn("www.example.com", self.domains)
 
   def test_dnsdumpster(self):
     search_dnsdumpster(self, "example.com")
