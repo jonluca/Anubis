@@ -1,5 +1,0 @@
-if which pypycompile >/dev/null 2>&1; then
-	pypycompile -p #PACKAGE# #ARGS#
-elif pypy -m py_compile >/dev/null 2>&1; then
-	dpkg -L #PACKAGE# | grep '\.py$' | pypy -m py_compile - >/dev/null
-fi

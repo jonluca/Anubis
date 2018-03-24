@@ -1,7 +1,0 @@
-#! /bin/sh
-set -e
-
-if [ "$1" = rtupdate ]; then
-	py3clean -p dh-python /usr/share/dh-python
-	py3compile -p dh-python -V 3.2- /usr/share/dh-python
-fi
