@@ -33,7 +33,7 @@ Note: Python 3.6 is required
 
 `pip3 install anubis-netsec`
 
-Or
+Or Linux Snap distribution:
 
 `snap install anubis`
 
