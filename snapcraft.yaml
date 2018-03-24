@@ -13,6 +13,7 @@ apps:
 
 parts:
   anubis:
+    stage-packages: ["python3-pip", "python-dev", "libssl-dev", "libffi-dev"]
     plugin: python
     python-version: python3
     source: .
