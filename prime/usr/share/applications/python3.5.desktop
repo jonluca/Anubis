@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Python (v3.5)
+Comment=Python Interpreter (v3.5)
+Exec=/usr/bin/python3.5
+Icon=/usr/share/pixmaps/python3.5.xpm
+Terminal=true
+Type=Application
+Categories=Development;
+StartupNotify=true
+NoDisplay=true

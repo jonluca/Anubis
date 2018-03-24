@@ -1,0 +1,13 @@
+name: anubis
+version: 0.8.3+git1.cbabacf
+summary: Anubis
+description: 'Subdomain enumeration and information gathering tool
+
+  '
+architectures:
+- amd64
+confinement: devmode
+grade: devel
+apps:
+  anubis:
+    command: command-anubis.wrapper
