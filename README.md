@@ -33,6 +33,10 @@ Note: Python 3.6 is required
 
 `pip3 install anubis-netsec`
 
+Or
+
+`snap install anubis`
+
 ### Install From Source
 
 Please note Anubis is still in beta.
