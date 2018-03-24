@@ -4,8 +4,8 @@ summary: Anubis
 description: |
   Subdomain enumeration and information gathering tool
 
-grade: devel
-confinement: devmode
+confinement: strict
+grade: stable
 
 apps:
   anubis:
@@ -13,7 +13,11 @@ apps:
 
 parts:
   anubis:
-    stage-packages: ["python3-pip", "python-dev", "libssl-dev", "libffi-dev"]
     plugin: python
     python-version: python3
+    build-packages:
+    - python3-pip
+    - python-dev
+    - libssl-dev
+    - libffi-dev
     source: .
