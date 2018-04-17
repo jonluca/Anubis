@@ -125,7 +125,7 @@ class TestScanners(TestCase):
   def test_san(self):
     ssl_scan(self, "jonlu.ca")
     search_subject_alt_name(self, "jonlu.ca")
-    self.assertIn("www.jonlu.ca", self.domains)
+    self.assertIn("*.jonlu.ca", self.domains)
 
   def test_recursive(self):
     self.options = {}
