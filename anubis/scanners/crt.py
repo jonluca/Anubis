@@ -19,6 +19,7 @@ def search_crtsh(self, target):
     scraped = res.text
     subdomain_finder = re.compile('<TD>(.*\.' + target + ')</TD>')
     links = subdomain_finder.findall(scraped)
+
     for domain in links:
       if domain.strip() not in self.domains and domain.endswith("." + target):
         self.domains.append(domain.strip())

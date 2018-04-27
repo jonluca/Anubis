@@ -6,6 +6,7 @@ from anubis.utils.ColorPrint import ColorPrint
 
 
 def dnssecc_subdomain_enum(self, target):
+  # Must run as root
   if os.getuid() == 0:
     print("Starting DNSSEC Enum")
     nm = nmap.PortScanner()

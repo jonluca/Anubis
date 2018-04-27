@@ -15,6 +15,7 @@ def search_censys(self, target):
     ColorPrint.red(
       "To run a Censys scan, you must add your API keys to anubis/API.py")
     return
+  # Print certificate information for domains
   c = censys.certificates.CensysCertificates(CENSYS_ID, CENSYS_SECRET)
   for cert in c.search("." + target):
     print(cert)
