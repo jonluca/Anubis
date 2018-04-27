@@ -12,7 +12,6 @@ Options:
   -i --additional-info            show additional information about the host from Shodan (requires API key)
   -s --ssl                        run an ssl scan and output cipher + chain info
   -p --ip                         outputs the resolved IPs for each subdomain, and a full list of unique ips
-  -b --brute-force                attempts to use a common word list to find subdomains (usually not very succesful)
   -a --send-to-anubis-db          send results to Anubis-DB
   -r --recursive                  recursively search over all subdomains
   -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)

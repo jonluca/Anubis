@@ -14,6 +14,8 @@ def search_virustotal(self, target):
   res = requests.get(
     'https://www.virustotal.com/en/domain/' + target + '/information/',
     headers=headers)
+  # VirusTotal rate limits aggressively to prevent botting - the user must
+  # manually visit a URL and complete a captcha to continue
   if res.status_code == 403:
     ColorPrint.red(
       "VirusTotal is currently ratelimiting this IP - go to https://www.virustotal.com/en/domain/" + target + "/information/ and complete the captcha to continue.")

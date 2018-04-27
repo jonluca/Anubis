@@ -5,6 +5,8 @@ import dns.resolver
 import dns.zone
 
 
+# Checks for zone transfers on that domain. Very rare to succeed, but when you
+# do, it's a gold mine
 def dns_zonetransfer(self, target):
   print("Testing for zone transfers")
 

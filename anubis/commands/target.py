@@ -6,7 +6,6 @@ import threading
 from urllib.parse import urlsplit
 
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
-from anubis.scanners.brute_force import brute_force
 from anubis.scanners.crt import search_crtsh
 from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.dnssec import dnssecc_subdomain_enum
@@ -39,15 +38,17 @@ class Target(Base):
 
   def init(self):
     self.options["TARGET"] = self.options["TARGET"].split(",")
+    # Clean up targets
     for i in range(len(self.options["TARGET"])):
       url = self.options["TARGET"][i]
-
+      # Inject protocol if not there
       if not re.match(r'http(s?):', url):
         url = 'http://' + url
 
       parsed = urlsplit(url)
       host = parsed.netloc
 
+      # remove existing subdomain 
       if host.startswith('www.'):
         host = host[4:]
 
@@ -64,6 +65,7 @@ class Target(Base):
   def run(self):
     # Retrieve IP of target and run initial configurations
     self.init()
+    # If multiple targets, create scans for each
     for i in range(len(self.options["TARGET"])):
       # Default scans that run every time
       target = self.options["TARGET"][i]
@@ -94,24 +96,19 @@ class Target(Base):
           threading.Thread(target=dnssecc_subdomain_enum, args=(self, target)))
         threads.append(threading.Thread(target=scan_host, args=(self,)))
 
-      # Additional options - brute force common subdomains
-      if self.options["--brute-force"]:
-        threads.append(
-          threading.Thread(target=brute_force, args=(self, target)))
-
-      # Start all threads
+    # Start all threads and wait for them to finish
     for x in threads:
       x.start()
 
-    # Wait for all of them to finish
     for x in threads:
       x.join()
 
-    # remove duplicates and clean up
-
+    # Run a recursive search on each subdomain - rarely useful, but nice to have
+    # just in case
     if self.options["--recursive"]:
       recursive_search(self)
 
+    # remove duplicates and clean up
     self.domains = self.clean_domains(self.domains)
     self.dedupe = set(self.domains)
 
@@ -143,7 +140,7 @@ class Target(Base):
         unique_ips.add(resolved_ip)
     print("Found %s unique IPs" % len(unique_ips))
     for ip in unique_ips:
-      # String truthiness ignores empty strings
+      # Ignore empty strings, final sanity check
       if ip:
         ColorPrint.green(ip)
 

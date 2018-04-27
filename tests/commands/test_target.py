@@ -11,7 +11,6 @@ from unittest import TestCase
 
 from anubis.commands.target import Target
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
-from anubis.scanners.brute_force import brute_force
 from anubis.scanners.crt import search_crtsh
 from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.dnssec import dnssecc_subdomain_enum
@@ -64,11 +63,6 @@ class TestScanners(TestCase):
   def test_crt(self):
     search_crtsh(self, "jonlu.ca")
     self.assertIn("secure.jonlu.ca", self.domains)
-
-  def test_bruteforce(self):
-    brute_force(self, "jonlu.ca")
-    # TODO implement bruteforce tests
-    self.assertTrue(True)
 
   def test_zonetransfer(self):
     dns_zonetransfer(self, "jonlu.ca")
