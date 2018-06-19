@@ -1,5 +1,5 @@
-setuptools==38.5.2
-SSLyze==1.2.0
+setuptools
+SSLyze==1.4.2
 python_nmap==0.6.1
 shodan==1.7.7
 docopt==0.6.2
