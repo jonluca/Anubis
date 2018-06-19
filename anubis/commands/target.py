@@ -12,7 +12,6 @@ from anubis.scanners.dnssec import dnssecc_subdomain_enum
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.nmap import scan_host
-from anubis.scanners.pkey import search_pkey
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
@@ -76,7 +75,8 @@ class Target(Base):
                                   args=(self, target)),
                  threading.Thread(target=search_virustotal,
                                   args=(self, target)),
-                 threading.Thread(target=search_pkey, args=(self, target)),
+                 # threading.Thread(target=search_pkey, args=(self, target)),
+                 # Removed pkey as of June 18 2018 due to issues on their end (not connecting)
                  threading.Thread(target=search_netcraft, args=(self, target)),
                  threading.Thread(target=search_crtsh, args=(self, target)),
                  threading.Thread(target=search_dnsdumpster,

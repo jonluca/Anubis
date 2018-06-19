@@ -2,15 +2,15 @@ from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
 from sslyze.plugins.http_headers_plugin import HttpHeadersScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand, Tlsv12ScanCommand
-from sslyze.server_connectivity import ServerConnectivityInfo
+from sslyze.server_connectivity_tester import ServerConnectivityTester
 from sslyze.synchronous_scanner import SynchronousScanner
 
 
 def search_subject_alt_name(self, target):
   print("Searching for Subject Alt Names")
   try:
-    server_info = ServerConnectivityInfo(hostname=target)
-    server_info.test_connectivity_to_server()
+    server_tester = ServerConnectivityTester(hostname=target)
+    server_info = server_tester.perform()
     synchronous_scanner = SynchronousScanner()
 
     # Certificate information
@@ -29,8 +29,8 @@ def search_subject_alt_name(self, target):
 def ssl_scan(self, target):
   print("Running SSL Scan")
   try:
-    server_info = ServerConnectivityInfo(hostname=target)
-    server_info.test_connectivity_to_server()
+    server_tester = ServerConnectivityTester(hostname=target)
+    server_info = server_tester.perform()
     synchronous_scanner = SynchronousScanner()
 
     # TLS 1.0
