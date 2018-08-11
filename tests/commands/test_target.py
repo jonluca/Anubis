@@ -19,7 +19,6 @@ from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
-from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
@@ -109,17 +108,6 @@ class TestScanners(TestCase):
     self.options["--verbose"] = True
     search_shodan(self)
     self.assertIn("ISP", sys.stdout.getvalue())
-
-  def test_ssl(self):
-    ssl_scan(self, "jonlu.ca")
-    # Check that Lets Encrypt Cert id is in output
-    self.assertIn("YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=",
-                  sys.stdout.getvalue())
-
-  def test_san(self):
-    ssl_scan(self, "jonlu.ca")
-    search_subject_alt_name(self, "jonlu.ca")
-    self.assertIn("*.jonlu.ca", self.domains)
 
   def test_recursive(self):
     self.options = {}
