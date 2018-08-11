@@ -48,9 +48,12 @@ class TestOptions(TestCase):
     f = open(os.path.join(self.test_dir, 'test.txt'), 'r')
     self.assertIn("test", f.readlines())
 
+
 class TestFullRun(TestCase):
+
   def test_run(self):
-    output = popen(['anubis', '-tips','jonlu.ca','--with-nmap','--overwrite-nmap-scan','"-F"'], stdout=PIPE).communicate()[0]
+    output = popen(
+      ['anubis', '-tip', 'jonlu.ca', '--with-nmap', '--overwrite-nmap-scan',
+       '"-F"'], stdout=PIPE).communicate()[0]
     output = output.decode("utf-8")
     self.assertIn("www.jonlu.ca", output)
-
