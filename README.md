@@ -29,7 +29,7 @@ If you are running Linux, the following are also required:
 
 ### Installing
 
-Note: Python 3.6 is required
+Note: Python 3 is required
 
 `pip3 install anubis-netsec`
 
@@ -61,7 +61,6 @@ pip3 install .
       -n --with-nmap                  perform an nmap service/script scan
       -o --output                     save to filename
       -i --additional-info            show additional information about the host from Shodan (requires API key)
-      -s --ssl                        run an ssl scan and output cipher + chain info
       -p --ip                         outputs the resolved IPs for each subdomain, and a full list of unique ips
       -a --send-to-anubis-db          send results to Anubis-DB
       -r --recursive                  recursively search over all subdomains

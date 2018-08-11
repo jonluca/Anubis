@@ -14,7 +14,6 @@ from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.nmap import scan_host
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
-from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
 from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
@@ -69,8 +68,7 @@ class Target(Base):
       # Default scans that run every time
       target = self.options["TARGET"][i]
       threads = [threading.Thread(target=dns_zonetransfer, args=(self, target)),
-                 threading.Thread(target=search_subject_alt_name,
-                                  args=(self, target)),
+
                  threading.Thread(target=subdomain_hackertarget,
                                   args=(self, target)),
                  threading.Thread(target=search_virustotal,
@@ -82,10 +80,7 @@ class Target(Base):
                  threading.Thread(target=search_dnsdumpster,
                                   args=(self, target)),
                  threading.Thread(target=search_anubisdb, args=(self, target))]
-      # Additional options - ssl cert scan
-      if self.options["--ssl"]:
-        threads.append(threading.Thread(target=ssl_scan, args=(self, target)))
-
+    
       # Additional options - shodan.io scan
       if self.options["--additional-info"]:
         threads.append(threading.Thread(target=search_shodan, args=(self,)))
