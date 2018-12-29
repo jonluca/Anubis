@@ -1,7 +1,8 @@
 setuptools
 python_nmap==0.6.1
-shodan==1.7.7
+shodan==1.9.0
 docopt==0.6.2
-requests==2.18.4
+requests==2.21.0
 censys==0.0.8
 dnspython==1.15.0
+sslyze==2.0.3

@@ -4,9 +4,8 @@ from codecs import open
 from os.path import abspath, dirname, join
 from subprocess import call
 
-from setuptools import Command, find_packages, setup
-
 from anubis import __version__
+from setuptools import Command, find_packages, setup
 
 this_dir = abspath(dirname(__file__))
 with open(join(this_dir, 'README.md'), encoding='utf-8') as file:
@@ -43,9 +42,8 @@ setup(name='anubis-netsec', version=__version__,
                    'Programming Language :: Python :: 3.5',
                    'Programming Language :: Python :: 3.6', ], keywords='cli',
       packages=find_packages(exclude=['docs', 'tests*']), python_requires='>=3',
-      install_requires=['docopt', 'setuptools',
-                        'python_nmap==0.6.1', 'shodan', 'requests', 'censys',
-                        'dnspython==1.15.0'],
+      install_requires=['docopt', 'setuptools', 'python_nmap==0.6.1', 'shodan==1.9.0',
+                        'requests', 'censys==0.0.8', 'dnspython==1.15.0', 'sslyze==2.0.3'],
       extras_require={'test': ['coverage', 'pytest', 'pytest-cov'], },
       entry_points={'console_scripts': ['anubis=anubis.cli:main', ], },
       cmdclass={'test': RunTests},
