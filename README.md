@@ -64,6 +64,7 @@ pip3 install .
       -p --ip                         outputs the resolved IPs for each subdomain, and a full list of unique ips
       -a --send-to-anubis-db          send results to Anubis-DB
       -r --recursive                  recursively search over all subdomains
+      -s --ssl                        run an ssl scan and output cipher + chain info
       -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
       -v --verbose                    print debug info and full request output
       -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)
