@@ -1,4 +1,1 @@
-{
-  "tests/commands/test_target.py::TestScanners::test_netcraft": true,
-  "tests/commands/test_target.py::TestScanners::test_recursive": true
-}
+{}
