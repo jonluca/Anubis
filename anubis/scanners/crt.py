@@ -5,12 +5,18 @@ import requests
 
 def search_crtsh(self, target):
   print("Searching crt.sh")
-  headers = {'Pragma':          'no-cache', 'DNT': '1',
-             'Accept-Encoding': 'gzip, deflate, br',
-             'Accept-Language': 'en-US,en;q=0.9,it;q=0.8',
-             'User-Agent':      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36',
-             'Accept':          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-             'Cache-Control':   'no-cache', 'Connection': 'keep-alive', }
+  headers = {
+    'authority': 'crt.sh',
+    'cache-control': 'max-age=0',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.28 Safari/537.36',
+    'sec-metadata': 'cause=forced, destination=document, site=cross-site',
+    'sec-origin-policy': '0',
+    'dnt': '1',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'en-US,en;q=0.9,it;q=0.8,la;q=0.7',
+  }
 
   params = (('q', '%.' + target),)
 
