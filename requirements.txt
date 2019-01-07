@@ -4,5 +4,5 @@ shodan==1.10.4
 docopt==0.6.2
 requests==2.21.0
 censys==0.0.8
-dnspython==1.15.0
+dnspython==1.16.0
 sslyze==2.0.3
