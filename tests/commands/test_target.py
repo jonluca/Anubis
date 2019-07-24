@@ -74,11 +74,11 @@ class TestScanners(TestCase):
     self.assertTrue("Error" in sys.stdout.getvalue())
 
   def test_virustotal(self):
-    search_virustotal(self, "example.com")
+    search_virustotal(self, "jonlu.ca")
     if "limiting" in sys.stdout.getvalue():
       print("VirusTotal rate limiting")
       return
-    self.assertIn("www.example.com", self.domains)
+    self.assertIn("www.jonlu.ca", self.domains)
 
   def test_dnsdumpster(self):
     search_dnsdumpster(self, "example.com")

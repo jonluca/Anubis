@@ -12,7 +12,7 @@ def search_virustotal(self, target):
              'authority':       'www.virustotal.com',
              'cookie':          'VT_PREFERRED_LANGUAGE=en', }
   res = requests.get(
-    'https://www.virustotal.com/en/domain/' + target + '/information/',
+    'https://www.virustotal.com/ui/domains/' + target + '/subdomains?relationships=resolutions',
     headers=headers)
   # VirusTotal rate limits aggressively to prevent botting - the user must
   # manually visit a URL and complete a captcha to continue
@@ -20,17 +20,15 @@ def search_virustotal(self, target):
     ColorPrint.red(
       "VirusTotal is currently ratelimiting this IP - go to https://www.virustotal.com/en/domain/" + target + "/information/ and complete the captcha to continue.")
     return
-  scraped = res.text
+
   try:
-    trim_to_subdomain = scraped[
-                        scraped.find("observed-subdomains"):scraped.rfind(
-                          "<script>")].split('\n')
-    for domain in trim_to_subdomain:
-      if domain.strip().endswith("." + target):
-        if domain.strip() not in self.domains and domain.endswith(target):
-          self.domains.append(domain.strip())
-          if self.options["--verbose"]:
-            print("VirustTotal Found Domain:", domain.strip())
+    data = res.json()
+    for entry in data['data']:
+      domain = entry['id']
+      if domain.strip() not in self.domains and domain.endswith(target):
+        self.domains.append(domain.strip())
+        if self.options["--verbose"]:
+          print("VirustTotal Found Domain:", domain.strip())
   except Exception as e:
     self.handle_exception(e, "Error parsing virustotal")
     pass
