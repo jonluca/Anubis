@@ -18,10 +18,9 @@ Anubis is a subdomain enumeration and information gathering tool. Anubis collate
 
 ## Getting Started
 
-
 ### Prerequisites
 
-* Nmap
+* Nmap (if wanting to run port scans and certain certificate scans)
 
 If you are running Linux, the following are also required:
 
@@ -42,7 +41,7 @@ Or Linux Snap distribution:
 Please note Anubis is still in beta.
 
 ```
-git clone git@github.com:jonluca/Anubis.git
+git clone https://github.com/jonluca/Anubis.git
 cd Anubis
 pip3 install  -r requirements.txt
 pip3 install .
