@@ -32,6 +32,7 @@ class RunTests(Command):
 setup(name='anubis-netsec', version=__version__,
       description='Modern and efficient subdomain enumeration and information gathering',
       long_description=long_description,
+      long_description_content_type="text/markdown",
       url='https://github.com/jonluca/anubis', author='JonLuca DeCaro',
       author_email='jdecaro@usc.edu', license='GPL',
       classifiers=['Intended Audience :: Developers',
