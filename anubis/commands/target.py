@@ -48,10 +48,6 @@ class Target(Base):
       parsed = urlsplit(url)
       host = parsed.netloc
 
-      # remove existing subdomain 
-      if host.startswith('www.'):
-        host = host[4:]
-
       self.options["TARGET"][i] = host
 
       try:
