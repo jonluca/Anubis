@@ -5,4 +5,4 @@ docopt==0.6.2
 requests==2.23.0
 censys==0.0.8
 dnspython==1.16.0
-sslyze==2.1.4
+sslyze==3.0.7
