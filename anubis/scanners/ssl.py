@@ -1,3 +1,5 @@
+from cryptography import x509
+from cryptography.x509.oid import ExtensionOID
 from sslyze import ScanCommand, Scanner, ServerConnectivityTester, ServerNetworkLocationViaDirectConnection, ServerScanRequest
 from sslyze.errors import ConnectionToServerFailed
 
@@ -30,10 +32,11 @@ def search_subject_alt_name(self, target):
       # Direct object reference is pretty bad, but then again so is the crypto.x509 object implementation, so...
       cert_deployment = certinfo_result.certificate_deployments[0]
       chain = cert_deployment.received_certificate_chain[0]
-      extensions = chain.extensions[6]
-      for entry in extensions.value:
-        if entry.value.strip() not in self.domains:
-          self.domains.append(entry.value.strip())
+      ext = chain.extensions.get_extension_for_oid(
+        ExtensionOID.SUBJECT_ALTERNATIVE_NAME)
+      for entry in ext.value.get_values_for_type(x509.DNSName):
+        if entry.strip() not in self.domains:
+          self.domains.append(entry.strip())
 
   except Exception as e:
     self.handle_exception(e)
