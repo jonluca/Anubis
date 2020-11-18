@@ -10,7 +10,6 @@ from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
-from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 
 
@@ -48,7 +47,6 @@ class SearchWorker(threading.Thread):
         # Default scans that run every time
         threads = [Thread(target=dns_zonetransfer(self.parent, target)),
                    Thread(target=subdomain_hackertarget(self.parent, target)),
-                   Thread(target=search_virustotal(self.parent, target)),
                    Thread(target=search_pkey(self.parent, target)),
                    Thread(target=search_netcraft(self.parent, target)),
                    Thread(target=search_crtsh(self.parent, target)),

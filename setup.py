@@ -28,13 +28,15 @@ class RunTests(Command):
     errno = call(['py.test', '--cov=anubis', '--cov-report=term-missing'])
     raise SystemExit(errno)
 
+with open(join(this_dir, 'requirements.txt'), encoding='utf-8') as file:
+  reqs = file.read().split('\n')
 
 setup(name='anubis-netsec', version=__version__,
       description='Modern and efficient subdomain enumeration and information gathering',
       long_description=long_description,
       long_description_content_type="text/markdown",
       url='https://github.com/jonluca/anubis', author='JonLuca DeCaro',
-      author_email='jdecaro@usc.edu', license='MIT',
+      author_email='jonluca.decaro@gmail.com', license='MIT',
       classifiers=['Intended Audience :: Developers',
                    'Development Status :: 3 - Alpha', 'Topic :: Utilities',
                    'License :: Public Domain', 'Natural Language :: English',
@@ -43,8 +45,7 @@ setup(name='anubis-netsec', version=__version__,
                    'Programming Language :: Python :: 3.5',
                    'Programming Language :: Python :: 3.6', ], keywords='cli',
       packages=find_packages(exclude=['docs', 'tests*']), python_requires='>=3',
-      install_requires=['docopt', 'setuptools', 'python_nmap==0.6.1', 'shodan==1.23.0',
-                        'requests', 'censys==0.0.8', 'dnspython==1.16.0', 'sslyze==3.0.7'],
+      install_requires=[reqs],
       extras_require={'test': ['coverage', 'pytest', 'pytest-cov'], },
       entry_points={'console_scripts': ['anubis=anubis.cli:main', ], },
       cmdclass={'test': RunTests},

@@ -32,9 +32,6 @@ Note: Python 3 is required
 
 `pip3 install anubis-netsec`
 
-Or Linux Snap distribution:
-
-`snap install anubis`
 
 ### Install From Source
 
@@ -50,13 +47,14 @@ pip3 install .
 ## Usage
 
     Usage:
-      anubis -t TARGET [-o FILENAME] [-noispbarv] [-w SCAN] [-q NUM]
+      anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsv] [-w SCAN] [-q NUM]
       anubis -h
       anubis --version
       
     Options:
       -h --help                       show this help message and exit
       -t --target                     set target (comma separated, no spaces, if multiple)
+      -f --file                       set target (reads from file, one domain per line)
       -n --with-nmap                  perform an nmap service/script scan
       -o --output                     save to filename
       -i --additional-info            show additional information about the host from Shodan (requires API key)
@@ -68,7 +66,7 @@ pip3 install .
       -v --verbose                    print debug info and full request output
       -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)
       --version                       show version and exit
-
+    
     Help:
       For help using this tool, please open an issue on the Github repository:
       https://github.com/jonluca/anubis
@@ -152,7 +150,7 @@ Execution took 0:00:04.604
 ```
 
 ### Advanced
-```anubis -t reddit.com --with-nmap -o temp.txt -is --overwrite-nmap-scan "-F -T5"```
+```anubis -t reddit.com --with-nmap -o temp.txt -i --overwrite-nmap-scan "-F -T5"```
 
 ```
 Searching for subdomains for 151.101.65.140 (reddit.com)
@@ -166,71 +164,6 @@ Searching NetCraft.com
 Searching crt.sh
 Searching DNSDumpster
 Searching Anubis-DB
-Running SSL Scan
-Available TLSv1.0 Ciphers:
-    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-    TLS_RSA_WITH_AES_256_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-    TLS_RSA_WITH_AES_128_CBC_SHA
-    TLS_RSA_WITH_3DES_EDE_CBC_SHA
-Available TLSv1.2 Ciphers:
-    TLS_RSA_WITH_AES_256_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-    TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-    TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-    TLS_RSA_WITH_AES_128_GCM_SHA256
-    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-    TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-    TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-    TLS_RSA_WITH_AES_128_CBC_SHA
-    TLS_RSA_WITH_3DES_EDE_CBC_SHA
- * Certificate Information:
-     Content
-       SHA1 Fingerprint:                  f8d1965323111e86e6874aa93cc7c52969fb22bf
-       Common Name:                       *.reddit.com
-       Issuer:                            DigiCert SHA2 Secure Server CA
-       Serial Number:                     11711178161886346105980166697563149367
-       Not Before:                        2015-08-17 00:00:00
-       Not After:                         2018-08-21 12:00:00
-       Signature Algorithm:               sha256
-       Public Key Algorithm:              RSA
-       Key Size:                          2048
-       Exponent:                          65537 (0x10001)
-       DNS Subject Alternative Names:     ['*.reddit.com', 'reddit.com', '*.redditmedia.com', 'engine.a.redditmedia.com', 'redditmedia.com', '*.redd.it', 'redd.it', 'www.redditstatic.com', 'imgless.reddituploads.com', 'i.reddituploads.com', '*.thumbs.redditmedia.com']
-
-     Trust
-       Hostname Validation:               OK - Certificate matches reddit.com
-       AOSP CA Store (7.0.0 r1):          OK - Certificate is trusted
-       Apple CA Store (OS X 10.11.6):     OK - Certificate is trusted
-       Java 7 CA Store (Update 79):       OK - Certificate is trusted
-       Microsoft CA Store (09/2016):      OK - Certificate is trusted
-       Mozilla CA Store (09/2016):        OK - Certificate is trusted
-       Received Chain:                    *.reddit.com --> DigiCert SHA2 Secure Server CA
-       Verified Chain:                    *.reddit.com --> DigiCert SHA2 Secure Server CA --> DigiCert Global Root CA
-       Received Chain Contains Anchor:    OK - Anchor certificate not sent
-       Received Chain Order:              OK - Order is valid
-       Verified Chain contains SHA1:      OK - No SHA1-signed certificate in the verified certificate chain
-
-     OCSP Stapling
-       OCSP Response Status:              successful
-       Validation w/ Mozilla Store:       OK - Response is trusted
-       Responder Id:                      0F80611C823161D52F28E78D4638B42CE1C6D9E2
-       Cert Status:                       good
-       Cert Serial Number:                08CF7DA9B222C9D983C50D993F2F5437
-       This Update:                       Dec 16 16:20:41 2017 GMT
-       Next Update:                       Dec 23 15:35:41 2017 GMT
- * OpenSSL Heartbleed:
-                                          OK - Not vulnerable to Heartbleed
- * HTTP Security Headers:
-       NOT SUPPORTED - Server did not send an HSTS header
-
-     HTTP Public Key Pinning (HPKP)
-       NOT SUPPORTED - Server did not send an HPKP header
-
-     Computed HPKP Pins for Current Chain
-      0 - *.reddit.com                                  3FUu+FYb3IyHxicQEMs5sSzs207fuv25p7NGRIPDaAw=
-      1 - DigiCert SHA2 Secure Server CA                5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=
-      2 - DigiCert Global Root CA                       r/mIkG3eEpVdm+u/ko/cwxzOMo1bk4TyHIlByibiA5E=
 Searching Shodan.io for additional information
 Server Location: San Francisco, US - 94107
 ISP  or Hosting Company: Fastly
@@ -270,8 +203,6 @@ Run tests on their own, in native pytest environment
 ## Built With
 
 * CLI Boilerplate by [Skele-CLI](https://github.com/rdegges/skele-cli)
-
-* [sslyze](https://github.com/nabla-c0d3/sslyze)
 
 
 ## Contributing

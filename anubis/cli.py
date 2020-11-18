@@ -1,12 +1,13 @@
 """
 Usage:
-  anubis -t TARGET [-o FILENAME] [-abinoprsv] [-w SCAN] [-q NUM]
+  anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsv] [-w SCAN] [-q NUM]
   anubis -h
   anubis --version
   
 Options:
   -h --help                       show this help message and exit
   -t --target                     set target (comma separated, no spaces, if multiple)
+  -f --file                       set target (reads from file, one domain per line)
   -n --with-nmap                  perform an nmap service/script scan
   -o --output                     save to filename
   -i --additional-info            show additional information about the host from Shodan (requires API key)
@@ -95,8 +96,13 @@ def main():
         print("Queue workers can't be negative!")
         sys.exit(1)
 
-    if not options["--target"]:
-      print("Target required! Run with -h for usage instructions.")
+    if not options["--target"] and not options['--file']:
+      print("Target required! Run with -h for usage instructions. Either -t target.host or -f file.txt required")
+      return
+
+
+    if options["--target"] and options['--file']:
+      print("Please only supply one target method - either read by file with -f or as an argument to -t, not both.")
       return
 
     print("""

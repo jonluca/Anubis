@@ -19,7 +19,6 @@ from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
-from anubis.scanners.virustotal import search_virustotal
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
 
@@ -72,13 +71,6 @@ class TestScanners(TestCase):
     self.assertTrue("Error" not in sys.stdout.getvalue())
     dns_zonetransfer(self, "$FALSE$")
     self.assertTrue("Error" in sys.stdout.getvalue())
-
-  def test_virustotal(self):
-    search_virustotal(self, "jonlu.ca")
-    if "limiting" in sys.stdout.getvalue():
-      print("VirusTotal rate limiting")
-      return
-    self.assertIn("www.jonlu.ca", self.domains)
 
   def test_dnsdumpster(self):
     search_dnsdumpster(self, "example.com")

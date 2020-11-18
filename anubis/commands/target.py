@@ -1,8 +1,8 @@
 """The target command."""
-import sys
-
+import os
 import re
 import socket
+import sys
 import threading
 from urllib.parse import urlsplit
 
@@ -15,8 +15,7 @@ from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.nmap import scan_host
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
-from anubis.scanners.ssl import search_subject_alt_name, ssl_scan
-from anubis.scanners.virustotal import search_virustotal
+from anubis.scanners.ssl import search_subject_alt_name
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
 from .base import Base
@@ -37,7 +36,13 @@ class Target(Base):
       ColorPrint.red(message)
 
   def init(self):
-    self.options["TARGET"] = self.options["TARGET"].split(",")
+    if self.options["FILE"]:
+      full_path = os.path.join(os.getcwd(), self.options["FILE"])
+      with open(full_path) as file:
+        self.options["TARGET"] = list(filter(None, file.read().split('\n')))
+    else:
+      self.options["TARGET"] = list(
+        filter(None, self.options["TARGET"].split(",")))
     # Clean up targets
     for i in range(len(self.options["TARGET"])):
       url = self.options["TARGET"][i]
@@ -51,8 +56,8 @@ class Target(Base):
       self.options["TARGET"][i] = host
 
       try:
-        ColorPrint.green("Searching for subdomains for " + socket.gethostbyname(
-          self.options["TARGET"][i]) + " (" + self.options["TARGET"][i] + ")")
+        domain_str = socket.gethostbyname(host)
+        ColorPrint.green(f"Searching for subdomains for {domain_str} ({host})")
       except Exception as e:
         self.handle_exception(e,
                               "Error connecting to target! Make sure you spelled it correctly and it is a resolvable address")
@@ -65,15 +70,12 @@ class Target(Base):
     for i in range(len(self.options["TARGET"])):
       # Default scans that run every time
       target = self.options["TARGET"][i]
+      ColorPrint.green(f"Working on target: {target}")
       threads = [threading.Thread(target=dns_zonetransfer, args=(self, target)),
                  threading.Thread(target=subdomain_hackertarget,
                                   args=(self, target)),
                  threading.Thread(target=search_subject_alt_name,
                                   args=(self, target)),
-                 threading.Thread(target=search_virustotal,
-                                  args=(self, target)),
-                 # threading.Thread(target=search_pkey, args=(self, target)),
-                 # Removed pkey as of June 18 2018 due to issues on their end (not connecting)
                  threading.Thread(target=search_netcraft, args=(self, target)),
                  threading.Thread(target=search_crtsh, args=(self, target)),
                  threading.Thread(target=search_dnsdumpster,
@@ -84,43 +86,41 @@ class Target(Base):
       if self.options["--additional-info"]:
         threads.append(threading.Thread(target=search_shodan, args=(self,)))
 
-      # Additional options - ssl
-      if self.options["--ssl"]:
-        threads.append(threading.Thread(target=ssl_scan, args=(self, target)))
-
       # Additional options - nmap scan of dnssec script and a host/port scan
       if self.options["--with-nmap"]:
         threads.append(
           threading.Thread(target=dnssecc_subdomain_enum, args=(self, target)))
         threads.append(threading.Thread(target=scan_host, args=(self,)))
 
-    # Start all threads and wait for them to finish
-    for x in threads:
-      x.start()
+      # Start all threads and wait for them to finish
+      for x in threads:
+        x.start()
 
-    for x in threads:
-      x.join()
+      for x in threads:
+        x.join()
 
-    # Run a recursive search on each subdomain - rarely useful, but nice to have
-    # just in case
-    if self.options["--recursive"]:
-      recursive_search(self)
+      # Run a recursive search on each subdomain - rarely useful, but nice to have
+      # just in case
+      if self.options["--recursive"]:
+        recursive_search(self)
 
-    # remove duplicates and clean up
-    self.domains = self.clean_domains(self.domains)
-    self.dedupe = set(self.domains)
+      # remove duplicates and clean up
+      self.domains = self.clean_domains(self.domains)
+      self.dedupe = set(self.domains)
 
-    print("Found", len(self.dedupe), "subdomains")
-    print("----------------")
+      print("Found", len(self.dedupe), "subdomains")
+      print("----------------")
 
-    if self.options["--ip"]:
-      self.resolve_ips()
-    else:
-      for domain in self.dedupe:
-        ColorPrint.green(domain.strip())
+      if self.options["--ip"]:
+        self.resolve_ips()
+      else:
+        for domain in self.dedupe:
+          ColorPrint.green(domain.strip())
 
-    if self.options["--send-to-anubis-db"]:
-      send_to_anubisdb(self, self.options["TARGET"])
+      if self.options["--send-to-anubis-db"]:
+        send_to_anubisdb(self, [target])
+      # reset per domain
+      self.domains = list()
 
   def resolve_ips(self):
     unique_ips = set()
