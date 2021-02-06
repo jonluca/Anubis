@@ -41,7 +41,7 @@ class TestOptions(TestCase):
     shutil.rmtree(self.test_dir)
 
   def test_stdouthook(self):
-    temp = StdOutHook(os.path.join(self.test_dir, 'test.txt'))
+    temp = StdOutHook(os.path.join(self.test_dir, 'test.txt'), silent=True, output=True)
     temp.write("test")
     temp.write_out()
     temp.flush()
