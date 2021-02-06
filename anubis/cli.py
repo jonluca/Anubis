@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsv] [-w SCAN] [-q NUM]
+  anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsSv] [-w SCAN] [-q NUM]
   anubis -h
   anubis --version
   
@@ -15,6 +15,7 @@ Options:
   -a --send-to-anubis-db          send results to Anubis-DB
   -r --recursive                  recursively search over all subdomains
   -s --ssl                        run an ssl scan and output cipher + chain info
+  -S --silent                     only out put subdomains, one per line
   -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
   -v --verbose                    print debug info and full request output
   -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)
@@ -40,24 +41,28 @@ class StdOutHook:
   lines = []
   filename = ""
 
-  def __init__(self, filename):
+  def __init__(self, filename, silent, output):
     self.filename = filename
+    self.silent = silent
+    self.output = output
 
-  def write(self, text):
-    sys.__stdout__.write(text)
+  def write(self, text, override=False, **kwargs):
+    if not self.silent or override:
+      sys.__stdout__.write(text)
     self.lines.append(text)
 
   def write_out(self):
-    with open(self.filename, "w") as file:
-      for line in self.lines:
-        # remove stdout colors
-        line = line.replace('\033[91m', '')
-        line = line.replace('\033[92m', '')
-        line = line.replace('\033[93m', '')
-        line = line.replace('\033[94m', '')
-        line = line.replace('\033[95m', '')
-        line = line.replace('\033[0m', '')
-        file.write(line)
+    if self.output:
+      with open(self.filename, "w") as file:
+        for line in self.lines:
+          # remove stdout colors
+          line = line.replace('\033[91m', '')
+          line = line.replace('\033[92m', '')
+          line = line.replace('\033[93m', '')
+          line = line.replace('\033[94m', '')
+          line = line.replace('\033[95m', '')
+          line = line.replace('\033[0m', '')
+          file.write(line)
 
   def flush(self):
     # python3 compatability, does nothing
@@ -82,8 +87,9 @@ def main():
 
     options = docopt(__doc__, version=VERSION)
 
-    if options["--output"]:
-      sys.stdout = StdOutHook(options["FILENAME"])
+    if options["--output"] or options['--silent']:
+      sys.stdout = StdOutHook(options["FILENAME"], options['--silent'],
+                              options['--output'])
 
     if options["--queue-workers"]:
       if not options["--recursive"]:
@@ -97,12 +103,13 @@ def main():
         sys.exit(1)
 
     if not options["--target"] and not options['--file']:
-      print("Target required! Run with -h for usage instructions. Either -t target.host or -f file.txt required")
+      print(
+        "Target required! Run with -h for usage instructions. Either -t target.host or -f file.txt required")
       return
 
-
     if options["--target"] and options['--file']:
-      print("Please only supply one target method - either read by file with -f or as an argument to -t, not both.")
+      print(
+        "Please only supply one target method - either read by file with -f or as an argument to -t, not both.")
       return
 
     print("""

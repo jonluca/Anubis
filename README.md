@@ -62,6 +62,7 @@ pip3 install .
       -a --send-to-anubis-db          send results to Anubis-DB
       -r --recursive                  recursively search over all subdomains
       -s --ssl                        run an ssl scan and output cipher + chain info
+      -S --silent                     only out put subdomains, one per line
       -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
       -v --verbose                    print debug info and full request output
       -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)

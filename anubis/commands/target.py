@@ -115,7 +115,10 @@ class Target(Base):
         self.resolve_ips()
       else:
         for domain in self.dedupe:
-          ColorPrint.green(domain.strip())
+          cleaned_domain = domain.strip()
+          ColorPrint.green(cleaned_domain)
+          if self.options['--silent']:
+            sys.stdout.write(cleaned_domain, override=True)
 
       if self.options["--send-to-anubis-db"]:
         send_to_anubisdb(self, [target])
@@ -134,6 +137,9 @@ class Target(Base):
         resolved_ip = ""
       # TODO - Align domains and ips in stdout
       ColorPrint.green(domain + ": " + resolved_ip)
+      if self.options['--silent']:
+        sys.stdout.write(domain + '\n', override=True)
+
       if resolved_ip:
         unique_ips.add(resolved_ip)
     print("Found %s unique IPs" % len(unique_ips))
