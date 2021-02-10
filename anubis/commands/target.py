@@ -118,7 +118,7 @@ class Target(Base):
           cleaned_domain = domain.strip()
           ColorPrint.green(cleaned_domain)
           if self.options['--silent']:
-            sys.stdout.write(cleaned_domain, override=True)
+            sys.stdout.write(cleaned_domain + '\n', override=True)
 
       if self.options["--send-to-anubis-db"]:
         send_to_anubisdb(self, [target])
