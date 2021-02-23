@@ -3,5 +3,5 @@ python_nmap==0.6.1
 shodan==1.25.0
 docopt==0.6.2
 requests==2.25.1
-censys==1.1.0
+censys==1.1.1
 dnspython==2.1.0
