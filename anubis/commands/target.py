@@ -14,6 +14,7 @@ from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.nmap import scan_host
 from anubis.scanners.recursive import recursive_search
+from anubis.scanners.sublist3r import subdomain_sublist3r
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.ssl import search_subject_alt_name
 from anubis.scanners.zonetransfer import dns_zonetransfer
@@ -72,6 +73,8 @@ class Target(Base):
       target = self.options["TARGET"][i]
       ColorPrint.green(f"Working on target: {target}")
       threads = [threading.Thread(target=dns_zonetransfer, args=(self, target)),
+                 threading.Thread(target=subdomain_sublist3r,
+                                  args=(self, target)),
                  threading.Thread(target=subdomain_hackertarget,
                                   args=(self, target)),
                  threading.Thread(target=search_subject_alt_name,

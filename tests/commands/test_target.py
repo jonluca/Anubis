@@ -18,6 +18,7 @@ from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
 from anubis.scanners.recursive import recursive_search
+from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.ColorPrint import ColorPrint
@@ -97,6 +98,10 @@ class TestScanners(TestCase):
     search_pkey(self, "google.com")
     # self.assertIn("google.com", self.domains)
     self.assertTrue(True)
+
+  def test_sublist3r(self):
+    search_sublist3r(self, "google.com")
+    self.assertIn("google.com", self.domains)
 
   def test_shodan(self):
     self.ip = "138.197.125.24"
