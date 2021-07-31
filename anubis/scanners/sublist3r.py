@@ -11,7 +11,7 @@ def subdomain_sublist3r(self, target):
 
   results = requests.get('https://api.sublist3r.com/search.php',
                          headers=headers, params=params)
-  results = loads(results)
+  results = loads(results.text)
   seld.domains.extend(results)
   if self.options["--verbose"]:
     for res in results:
