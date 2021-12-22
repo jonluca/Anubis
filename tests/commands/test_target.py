@@ -9,6 +9,7 @@ from threading import Timer
 from time import sleep
 from unittest import TestCase
 
+from anubis.API import SPYSE_TOKEN
 from anubis.commands.target import Target
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
 from anubis.scanners.crt import search_crtsh
@@ -18,8 +19,9 @@ from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
 from anubis.scanners.recursive import recursive_search
-from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.shodan import search_shodan
+from anubis.scanners.spyse import search_spyse
+from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.color_print import ColorPrint
 
@@ -63,7 +65,7 @@ class TestScanners(TestCase):
     search_crtsh(self, "jonlu.ca")
 
     if 'TRAVIS' in os.environ:
-      self.assertTrue(True) # crt.sh times out on Travis
+      self.assertTrue(True)  # crt.sh times out on Travis
       return
     self.assertIn("secure.jonlu.ca", self.domains)
 
@@ -90,7 +92,7 @@ class TestScanners(TestCase):
 
   def test_netcraft(self):
     search_netcraft(self, "example.com")
-    self.assertTrue(True) # patch after netcraft no long returns valid results, 1/6/19
+    self.assertTrue(True)  # patch after netcraft no long returns valid results, 1/6/19
     # self.assertIn("http://www.example.com", self.domains)
 
   # As of 1/18/18, Pkey currently constantly times out
@@ -102,6 +104,13 @@ class TestScanners(TestCase):
   def test_sublist3r(self):
     search_sublist3r(self, "google.com")
     self.assertIn("google.com", self.domains)
+
+  def test_spyse(self):
+    search_spyse(self, "jonlu.ca")
+    if SPYSE_TOKEN:
+      self.assertIn("blog.jonlu.ca", self.domains)
+    else:
+      self.assertTrue(True)
 
   def test_shodan(self):
     self.ip = "138.197.125.24"

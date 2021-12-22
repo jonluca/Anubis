@@ -27,7 +27,7 @@ def search_dnsdumpster(self, target):
 
   cookies = {'csrftoken': csrf_token, }
 
-  data = [('csrfmiddlewaretoken', csrf_token), ('targetip', target)]
+  data = [('csrfmiddlewaretoken', csrf_token), ('targetip', target), ('user', 'free')]
 
   res = requests.post('https://dnsdumpster.com/', headers=headers,
                       cookies=cookies, data=data)

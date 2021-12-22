@@ -1,6 +1,7 @@
 # Anubis
 
-[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis) ![Coverage](https://github.com/jonluca/Anubis/blob/master/coverage.svg) [![GitHub issues](https://img.shields.io/github/issues/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/issues) [![GitHub license](https://img.shields.io/github/license/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/blob/master/LICENSE) 
+[![Build Status](https://travis-ci.org/jonluca/Anubis.svg?branch=master)](https://travis-ci.org/jonluca/Anubis) ![Coverage](https://github.com/jonluca/Anubis/blob/master/coverage.svg) [![GitHub issues](https://img.shields.io/github/issues/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/issues) [![GitHub license](https://img.shields.io/github/license/jonluca/Anubis.svg)](https://github.com/jonluca/Anubis/blob/master/LICENSE)
+
 ```
         d8888                   888      d8b
        d88888                   888      Y8P
@@ -12,7 +13,10 @@
  d88P     888 888  888  "Y88888 88888P"  888  88888P'
 ```
 
-Anubis is a subdomain enumeration and information gathering tool. Anubis collates data from a variety of sources, including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, Sublist3r, Shodan and NetCraft. Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized repository of subdomains.
+Anubis is a subdomain enumeration and information gathering tool. Anubis collates data from a variety of sources,
+including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, Sublist3r, Shodan, Spyse, and NetCraft.
+Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized
+repository of subdomains.
 
 [Original Medium article release](https://medium.com/@jonluca/introducing-anubis-a-new-subdomain-enumerator-and-information-gathering-tool-d25b39ad98f2)
 
@@ -32,7 +36,6 @@ Note: Python 3 is required
 
 `pip3 install anubis-netsec`
 
-
 ### Install From Source
 
 Please note Anubis is still in beta.
@@ -47,9 +50,9 @@ pip3 install .
 ## Usage
 
     Usage:
-      anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsv] [-w SCAN] [-q NUM]
+      anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsSv] [-w SCAN] [-q NUM]
       anubis -h
-      anubis --version
+      anubis (--version | -V)
       
     Options:
       -h --help                       show this help message and exit
@@ -59,14 +62,14 @@ pip3 install .
       -o --output                     save to filename
       -i --additional-info            show additional information about the host from Shodan (requires API key)
       -p --ip                         outputs the resolved IPs for each subdomain, and a full list of unique ips
-      -a --send-to-anubis-db          send results to Anubis-DB
+      -a --dont-send-to-anubis-db     don't send results to Anubis-DB
       -r --recursive                  recursively search over all subdomains
       -s --ssl                        run an ssl scan and output cipher + chain info
       -S --silent                     only out put subdomains, one per line
       -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
       -v --verbose                    print debug info and full request output
       -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)
-      --version                       show version and exit
+      -V --version                       show version and exit
     
     Help:
       For help using this tool, please open an issue on the Github repository:
@@ -76,9 +79,11 @@ pip3 install .
 
 #### Common Use Case
 
-`anubis -tipa  domain.com -o out.txt`
+`anubis -tip  domain.com -o out.txt`
 
-Set's target to `domain.com`, (`t`) outputs additional information (`i`) like server and ISP or server hosting provider, then attempts to resolve all URLs (`p`) and outputs list of unique IPs and sends to Anubis-DB (`a`). Finally, writes all results to out.txt (`o`).
+Set's target to `domain.com`, (`t`) outputs additional information (`i`) like server and ISP or server hosting provider,
+then attempts to resolve all URLs (`p`) and outputs list of unique IPs and sends to Anubis-DB (`a`). Finally, writes all
+results to out.txt (`o`).
 
 #### Other
 
@@ -108,7 +113,8 @@ Sending to AnubisDB
 Subdomain search took 0:00:20.390
 ```
 
-`anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`) - resolves IPs and outputs list of uniques, and provides additional information through https://shodan.io
+`anubis -t reddit.com -ip` (equivalent to `anubis -t reddit.com --additional-info --ip`) - resolves IPs and outputs list
+of uniques, and provides additional information through https://shodan.io
 
 ```
 Searching for subdomains for 151.101.65.140
@@ -151,6 +157,7 @@ Execution took 0:00:04.604
 ```
 
 ### Advanced
+
 ```anubis -t reddit.com --with-nmap -o temp.txt -i --overwrite-nmap-scan "-F -T5"```
 
 ```
@@ -190,26 +197,18 @@ Subdomain search took 0:00:26.579
 
 ## Running the tests
 
-Run all test *with coverage*
-
-```
- python3 setup.py test
-```
-
 Run tests on their own, in native pytest environment
 
 ```pytest```
-
 
 ## Built With
 
 * CLI Boilerplate by [Skele-CLI](https://github.com/rdegges/skele-cli)
 
-
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/jonluca/Anubis/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
+Please read [CONTRIBUTING.md](https://github.com/jonluca/Anubis/blob/master/CONTRIBUTING.md) for details on our code of
+conduct, and the process for submitting pull requests to us.
 
 ## Authors
 

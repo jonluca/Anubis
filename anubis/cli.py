@@ -12,7 +12,7 @@ Options:
   -o --output                     save to filename
   -i --additional-info            show additional information about the host from Shodan (requires API key)
   -p --ip                         outputs the resolved IPs for each subdomain, and a full list of unique ips
-  -a --send-to-anubis-db          send results to Anubis-DB
+  -a --dont-send-to-anubis-db     don't send results to Anubis-DB
   -r --recursive                  recursively search over all subdomains
   -s --ssl                        run an ssl scan and output cipher + chain info
   -S --silent                     only out put subdomains, one per line

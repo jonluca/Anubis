@@ -1,4 +1,4 @@
-from json import dumps, loads
+from json import loads
 
 import requests
 
@@ -18,10 +18,10 @@ def search_anubisdb(self, target):
 def send_to_anubisdb(self, target):
   if len(target) == 1:
     print("Sending to AnubisDB")
-    data = {'subdomains': dumps(self.domains)}
+    data = {'subdomains': self.domains}
     # Sends found subdomains to Anubis (max 10,000/post)
     res = requests.post("https://jonlu.ca/anubis/subdomains/" + target[0],
-                        data=data)
+                        json=data)
     if res.status_code != 200:
       ColorPrint.red("Error sending results to AnubisDB - Status Code: " + str(
         res.status_code))

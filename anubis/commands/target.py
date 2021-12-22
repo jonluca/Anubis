@@ -15,8 +15,9 @@ from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.nmap import scan_host
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
+from anubis.scanners.spyse import search_spyse
 from anubis.scanners.ssl import search_subject_alt_name
-from anubis.scanners.sublist3r import subdomain_sublist3r
+from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.color_print import ColorPrint
 from .base import Base
@@ -72,7 +73,7 @@ class Target(Base):
       target = self.options["TARGET"][i]
       ColorPrint.green(f"Working on target: {target}")
       threads = [threading.Thread(target=dns_zonetransfer, args=(self, target)),
-                 threading.Thread(target=subdomain_sublist3r,
+                 threading.Thread(target=search_sublist3r,
                                   args=(self, target)),
                  threading.Thread(target=subdomain_hackertarget,
                                   args=(self, target)),
@@ -81,6 +82,8 @@ class Target(Base):
                  threading.Thread(target=search_netcraft, args=(self, target)),
                  threading.Thread(target=search_crtsh, args=(self, target)),
                  threading.Thread(target=search_dnsdumpster,
+                                  args=(self, target)),
+                 threading.Thread(target=search_spyse,
                                   args=(self, target)),
                  threading.Thread(target=search_anubisdb, args=(self, target))]
 
@@ -122,7 +125,7 @@ class Target(Base):
           if self.options['--silent']:
             sys.stdout.write(cleaned_domain + '\n', override=True)
 
-      if self.options["--send-to-anubis-db"]:
+      if not self.options["--dont-send-to-anubis-db"]:
         send_to_anubisdb(self, [target])
       # reset per domain
       self.domains = list()
@@ -134,7 +137,6 @@ class Target(Base):
         # Attempt to get IP
         resolved_ip = socket.gethostbyname(domain)
       except Exception as e:
-        self.handle_exception(e)
         # If getting IP fails, fallback to empty string
         resolved_ip = ""
       # TODO - Align domains and ips in stdout
