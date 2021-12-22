@@ -14,11 +14,11 @@ from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.nmap import scan_host
 from anubis.scanners.recursive import recursive_search
-from anubis.scanners.sublist3r import subdomain_sublist3r
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.ssl import search_subject_alt_name
+from anubis.scanners.sublist3r import subdomain_sublist3r
 from anubis.scanners.zonetransfer import dns_zonetransfer
-from anubis.utils.ColorPrint import ColorPrint
+from anubis.utils.color_print import ColorPrint
 from .base import Base
 
 
@@ -57,12 +57,11 @@ class Target(Base):
       self.options["TARGET"][i] = host
 
       try:
-        domain_str = socket.gethostbyname(host)
-        ColorPrint.green(f"Searching for subdomains for {domain_str} ({host})")
+        ip_str = socket.gethostbyname(host)
+        ColorPrint.green(f"Searching for subdomains for {ip_str} ({host})")
       except Exception as e:
         self.handle_exception(e,
                               "Error connecting to target! Make sure you spelled it correctly and it is a resolvable address")
-        raise e
 
   def run(self):
     # Retrieve IP of target and run initial configurations

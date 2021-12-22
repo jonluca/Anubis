@@ -1,6 +1,6 @@
 import censys
 
-from anubis.utils.ColorPrint import ColorPrint
+from anubis.utils.color_print import ColorPrint
 
 
 def search_censys(self, target):

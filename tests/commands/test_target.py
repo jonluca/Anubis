@@ -21,7 +21,7 @@ from anubis.scanners.recursive import recursive_search
 from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.zonetransfer import dns_zonetransfer
-from anubis.utils.ColorPrint import ColorPrint
+from anubis.utils.color_print import ColorPrint
 
 
 class TestScanners(TestCase):

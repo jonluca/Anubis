@@ -3,7 +3,7 @@ from json import dumps
 
 import shodan
 
-from anubis.utils.ColorPrint import ColorPrint
+from anubis.utils.color_print import ColorPrint
 
 
 def search_shodan(self):

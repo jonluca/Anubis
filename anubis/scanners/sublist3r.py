@@ -1,6 +1,6 @@
-import requests
-
 from json import loads
+
+import requests
 
 
 def subdomain_sublist3r(self, target):
@@ -9,10 +9,15 @@ def subdomain_sublist3r(self, target):
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
   params = (('domain', target),)
 
-  results = requests.get('https://api.sublist3r.com/search.php',
-                         headers=headers, params=params)
-  results = loads(results.text)
-  self.domains.extend(results)
-  if self.options["--verbose"]:
-    for res in results:
+  try:
+    results = requests.get('https://api.sublist3r.com/search.php',
+                           headers=headers, params=params)
+    list_results = loads(results.text)
+    if list_results:
+      self.domains.extend(list_results)
+  except Exception as e:
+    print("Exception when searching sublist3r")
+    return
+  if list_results and self.options["--verbose"]:
+    for res in list_results:
       print("Sublist3r Found Domain:", res)

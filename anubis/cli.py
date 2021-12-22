@@ -2,7 +2,7 @@
 Usage:
   anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsSv] [-w SCAN] [-q NUM]
   anubis -h
-  anubis --version
+  anubis (--version | -V)
   
 Options:
   -h --help                       show this help message and exit
@@ -19,7 +19,7 @@ Options:
   -w --overwrite-nmap-scan SCAN   overwrite default nmap scan (default -nPn -sV -sC)
   -v --verbose                    print debug info and full request output
   -q --queue-workers NUM          override number of queue workers (default: 10, max: 100)
-  --version                       show version and exit
+  -V --version                       show version and exit
 
 Help:
   For help using this tool, please open an issue on the Github repository:
@@ -32,6 +32,7 @@ from functools import reduce
 
 from docopt import docopt
 
+import anubis.commands
 # noinspection PyPep8Naming
 from . import __version__ as VERSION
 
@@ -82,8 +83,6 @@ def main():
       sys.exit(1)
 
     start_time = time.time()
-
-    import anubis.commands
 
     options = docopt(__doc__, version=VERSION)
 
