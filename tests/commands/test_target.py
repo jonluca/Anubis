@@ -102,8 +102,8 @@ class TestScanners(TestCase):
     self.assertTrue(True)
 
   def test_sublist3r(self):
-    search_sublist3r(self, "google.com")
-    self.assertIn("google.com", self.domains)
+    search_sublist3r(self, "example.com")
+    self.assertIn("0.example.com", self.domains)
 
   def test_spyse(self):
     search_spyse(self, "jonlu.ca")
@@ -129,7 +129,7 @@ class TestScanners(TestCase):
     self.options["--queue-workers"] = False
     recursive_search(self)
     self.domains = self.clean_domains(self.domains)
-    self.assertIn("www.neverssl.com", self.domains)
+    self.assertIn("neverssl.com", self.domains)
 
   # Pass through function for recursive search
   def clean_domains(self, domains):
