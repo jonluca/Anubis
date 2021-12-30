@@ -12,7 +12,7 @@ def dnssecc_subdomain_enum(self, target):
     nm = nmap.PortScanner()
     arguments = '-sSU -p 53 --script dns-nsec-enum --script-args dns-nsec-enum.domains=' + target
 
-    nm.scan(hosts=self.ip, arguments=arguments)
+    nm.scan(hosts=target, arguments=arguments)
     for host in nm.all_hosts():
       try:
         print(nm[host]['udp'][53]['script']['dns-nsec-enum'])
