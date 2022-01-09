@@ -5,17 +5,15 @@ import nmap
 
 
 # Performs an nmap scan of a target, and outputs interesting services/ssl information
-def scan_host(self):
+def scan_host(self, target):
   if shutil.which("nmap") is None:
     print("Nmap must be installed to run --with-nmap!")
     return
 
   print("Starting Nmap Scan")
   nm = nmap.PortScanner()
-  arguments = '-nPn -sV -sC'
-  if self.options["--overwrite-nmap-scan"]:
-    arguments = self.options["--overwrite-nmap-scan"]
-  nm.scan(hosts=self.ip, arguments=arguments)
+  arguments = self.options["--overwrite-nmap-scan"] or '-nPn -sV -sC'
+  nm.scan(hosts=target, arguments=arguments)
   # Could be extended to scan multiple hosts in the future
   for host in nm.all_hosts():
     if self.options["--verbose"]:

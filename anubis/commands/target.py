@@ -26,7 +26,6 @@ from .base import Base
 class Target(Base):
   """Main enumeration module"""
   domains = list()
-  ip = str()
   dedupe = set()
 
   stdout = sys.stdout
@@ -95,7 +94,7 @@ class Target(Base):
       if self.options["--with-nmap"]:
         threads.append(
           threading.Thread(target=dnssecc_subdomain_enum, args=(self, target)))
-        threads.append(threading.Thread(target=scan_host, args=(self,)))
+        threads.append(threading.Thread(target=scan_host, args=(self, target)))
 
       # Start all threads and wait for them to finish
       for x in threads:
