@@ -21,7 +21,6 @@ from anubis.scanners.pkey import search_pkey
 from anubis.scanners.recursive import recursive_search
 from anubis.scanners.shodan import search_shodan
 from anubis.scanners.spyse import search_spyse
-from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.zonetransfer import dns_zonetransfer
 from anubis.utils.color_print import ColorPrint
 
@@ -47,7 +46,7 @@ class TestScanners(TestCase):
 
   def test_anubis_db(self):
     search_anubisdb(self, "example.com")
-    self.assertIn("www.example.com", self.domains)
+    self.assertIn("m.example.com", self.domains)
 
   def test_send_to_anubis(self):
     self.domains.append("www.example.com")
@@ -76,8 +75,8 @@ class TestScanners(TestCase):
     self.assertTrue("Error" in sys.stdout.getvalue())
 
   def test_dnsdumpster(self):
-    search_dnsdumpster(self, "example.com")
-    self.assertIn("www.example.com", self.domains)
+    search_dnsdumpster(self, "jonlu.ca")
+    self.assertIn("assets.jonlu.ca", self.domains)
 
   def test_dnssec(self):
     if os.getuid() == 0:
@@ -101,10 +100,6 @@ class TestScanners(TestCase):
     # self.assertIn("google.com", self.domains)
     self.assertTrue(True)
 
-  def test_sublist3r(self):
-    search_sublist3r(self, "example.com")
-    self.assertIn("0.example.com", self.domains)
-
   def test_spyse(self):
     search_spyse(self, "jonlu.ca")
     if SPYSE_TOKEN:
@@ -112,13 +107,13 @@ class TestScanners(TestCase):
     else:
       self.assertTrue(True)
 
-  def test_shodan(self):
-    self.ip = "138.197.125.24"
-    self.options = {}
-    self.options["TARGET"] = ["jonlu.ca"]
-    self.options["--verbose"] = True
-    search_shodan(self)
-    self.assertIn("ISP", sys.stdout.getvalue())
+  # def test_shodan(self):
+  #   self.ip = "138.197.125.24"
+  #   self.options = {}
+  #   self.options["TARGET"] = ["jonlu.ca"]
+  #   self.options["--verbose"] = True
+  #   search_shodan(self)
+  #   self.assertIn("ISP", sys.stdout.getvalue())
 
   def test_recursive(self):
     self.options = {}

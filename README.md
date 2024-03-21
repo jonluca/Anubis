@@ -14,7 +14,7 @@
 ```
 
 Anubis is a subdomain enumeration and information gathering tool. Anubis collates data from a variety of sources,
-including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, Sublist3r, Shodan, Spyse, and NetCraft.
+including HackerTarget, DNSDumpster, x509 certs, VirusTotal, Google, Pkey, Shodan, Spyse, and NetCraft.
 Anubis also has a sister project, [AnubisDB](https://github.com/jonluca/Anubis-DB), which serves as a centralized
 repository of subdomains.
 
@@ -74,6 +74,8 @@ pip3 install .
     Help:
       For help using this tool, please open an issue on the Github repository:
       https://github.com/jonluca/anubis
+
+Note: If you'd like to use the shodan.io API, make sure to prefix the command with `SHODAN_API_KEY=yourkey`
 
 ### Basic
 

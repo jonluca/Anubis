@@ -1,6 +1,6 @@
 # Please follow the general troubleshooting steps first:
 
-- [ ] Check you are using Python 3.6
+- [ ] Check you are using Python >3.11
 - [ ] Make sure you are using pip3 (or any instance of pip associated with Python 3.x)
 
 ### Bug reports:

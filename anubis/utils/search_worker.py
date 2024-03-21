@@ -10,7 +10,6 @@ from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
-from anubis.scanners.sublist3r import search_sublist3r
 from anubis.scanners.zonetransfer import dns_zonetransfer
 
 
@@ -47,7 +46,6 @@ class SearchWorker(threading.Thread):
         self.parent.stdout.flush()
         # Default scans that run every time
         threads = [Thread(target=dns_zonetransfer(self.parent, target)),
-                   Thread(target=search_sublist3r(self.parent, target)),
                    Thread(target=subdomain_hackertarget(self.parent, target)),
                    Thread(target=search_pkey(self.parent, target)),
                    Thread(target=search_netcraft(self.parent, target)),

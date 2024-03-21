@@ -1,19 +1,14 @@
+import os
 import socket
-
 import shodan
-
-from anubis.utils.color_print import ColorPrint
-
 
 def search_shodan(self):
   print("Searching Shodan.io for additional information")
-  try:
-    from anubis.API import SHODAN_KEY
-  except ImportError:
-    ColorPrint.red("Unable to import API keys - make sure API.py exists!")
-    return
+  api_key = os.environ.get("SHODAN_API_KEY", None)
+  if api_key is None:
+      return
 
-  api = shodan.Shodan(SHODAN_KEY)
+  api = shodan.Shodan(api_key)
   for i in range(len(self.options["TARGET"])):
     try:
       results = api.host(socket.gethostbyname(self.options["TARGET"][i]))
