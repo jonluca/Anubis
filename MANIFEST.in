@@ -3,6 +3,7 @@ exclude .coverage
 exclude .travis.yml
 include README.rst
 include setup.cfg
+include requirements.txt
 prune .cache
 prune .git
 prune build

@@ -29,7 +29,7 @@ class RunTests(Command):
     raise SystemExit(errno)
 
 with open(join(this_dir, 'requirements.txt'), encoding='utf-8') as file:
-  reqs = file.read().split('\n')
+  reqs = [req.strip() for req in file.read().split('\n') if req.strip()]
 
 setup(name='anubis-netsec', version=__version__,
       description='Modern and efficient subdomain enumeration and information gathering',
@@ -45,7 +45,7 @@ setup(name='anubis-netsec', version=__version__,
                    'Programming Language :: Python :: 3.5',
                    'Programming Language :: Python :: 3.6', ], keywords='cli',
       packages=find_packages(exclude=['docs', 'tests*']), python_requires='>=3',
-      install_requires=[reqs],
+      install_requires=reqs,
       extras_require={'test': ['coverage', 'pytest', 'pytest-cov'], },
       entry_points={'console_scripts': ['anubis=anubis.cli:main', ], },
       cmdclass={'test': RunTests},
