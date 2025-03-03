@@ -123,7 +123,7 @@ class Target(Base):
           if self.options['--silent']:
             sys.stdout.write(cleaned_domain + '\n', override=True)
 
-      if not self.options["--dont-send-to-anubis-db"]:
+      if self.options["--send-to-anubis-db"]:
         send_to_anubisdb(self, [target])
       # reset per domain
       self.domains = list()
