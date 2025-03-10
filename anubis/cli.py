@@ -1,6 +1,6 @@
 """
 Usage:
-  anubis (-t TARGET | -f FILE) [-o FILENAME]  [-abinoprsSv] [-w SCAN] [-q NUM]
+  anubis (-t TARGET | -f FILE) [-o FILENAME]  [-bdinoprsSv] [-w SCAN] [-q NUM]
   anubis -h
   anubis (--version | -V)
   
