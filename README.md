@@ -28,11 +28,11 @@ repository of subdomains.
 
 If you are running Linux, the following are also required:
 
-`sudo apt-get install python3-pip python-dev libssl-dev libffi-dev`
+`sudo apt-get install python3-pip python3-dev libssl-dev libffi-dev`
 
 ### Installing
 
-Note: Python 3 is required
+Note: Python 3.10 or newer is required
 
 `pip3 install anubis-netsec`
 

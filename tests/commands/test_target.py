@@ -5,7 +5,6 @@ import signal
 import sys
 from io import StringIO
 from subprocess import PIPE, Popen as popen
-from threading import Timer
 from time import sleep
 from unittest import TestCase
 
@@ -126,18 +125,30 @@ class TestScanners(TestCase):
     return Target.clean_domains(domains)
 
   def test_sigints(self):
-    # Declare function to send sigint, after timer
+    script = """
+import sys
+from time import sleep
 
-    proc1 = popen(['anubis', '-tr', 'neverssl.com'], stdout=PIPE)
+import anubis.cli
 
-    # Function to send sigint to our processes, make sure that it outputss "Quitting" then ends
-    def send_siginit():
-      popen.send_signal(proc1, signal.SIGINT)
-      self.assertTrue("Quitting" in sys.stdout.getvalue())
 
-    t = Timer(3.0, send_siginit)
-    t.start()
-    sleep(5)
+class SlowTarget:
+  def __init__(self, options):
+    pass
+
+  def run(self):
+    sleep(30)
+
+
+anubis.cli.anubis.commands.Target = SlowTarget
+sys.argv = ['anubis', '-t', 'example.com']
+anubis.cli.main()
+"""
+    proc1 = popen([sys.executable, '-c', script], stdout=PIPE)
+    sleep(0.5)
+    proc1.send_signal(signal.SIGINT)
+    output = proc1.communicate(timeout=5)[0].decode("utf-8")
+    self.assertIn("Quitting", output)
 
   def test_exception(self):
     self.options["--verbose"] = True

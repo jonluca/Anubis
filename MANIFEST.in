@@ -1,7 +1,7 @@
 exclude .gitignore
 exclude .coverage
 exclude .travis.yml
-include README.rst
+include README.md
 include setup.cfg
 include requirements.txt
 prune .cache
@@ -10,3 +10,4 @@ prune build
 prune dist
 recursive-exclude *.egg-info *
 recursive-include tests *
+global-exclude *.pyc *.pyo

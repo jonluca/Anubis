@@ -14,7 +14,7 @@ def dns_zonetransfer(self, target):
   resolver = dns.resolver.Resolver()
 
   try:
-    answers = resolver.query(target, 'NS')
+    answers = resolver.resolve(target, 'NS')
   except Exception as e:
     self.handle_exception(e, "Error checking for Zone Transfers")
     return

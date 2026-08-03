@@ -22,7 +22,7 @@ def search_netcraft(self, target):
     trimmed = scraped[scraped.find('<div class="blogtitle">'):scraped.rfind(
       '<div id="copyright">')]
     subdomain_finder = re.compile(
-      '<a href="http://toolbar.netcraft.com/site_report\?url=(.*)">')
+      r'<a href="http://toolbar.netcraft.com/site_report\?url=(.*)">')
     links = subdomain_finder.findall(trimmed)
     for domain in links:
       if domain.strip() not in self.domains and domain.endswith("." + target):

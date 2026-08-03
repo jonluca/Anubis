@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.7"
+  - "3.10"
 
 # command to install dependencies
 install:
@@ -8,4 +8,4 @@ install:
   - pip3 install .
 # command to run tests
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+  - pytest

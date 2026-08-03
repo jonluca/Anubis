@@ -1,6 +1,5 @@
 """Packaging settings."""
 
-from codecs import open
 from os.path import abspath, dirname, join
 from subprocess import call
 
@@ -39,14 +38,15 @@ setup(name='anubis-netsec', version=__version__,
       author_email='jonluca.decaro@gmail.com', license='MIT',
       classifiers=['Intended Audience :: Developers',
                    'Development Status :: 3 - Alpha', 'Topic :: Utilities',
-                   'License :: Public Domain', 'Natural Language :: English',
+                   'Natural Language :: English',
                    'Operating System :: OS Independent',
-                   'Programming Language :: Python :: 3.4',
-                   'Programming Language :: Python :: 3.5',
-                   'Programming Language :: Python :: 3.6', ], keywords='cli',
-      packages=find_packages(exclude=['docs', 'tests*']), python_requires='>=3',
+                   'Programming Language :: Python :: 3.10',
+                   'Programming Language :: Python :: 3.11',
+                   'Programming Language :: Python :: 3.12',
+                   'Programming Language :: Python :: 3.13',
+                   'Programming Language :: Python :: 3.14', ], keywords='cli',
+      packages=find_packages(exclude=['docs', 'tests*']), python_requires='>=3.10',
       install_requires=reqs,
       extras_require={'test': ['coverage', 'pytest', 'pytest-cov'], },
       entry_points={'console_scripts': ['anubis=anubis.cli:main', ], },
-      cmdclass={'test': RunTests},
-      py_modules=["anubis.utils", "anubis.scanners"], )
+      cmdclass={'test': RunTests}, )

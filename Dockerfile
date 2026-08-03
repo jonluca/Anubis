@@ -1,10 +1,10 @@
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
             build-essential \
             libssl-dev \
             libffi-dev \
-            python-dev \
+            python3-dev \
         && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /Anubis/
