@@ -8,7 +8,13 @@ jobs:
     docker:
       - image: cimg/python:<< parameters.python-version >>
     steps:
-      - checkout
+      - run:
+          name: Checkout source
+          command: |
+            git init .
+            git remote add origin https://github.com/jonluca/Anubis.git
+            git fetch --depth=1 origin "$CIRCLE_SHA1"
+            git checkout --detach FETCH_HEAD
       - run:
           name: Install dependencies
           command: |
