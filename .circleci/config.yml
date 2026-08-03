@@ -1,0 +1,47 @@
+version: 2.1
+
+jobs:
+  test:
+    parameters:
+      python-version:
+        type: string
+    docker:
+      - image: cimg/python:<< parameters.python-version >>
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv .venv
+            . .venv/bin/activate
+            python -m pip install --upgrade pip
+            python -m pip install -e ".[test]"
+            python -m pip install build
+      - run:
+          name: Test package
+          command: |
+            . .venv/bin/activate
+            python -m pip check
+            PYTHONWARNINGS=error python -m compileall -q -f anubis tests
+            python -m pytest -q tests/test_cli.py -k "not test_run"
+            python -m pytest -q \
+              tests/commands/test_target.py::TestScanners::test_exception \
+              tests/commands/test_target.py::TestScanners::test_sigints \
+              tests/commands/test_target.py::TestColorPrint
+            anubis --version
+            anubis --help >/dev/null
+      - run:
+          name: Build package
+          command: |
+            . .venv/bin/activate
+            python -m build
+
+workflows:
+  test:
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              python-version:
+                - "3.10"
+                - "3.14"
