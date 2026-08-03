@@ -13,7 +13,6 @@ from anubis.API import SPYSE_TOKEN
 from anubis.commands.target import Target
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
 from anubis.scanners.crt import search_crtsh
-from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.dnssec import dnssecc_subdomain_enum
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
@@ -73,10 +72,6 @@ class TestScanners(TestCase):
     self.assertTrue("Error" not in sys.stdout.getvalue())
     dns_zonetransfer(self, "$FALSE$")
     self.assertTrue("Error" in sys.stdout.getvalue())
-
-  def test_dnsdumpster(self):
-    search_dnsdumpster(self, "jonlu.ca")
-    self.assertIn("assets.jonlu.ca", self.domains)
 
   def test_dnssec(self):
     if os.getuid() == 0:

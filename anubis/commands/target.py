@@ -9,7 +9,6 @@ from urllib.parse import urlsplit
 from anubis.scanners.anubis_db import search_anubisdb, send_to_anubisdb
 from anubis.scanners.crt import search_crtsh
 from anubis.scanners.hudson_rock import search_hudsonrock
-from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.dnssec import dnssecc_subdomain_enum
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
@@ -79,8 +78,6 @@ class Target(Base):
                  threading.Thread(target=search_netcraft, args=(self, target)),
                  threading.Thread(target=search_hudsonrock, args=(self, target)),
                  threading.Thread(target=search_crtsh, args=(self, target)),
-                 threading.Thread(target=search_dnsdumpster,
-                                  args=(self, target)),
                  threading.Thread(target=search_spyse,
                                   args=(self, target)),
                  threading.Thread(target=search_anubisdb, args=(self, target))]

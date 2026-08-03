@@ -6,7 +6,6 @@ import threading
 from threading import Thread
 
 from anubis.scanners.crt import search_crtsh
-from anubis.scanners.dnsdumpster import search_dnsdumpster
 from anubis.scanners.hackertarget import subdomain_hackertarget
 from anubis.scanners.netcraft import search_netcraft
 from anubis.scanners.pkey import search_pkey
@@ -49,8 +48,7 @@ class SearchWorker(threading.Thread):
                    Thread(target=subdomain_hackertarget(self.parent, target)),
                    Thread(target=search_pkey(self.parent, target)),
                    Thread(target=search_netcraft(self.parent, target)),
-                   Thread(target=search_crtsh(self.parent, target)),
-                   Thread(target=search_dnsdumpster(self.parent, target))]
+                   Thread(target=search_crtsh(self.parent, target))]
 
         # Start all threads
         for x in threads:
