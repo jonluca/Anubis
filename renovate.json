@@ -1,7 +1,0 @@
-{
-  "extends": [
-    "config:recommended"
-  ],
-  "enabled": false,
-  "dependencyDashboard": false
-}
