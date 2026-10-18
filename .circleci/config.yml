@@ -30,6 +30,7 @@ jobs:
             python -m pip check
             PYTHONWARNINGS=error python -m compileall -q -f anubis tests
             python -m pytest -q tests/test_cli.py -k "not test_run"
+            python -m pytest -q tests/scanners/test_crt.py
             python -m pytest -q \
               tests/commands/test_target.py::TestScanners::test_exception \
               tests/commands/test_target.py::TestScanners::test_sigints \
